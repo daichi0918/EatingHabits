@@ -1,28 +1,33 @@
-import axios from 'axios';
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import { UserType } from './types/user';
-import { User } from './User';
+import { UserCard } from './compenents/UserCard';
+import { useAllUsers } from './hooks/useAllUsers'
 
 
 function App() {
-  const [users, setUsers] = useState<Array<UserType>>([]);
-  const onClickFetchUserData = () => {
-    axios.get<any>("http://localhost:3002/api/v1/users").then((res) => {
-      console.log(res)
-      setUsers(res.data.users)
-    })
-  }
+  const { getUsers, userProfiles, loading, error } = useAllUsers();
+  const onClickFetchUserData = () => getUsers();
+
   return (
     <div className="App">
       <button onClick={onClickFetchUserData}>ユーザーデータ取得</button>
-      {users.map((user) => (
-        <User
-          key={user.id}
-          name={user.name}
-          email={user.email}
-        />
-      ))}
+      <br />
+      {error ? (
+        <p style={{ color: "red" }}>データの取得に失敗しました</p>
+      ) : loading ? (
+        <p>Loading...</p>
+      ) : (
+            <>
+              {userProfiles.map((user) => (
+                <UserCard
+                  key={user.id}
+                  user={user}
+                />
+              ))}
+            </>
+          )
+      }
+
     </div>
   );
 }

@@ -1,12 +1,14 @@
 import { FC } from "react";
-import { UserType } from "./types/user";
+import { UserProfile } from "./types/userProfile";
 
-export const User: FC<Pick<UserType, "name" | "email">> = (props) => {
+export const User: FC<Pick<UserProfile, "name" | "email">> = (props) => {
   const { name, email } = props;
   return (
-    <>
-      <p>{`ユーザー名：${name}`}</p>
-      <p>{`メールアドレス:${email}`}</p>
-    </>
+    <dl>
+      <dt>名前</dt>
+      <dd>{name}</dd>
+      <dt>メールアドレス</dt>
+      <dd>{email}</dd>
+    </dl>
   )
 }
