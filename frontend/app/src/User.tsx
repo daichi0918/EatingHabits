@@ -1,6 +1,7 @@
+import { FC } from "react";
 import { UserType } from "./types/user";
 
-export const User = (props: Pick<UserType, "name" | "email">) => {
+export const User: FC<Pick<UserType, "name" | "email">> = (props) => {
   const { name, email } = props;
   return (
     <>
