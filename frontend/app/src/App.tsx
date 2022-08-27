@@ -3,10 +3,23 @@ import React, { useState } from 'react';
 import './App.css';
 import { User } from './User';
 
+type UserType = {
+  id: number;
+  name: string;
+  email: string;
+  encrypted_password: string;
+  gender: string;
+  image: string;
+  memo: string;
+  created_at: string;
+  updated_at: string;
+}
+
 function App() {
-  const [users, setUsers] = useState<any>([]);
+  const [users, setUsers] = useState<Array<UserType>>([]);
   const onClickFetchUserData = () => {
-    axios.get("http://localhost:3002/api/v1/users").then((res) => {
+    axios.get<any>("http://localhost:3002/api/v1/users").then((res) => {
+      console.log(res)
       setUsers(res.data.users)
     })
   }
