@@ -1,19 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import './App.css';
+import { UserType } from './types/user';
 import { User } from './User';
 
-type UserType = {
-  id: number;
-  name: string;
-  email: string;
-  encrypted_password: string;
-  gender: string;
-  image: string;
-  memo: string;
-  created_at: string;
-  updated_at: string;
-}
 
 function App() {
   const [users, setUsers] = useState<Array<UserType>>([]);
@@ -27,7 +17,11 @@ function App() {
     <div className="App">
       <button onClick={onClickFetchUserData}>ユーザーデータ取得</button>
       {users.map((user) => (
-        <User name={user.name} />
+        <User
+          key={user.id}
+          name={user.name}
+          email={user.email}
+        />
       ))}
     </div>
   );

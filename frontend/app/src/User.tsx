@@ -1,16 +1,11 @@
-type UserType = {
-  // id: number;
-  name: string;
-  // email: string;
-  // encrypted_password: string;
-  // gender: string;
-  // image: string;
-  // memo: string;
-  // created_at: string;
-  // updated_at: string;
-}
+import { UserType } from "./types/user";
 
-export const User = (props: UserType) => {
-  const { name } = props;
-  return <p>{`ユーザー名：${name}`}</p>
+export const User = (props: Pick<UserType, "name" | "email">) => {
+  const { name, email } = props;
+  return (
+    <>
+      <p>{`ユーザー名：${name}`}</p>
+      <p>{`メールアドレス:${email}`}</p>
+    </>
+  )
 }
