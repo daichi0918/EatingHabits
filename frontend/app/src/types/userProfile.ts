@@ -1,11 +1,16 @@
 export type UserProfile = {
-  id: number;
-  name: string;
-  email: string;
-  encrypted_password: string;
-  gender: string;
-  image: string;
-  memo: string;
-  created_at: string;
-  updated_at: string;
+
+  users: [
+    {
+      id: number,
+      name: string,
+      email: string,
+      encrypted_password: string,
+      gender: string,
+      image: string,
+      memo: string,
+      created_at: string,
+      updated_at: string
+    }
+  ]
 };

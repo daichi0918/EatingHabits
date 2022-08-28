@@ -1,9 +1,25 @@
-import { Box, Button, Drawer, DrawerOverlay, Flex, Heading, IconButton, Link, DrawerBody, useDisclosure, DrawerContent } from "@chakra-ui/react";
+import { Box, Button, Drawer, DrawerOverlay, Flex, Heading, IconButton, Link, DrawerBody, useDisclosure, DrawerContent, useFocusEffect } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons"
-import { FC, memo } from "react";
+import { FC, memo, useEffect } from "react";
+import axios from "axios";
 
 export const Header: FC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const onClickButton = () => {
+    axios.get<any>("http://localhost:3002/api/v1/users").then((res) => {
+      console.log(res)
+    })
+  }
+
+  useEffect(() => {
+    axios.get<any>("http://localhost:3002/api/v1/users").then((res) => {
+      console.log(res)
+    })
+  }, [])
+
+
+
   return (
     <>
       <Flex
@@ -22,7 +38,7 @@ export const Header: FC = memo(() => {
 
         <Flex align="center" fontSize="sm" flexGrow={2} display={{ base: "none", md: "flex" }}>
           <Box pr={4}>
-            <Link>ユーザー一覧</Link>
+            <Link onClick={() => onClickButton}>ユーザー一覧</Link>
           </Box>
           {/* <Link>ユーザー一覧</Link> */}
         </Flex>
