@@ -1,4 +1,4 @@
-// import { FC } from "react";
+import { FC } from "react";
 // import { UserProfile } from "./types/userProfile";
 
 // export const User: FC<Pick<UserProfile, "name" | "email">> = (props) => {
