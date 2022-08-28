@@ -13,7 +13,7 @@ export const Router: FC = memo(() => {
     <Routes>
       <Route path="" element={<Login />} />
       <Route path="home" element={<Home />} />
-      <Route path="user_management" element={<UserManagement />} />
+      <Route path="home/user_management" element={<UserManagement />} />
       <Route path="*" element={<Page404 />} />
       {/* <Route path="/home" render={({ match: { url } }) => {
         {

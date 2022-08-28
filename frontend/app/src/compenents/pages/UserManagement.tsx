@@ -1,7 +1,10 @@
 import { FC, memo } from "react";
+import { HeaderLayout } from "../templates/HeaderLayout";
 
 export const UserManagement: FC = memo(() => {
   return (
-    <p>ユーザー管理ページ</p>
+    <HeaderLayout>
+      <p>ユーザー管理ページ</p>
+    </HeaderLayout>
   )
 })
