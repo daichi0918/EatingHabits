@@ -1,4 +1,4 @@
-export type UserProfile = {
+export type User = {
 
   users: [
     {
