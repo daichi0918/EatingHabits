@@ -1,5 +1,6 @@
 import { Spinner, Center, Wrap, WrapItem } from "@chakra-ui/react";
 import { FC, memo, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useAllLists } from "../../hooks/useAllLists";
 import { HeaderLayout } from "../templates/HeaderLayout";
 
@@ -7,7 +8,11 @@ export const List: FC = memo(() => {
 
   const { getLists, lists, loading } = useAllLists();
 
-  useEffect(() => getLists(), [])
+  const { userId } = useParams();
+
+  useEffect(() => getLists(userId), [])
+
+
   return (
     <HeaderLayout>
       {loading ? (

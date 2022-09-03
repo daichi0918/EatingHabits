@@ -9,10 +9,10 @@ export const useAllLists = () => {
   const [lists, setLists] = useState<Array<List>>([]);
   const [error, setError] = useState(false);
 
-  const getLists = useCallback(() => {
+  const getLists = useCallback((userId: string | undefined) => {
     setLoading(true);
     setError(false);
-    axios.get<any>(listsIndex("1")).then((res) => {
+    axios.get<any>(listsIndex(userId)).then((res) => {
       setLists(res.data.lists);
     }).catch(() => {
       setError(true);
