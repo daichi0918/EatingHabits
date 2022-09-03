@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
+
 import { User } from "../types/api/user";
+import { usersIndex } from "../urls/index"
 
 export const useAllUsers = () => {
   // const [userProfiles, setUserProfiles] = useState<Array<UserProfile>>([]);
@@ -11,11 +13,7 @@ export const useAllUsers = () => {
   const getUsers = useCallback(() => {
     setLoading(true);
     setError(false);
-    axios.get<any>("http://localhost:3002/api/v1/users").then((res) => {
-      // const data = res.data.users.map((user: any) => ({
-      //   name: user.name,
-      //   email: user.email
-      // }));
+    axios.get<any>(usersIndex).then((res) => {
       setUsers(res.data.users);
     }).catch(() => {
       setError(true);
