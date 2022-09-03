@@ -16,9 +16,6 @@
 // };
 
 export type User = {
-
-  // users: [
-  //   {
   id: number,
   name: string,
   email: string,
@@ -28,6 +25,4 @@ export type User = {
   memo: string,
   created_at: string,
   updated_at: string
-  //   }
-  // ]
 };
