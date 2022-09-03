@@ -15,7 +15,7 @@ export const Router: FC = memo(() => {
       <Route path="" element={<Login />} />
       <Route path="home" element={<Home />} />
       <Route path="home/user_management" element={<UserManagement />} />
-      <Route path="home/user_management/list" element={<List />} />
+      <Route path="home/user_management/:userId/list" element={<List />} />
       <Route path="*" element={<Page404 />} />
       {/* <Route path="/home" render={({ match: { url } }) => {
         {

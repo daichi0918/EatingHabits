@@ -19,7 +19,7 @@ export const UserManagement: FC = memo(() => {
       ) : (
           <Wrap p={{ base: 4, md: 10 }}>
             {users.map((user) => (
-              <Link to={`/home/user_management/list`} key={user.id} >
+              <Link to={`/home/user_management/${user.id}/list`} key={user.id} >
                 <WrapItem mx="auto">
                   <UserCard userName={user.name} userEmail={user.email} userGender={user.gender} />
                 </WrapItem>
