@@ -19,6 +19,7 @@ import { FC, memo, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAllLists } from "../../hooks/useAllLists";
 import { HeaderLayout } from "../templates/HeaderLayout";
+import { ListAdd } from "../organisms/list/ListAdd";
 
 export const List: FC = memo(() => {
 
@@ -65,7 +66,7 @@ export const List: FC = memo(() => {
               </Table>
             </TableContainer>
             <Center>
-              <IconButton aria-label='add-icon' colorScheme='teal' icon={<AddIcon />} borderRadius="full" size="lg" />
+              <ListAdd />
             </Center>
 
           </>
