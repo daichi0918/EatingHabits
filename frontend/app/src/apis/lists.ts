@@ -5,8 +5,8 @@ export const createList = (userId: string | undefined, text: string | undefined,
   return axios.post(listCreate(userId), {
     name: text
   }).then(() => {
-    onClose
-    setLists(...lists, text);
+    onClose = { onClose }
+    // setLists(...lists, text);
   })
     .catch((e) => console.error(e))
 }
