@@ -8,8 +8,13 @@ import {
   Td,
   TableCaption,
   TableContainer,
+  Box,
+  Flex,
+  Spacer,
+  Button,
+  IconButton
 } from "@chakra-ui/react";
-import { DeleteIcon } from "@chakra-ui/icons"
+import { DeleteIcon, AddIcon } from "@chakra-ui/icons"
 import { FC, memo, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAllLists } from "../../hooks/useAllLists";
@@ -32,36 +37,41 @@ export const List: FC = memo(() => {
         </Center>
 
       ) : (
-          // <Wrap p={{ base: 4, md: 10 }}>
-          //   {lists.map((list) => (
-          //     <WrapItem mx="auto">
-          //       {list.name}
-          //     </WrapItem>
-
-          //   ))}
 
           // </Wrap>
-          <TableContainer>
-            <Table variant='simple'>
-              <Thead>
-                <Tr>
-                  <Th>Name</Th>
-                  <Th>Delete</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {lists.map((list) => (
+          // <Box w="100%">
+          // <Flex justify='center' align='center' h="50vh" w="100%">
+          <>
+            <TableContainer>
+              <Table variant='simple'>
+                <Thead>
                   <Tr>
-                    <Td>{list.name}</Td>
-                    <Td><DeleteIcon /></Td>
+                    <Th>Name</Th>
+                    <Th>Delete</Th>
                   </Tr>
-                ))}
-              </Tbody>
-            </Table>
-          </TableContainer>
+                </Thead>
+                <Tbody>
+                  {lists.map((list) => (
+                    <Tr>
+                      <Td>{list.name}</Td>
+                      <Td>
+                        {/* <Center> */}
+                        <DeleteIcon />
+                        {/* </Center> */}
+                      </Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            </TableContainer>
+            <Center>
+              <IconButton aria-label='add-icon' colorScheme='teal' icon={<AddIcon />} borderRadius="full" size="lg" />
+            </Center>
+
+          </>
+
         )
       }
-
     </HeaderLayout >
   )
 })
