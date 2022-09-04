@@ -19,7 +19,7 @@ import { createList } from "../../../apis/lists";
 
 export const ListAdd = (props: any) => {
 
-  const { userId, lists, setLists } = props;
+  const { userId, lists, setLists, setTrigger } = props;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [text, setText] = useState("");
@@ -54,7 +54,7 @@ export const ListAdd = (props: any) => {
             </FormControl>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme='teal' mr={3} onClick={() => { createList(userId, text, lists, setLists, onClose) }}>
+            <Button colorScheme='teal' mr={3} onClick={() => { createList(userId, text, setTrigger) }}>
               登録
             </Button>
             <Button onClick={onClose}>Cancel</Button>

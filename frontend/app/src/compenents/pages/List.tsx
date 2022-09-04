@@ -16,6 +16,7 @@ import { useAllLists } from "../../hooks/useAllLists";
 import { HeaderLayout } from "../templates/HeaderLayout";
 import { ListAdd } from "../organisms/list/ListAdd";
 import { ListType } from "../../types/api/list";
+import { ListDeleteDialog } from "../organisms/list/ListDeleteDialog";
 
 export const List: FC = memo(() => {
 
@@ -27,7 +28,7 @@ export const List: FC = memo(() => {
 
   const { userId } = useParams();
 
-  useEffect(() => getLists(userId, setLists), [])
+  useEffect(() => getLists(userId, setLists), [trigger])
 
 
   return (
@@ -57,7 +58,9 @@ export const List: FC = memo(() => {
                       <Td>{list.name}</Td>
                       <Td>
                         {/* <Center> */}
-                        <DeleteIcon />
+                        {/* <DeleteIcon _hover={{ cursor: "pointer" }} /> */}
+                        <ListDeleteDialog userId={userId} id={list.id} setTrigger={setTrigger} />
+
                         {/* </Center> */}
                       </Td>
                     </Tr>
@@ -66,7 +69,7 @@ export const List: FC = memo(() => {
               </Table>
             </TableContainer>
             <Center>
-              <ListAdd userId={userId} lists={lists} setLists={setLists} />
+              <ListAdd userId={userId} lists={lists} setLists={setLists} setTrigger={setTrigger} />
             </Center>
 
           </>
