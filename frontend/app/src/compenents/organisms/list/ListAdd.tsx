@@ -14,11 +14,15 @@ import {
   Button,
   Input,
 } from "@chakra-ui/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { createList } from "../../../apis/lists";
 
-export const ListAdd = () => {
+export const ListAdd = (props: any) => {
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { userId, lists, setLists } = props;
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [text, setText] = useState("");
   const initialRef = useRef(null)
   const finalRef = useRef(null)
 
@@ -44,12 +48,13 @@ export const ListAdd = () => {
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
-              <FormLabel>商品名</FormLabel>
-              <Input ref={initialRef} placeholder='Name' />
+              <FormLabel>名前</FormLabel>
+              <Input ref={initialRef} placeholder='Name' value={text}
+                onChange={(event) => setText(event.target.value)} />
             </FormControl>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme='blue' mr={3}>
+            <Button colorScheme='teal' mr={3} onClick={() => { createList(userId, text, lists, setLists, onClose) }}>
               登録
             </Button>
             <Button onClick={onClose}>Cancel</Button>

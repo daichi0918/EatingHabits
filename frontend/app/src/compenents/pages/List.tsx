@@ -1,33 +1,33 @@
 import {
-  Spinner, Center, Wrap, WrapItem, Table,
+  Spinner,
+  Center,
+  Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
-  Box,
-  Flex,
-  Spacer,
-  Button,
-  IconButton
 } from "@chakra-ui/react";
-import { DeleteIcon, AddIcon } from "@chakra-ui/icons"
-import { FC, memo, useEffect } from "react";
+import { DeleteIcon } from "@chakra-ui/icons"
+import { FC, memo, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAllLists } from "../../hooks/useAllLists";
 import { HeaderLayout } from "../templates/HeaderLayout";
 import { ListAdd } from "../organisms/list/ListAdd";
+import { ListType } from "../../types/api/list";
 
 export const List: FC = memo(() => {
 
-  const { getLists, lists, loading } = useAllLists();
+  const [lists, setLists] = useState<Array<ListType>>([]);
+
+  const [trigger, setTrigger] = useState(false);
+
+  const { getLists, loading } = useAllLists();
 
   const { userId } = useParams();
 
-  useEffect(() => getLists(userId), [])
+  useEffect(() => getLists(userId, setLists), [])
 
 
   return (
@@ -66,7 +66,7 @@ export const List: FC = memo(() => {
               </Table>
             </TableContainer>
             <Center>
-              <ListAdd />
+              <ListAdd userId={userId} lists={lists} setLists={setLists} />
             </Center>
 
           </>

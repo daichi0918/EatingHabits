@@ -1,4 +1,4 @@
-export type List = {
+export type ListType = {
   id: number,
   user_id: number,
   name: string,
