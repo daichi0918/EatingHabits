@@ -38,6 +38,7 @@ services:
     command: sh -c "cd app && yarn && yarn start"
     ports:
       - "4000:3000"
+    shm_size: 4GB
 
 volumes:
   mysql-data:
