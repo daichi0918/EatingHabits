@@ -10,25 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_220_824_100_220) do
-  create_table 'lists', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
-    t.bigint 'user_id', null: false
-    t.string 'name', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['user_id'], name: 'index_lists_on_user_id'
+ActiveRecord::Schema[7.0].define(version: 2022_08_24_100220) do
+  create_table "lists", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
-  create_table 'users', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
-    t.string 'name', null: false
-    t.string 'email', null: false
-    t.string 'encrypted_password', null: false
-    t.integer 'gender', default: 0, null: false
-    t.string 'image'
-    t.string 'memo'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "encrypted_password", null: false
+    t.integer "gender", default: 0, null: false
+    t.string "image"
+    t.string "memo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_foreign_key 'lists', 'users'
+  add_foreign_key "lists", "users"
 end
