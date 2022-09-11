@@ -1,3 +1,4 @@
+import { Drawer } from "@mui/material";
 import { FC, memo } from "react";
 // import { Button, Drawer, DrawerBody, DrawerContent, DrawerOverlay } from "@chakra-ui/react";
 
@@ -21,6 +22,9 @@ export const MenuDrawer: FC<Props> = memo((props) => {
     //     </DrawerContent>
     //   </DrawerOverlay>
     // </Drawer>
-    <div>menudrawer</div>
+    // <div>menudrawer</div>
+    <Drawer>
+
+    </Drawer>
   )
 })
