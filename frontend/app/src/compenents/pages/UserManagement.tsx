@@ -4,6 +4,10 @@ import { UserCard } from "../organisms/user/UserCard";
 import { HeaderLayout } from "../templates/HeaderLayout";
 import { useAllUsers } from "../../hooks/useAllUsers"
 import { Link } from "react-router-dom";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import { Stack } from "@mui/material";
+import { styled } from '@mui/system';
 
 export const UserManagement: FC = memo(() => {
   const { getUsers, users, loading } = useAllUsers();
@@ -11,24 +15,37 @@ export const UserManagement: FC = memo(() => {
   useEffect(() => getUsers(), [])
   return (
     <HeaderLayout>
-      {/* {loading ? (
-        <Center h="100vh">
-          <Spinner />
-        </Center>
+      {loading ? (
+        <Stack alignItems="center" justifyContent="center" style={{ marginTop: '300px' }}>
+          <Box sx={{ alignItems: 'center' }}>
+            <CircularProgress />
+          </Box>
+        </Stack>
+
 
       ) : (
-          <Wrap p={{ base: 4, md: 10 }}>
+          // <Wrap p={{ base: 4, md: 10 }}>
+          //   {users.map((user) => (
+          //     <Link to={`/home/user_management/${user.id}/list`} key={user.id} >
+          //       <WrapItem mx="auto">
+          //         <UserCard userName={user.name} userEmail={user.email} userGender={user.gender} />
+          //       </WrapItem>
+          //     </Link>
+
+          //   ))}
+
+          // </Wrap>
+          <>
             {users.map((user) => (
               <Link to={`/home/user_management/${user.id}/list`} key={user.id} >
-                <WrapItem mx="auto">
-                  <UserCard userName={user.name} userEmail={user.email} userGender={user.gender} />
-                </WrapItem>
+                <UserCard userName={user.name} userEmail={user.email} userGender={user.gender} />
               </Link>
 
-            ))}
-
-          </Wrap>
-        )} */}
+            ))
+            }
+          </>
+        )
+      }
 
     </HeaderLayout>
   )

@@ -58,6 +58,29 @@ export const Header: FC = memo(() => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/home"
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              EH manager
+          </Typography>
+            {/* <Typography >
+              EH manager
+          </Typography> */}
+            <div style={{ flexGrow: 1 }}></div>
+            <Button color="inherit" onClick={onClickUserManagement}>users</Button>
+            <Button color="inherit">Logout</Button>
             <IconButton
               size="large"
               edge="start"
@@ -67,10 +90,6 @@ export const Header: FC = memo(() => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              News
-          </Typography>
-            <Button color="inherit">Login</Button>
           </Toolbar>
         </AppBar>
       </Box>
