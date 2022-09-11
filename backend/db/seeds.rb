@@ -2,7 +2,7 @@
   user = User.new(
     name: "User_#{n}",
     email: "example#{n}@example.co.jp",
-    encrypted_password: "password#{n}"
+    password: "password#{n}"
   )
 
   5.times do |m|
