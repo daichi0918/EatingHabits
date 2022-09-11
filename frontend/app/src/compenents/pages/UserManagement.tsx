@@ -1,4 +1,4 @@
-import { Box, Spinner, Stack, Text, Wrap, WrapItem, Center } from "@chakra-ui/react";
+// import { Box, Spinner, Stack, Text, Wrap, WrapItem, Center } from "@chakra-ui/react";
 import { FC, memo, useEffect } from "react";
 import { UserCard } from "../organisms/user/UserCard";
 import { HeaderLayout } from "../templates/HeaderLayout";
@@ -11,7 +11,7 @@ export const UserManagement: FC = memo(() => {
   useEffect(() => getUsers(), [])
   return (
     <HeaderLayout>
-      {loading ? (
+      {/* {loading ? (
         <Center h="100vh">
           <Spinner />
         </Center>
@@ -28,7 +28,7 @@ export const UserManagement: FC = memo(() => {
             ))}
 
           </Wrap>
-        )}
+        )} */}
 
     </HeaderLayout>
   )

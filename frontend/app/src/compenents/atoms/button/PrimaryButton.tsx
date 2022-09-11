@@ -1,5 +1,4 @@
-import { HamburgerIcon } from "@chakra-ui/icons";
-import { Button } from "@chakra-ui/react";
+// import { Button } from "@chakra-ui/react";
 import { FC, memo, ReactNode } from "react";
 
 type Props = {
@@ -10,8 +9,11 @@ type Props = {
 export const PrimaryButton: FC<Props> = memo((props) => {
   const { children, onClick } = props;
   return (
-    <Button onClick={onClick}>
+    // <Button onClick={onClick}>
+    //   {children}
+    // </Button>
+    <button>
       {children}
-    </Button>
+    </button>
   )
 })

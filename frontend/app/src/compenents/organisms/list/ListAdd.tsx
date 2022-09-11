@@ -1,19 +1,19 @@
-import { AddIcon } from "@chakra-ui/icons";
-import {
-  IconButton,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  FormControl,
-  FormLabel,
-  Button,
-  Input,
-} from "@chakra-ui/react";
+// import { AddIcon } from "@chakra-ui/icons";
+// import {
+//   IconButton,
+//   useDisclosure,
+//   Modal,
+//   ModalOverlay,
+//   ModalContent,
+//   ModalHeader,
+//   ModalFooter,
+//   ModalBody,
+//   ModalCloseButton,
+//   FormControl,
+//   FormLabel,
+//   Button,
+//   Input,
+// } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { createList } from "../../../apis/lists";
 
@@ -21,14 +21,14 @@ export const ListAdd = (props: any) => {
 
   const { userId, lists, setLists, setTrigger } = props;
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
   const [text, setText] = useState("");
   const initialRef = useRef(null)
   const finalRef = useRef(null)
 
   return (
     <>
-      <IconButton
+      {/* <IconButton
         aria-label='add-icon'
         colorScheme='teal'
         icon={<AddIcon />}
@@ -60,7 +60,7 @@ export const ListAdd = (props: any) => {
             <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
-      </Modal>
+      </Modal> */}
     </>
   )
 
