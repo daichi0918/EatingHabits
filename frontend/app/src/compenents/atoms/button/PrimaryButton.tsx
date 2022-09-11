@@ -1,4 +1,5 @@
 // import { Button } from "@chakra-ui/react";
+import { Button } from "@mui/material";
 import { FC, memo, ReactNode } from "react";
 
 type Props = {
@@ -12,8 +13,8 @@ export const PrimaryButton: FC<Props> = memo((props) => {
     // <Button onClick={onClick}>
     //   {children}
     // </Button>
-    <button>
+    <Button onClick={onClick}>
       {children}
-    </button>
+    </Button>
   )
 })
