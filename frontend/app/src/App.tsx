@@ -1,19 +1,21 @@
-import { ChakraProvider } from '@chakra-ui/react';
+// import { ChakraProvider } from '@chakra-ui/react';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-
-
+import { ThemeProvider } from "@mui/material";
 import theme from "./theme/theme";
 import { Router } from './router/Router';
 
 function App() {
 
   return (
-    <ChakraProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Router />
-      </BrowserRouter>
-    </ChakraProvider>
+      </BrowserRouter >
+    </ThemeProvider>
+    // <ChakraProvider theme={theme}>
+
+    // </ChakraProvider>
   );
 }
 

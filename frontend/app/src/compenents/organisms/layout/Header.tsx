@@ -1,13 +1,20 @@
-import { Box, Flex, Heading, Link, useDisclosure } from "@chakra-ui/react";
-import { FC, memo, useCallback, useEffect } from "react";
+// import { Box, Flex, Heading, Link, useDisclosure } from "@chakra-ui/react";
+import { FC, memo, useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 
 import { MenuIconButton } from "../../atoms/button/MenuIconButton";
 import { MenuDrawer } from "../../molecules/MenuDrawer";
 
 export const Header: FC = memo(() => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
   const onClickHome = useCallback(() => navigate("/home"), [navigate]);
@@ -23,7 +30,7 @@ export const Header: FC = memo(() => {
 
   return (
     <>
-      <Flex
+      {/* <Flex
         as="nav"
         bg="teal.500"
         color="gray.50"
@@ -42,10 +49,50 @@ export const Header: FC = memo(() => {
             <Link onClick={onClickUserManagement}>ユーザー一覧</Link>
           </Box>
           {/* <Link>ユーザー一覧</Link> */}
-        </Flex>
+      {/* </Flex>
         <MenuIconButton onOpen={onOpen} />
-      </Flex>
-      <MenuDrawer onClose={onClose} isOpen={isOpen} onClickHome={onClickHome} onClickUserManagement={onClickUserManagement} />
+      </Flex >
+  <MenuDrawer onClose={onClose} isOpen={isOpen} onClickHome={onClickHome} onClickUserManagement={onClickUserManagement}
+  />
+  * /} */}
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/home"
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              EH manager
+          </Typography>
+            {/* <Typography >
+              EH manager
+          </Typography> */}
+            <div style={{ flexGrow: 1 }}></div>
+            <Button color="inherit" onClick={onClickUserManagement}>users</Button>
+            <Button color="inherit">Logout</Button>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+      </Box>
     </>
   )
 })
