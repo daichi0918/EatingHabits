@@ -8,7 +8,7 @@
 //   ModalHeader,
 //   ModalFooter,
 //   ModalBody,
-//   ModalCloseButton,
+//   ModalCloseButton,Ci
 //   FormControl,
 //   FormLabel,
 //   Button,
@@ -16,6 +16,16 @@
 // } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { createList } from "../../../apis/lists";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 export const ListAdd = (props: any) => {
 
@@ -23,8 +33,14 @@ export const ListAdd = (props: any) => {
 
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const [text, setText] = useState("");
-  const initialRef = useRef(null)
-  const finalRef = useRef(null)
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <>
@@ -61,6 +77,27 @@ export const ListAdd = (props: any) => {
           </ModalFooter>
         </ModalContent>
       </Modal> */}
+      <AddCircleIcon onClick={handleClickOpen} sx={{ fontSize: 50 }} color="primary" style={{ marginLeft: '830px' }} />
+
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Subscribe</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Name"
+            type="string"
+            fullWidth
+            variant="standard"
+            onChange={(event) => setText(event.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={() => { createList(userId, text, setTrigger) }}>登録</Button>
+        </DialogActions>
+      </Dialog>
     </>
   )
 
