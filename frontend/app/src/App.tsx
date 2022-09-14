@@ -1,13 +1,13 @@
 // import { ChakraProvider } from '@chakra-ui/react';
 import React, { FC, createContext, useState, useEffect } from 'react';
-import { BrowserRouter, Navigate, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from "@mui/material";
 
 import theme from "./theme/theme";
 import { getCurrentUser } from "../src/apis/auth";
 import { Router } from './router/Router';
 import { UserType } from '../src/types/api/usertype';
-import { Home } from "../src/compenents/pages/Home";
+import { Home } from './compenents/pages/Home';
 
 
 export const AuthContext = createContext({} as {
@@ -48,6 +48,18 @@ const App: FC = () => {
     handleGetCurrentUser()
   }, [setCurrentUser])
 
+  // const Private = ({ children }: { children: React.ReactElement }) => {
+  //   if (!loading) {
+  //     if (isSignedIn) {
+  //       return children
+  //     } else {
+  //       return <Navigate to="/signin" />
+  //     }
+  //   } else {
+  //     return <></>
+  //   }
+  // }
+
   return (
     <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser }}>
       <ThemeProvider theme={theme}>
@@ -56,10 +68,6 @@ const App: FC = () => {
         </BrowserRouter >
       </ThemeProvider>
     </AuthContext.Provider>
-
-    // <ChakraProvider theme={theme}>
-
-    // </ChakraProvider>
   );
 }
 

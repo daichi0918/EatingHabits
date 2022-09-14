@@ -28,12 +28,18 @@ export const Router: FC = memo(() => {
   return (
     <Routes>
       <Route path="" element={<Login />} />
+      <Route path="home/*" element={
+        <Private>
+          <Route path="home" element={<Home />} />
+        </Private>
+      } />
       <Route path="home" element={<Home />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="signin" element={<SignIn />} />
-      <Private>
+      {/* <Private>
         <Route path="/" element={<Home />} />
-      </Private>
+      </Private> */}
+
       <Route path="home/user_management" element={<UserManagement />} />
       <Route path="home/user_management/:userId/list" element={<Lists />} />
       <Route path="*" element={<Page404 />} />
