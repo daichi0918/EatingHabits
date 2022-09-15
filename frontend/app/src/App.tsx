@@ -48,23 +48,28 @@ const App: FC = () => {
     handleGetCurrentUser()
   }, [setCurrentUser])
 
-  // const Private = ({ children }: { children: React.ReactElement }) => {
-  //   if (!loading) {
-  //     if (isSignedIn) {
-  //       return children
-  //     } else {
-  //       return <Navigate to="/signin" />
-  //     }
-  //   } else {
-  //     return <></>
-  //   }
-  // }
+  const Private = ({ children }: { children: React.ReactElement }) => {
+    if (!loading) {
+      if (isSignedIn) {
+        return children
+      } else {
+        return <Navigate to="/signin" />
+      }
+    } else {
+      return <></>
+    }
+  }
 
   return (
     <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser }}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Router />
+          {/* <Private>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Private> */}
         </BrowserRouter >
       </ThemeProvider>
     </AuthContext.Provider>

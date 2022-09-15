@@ -40,7 +40,7 @@ export const SignUp = () => {
         setIsSignedIn(true)
         setCurrentUser(res.data.data)
 
-        navigate("home")
+        navigate("/home")
 
         console.log("Signed in successfully!")
       } else {
