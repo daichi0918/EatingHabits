@@ -17,13 +17,15 @@ export const AuthContext = createContext({} as {
   setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>
   currentUser: UserType | undefined
   setCurrentUser: React.Dispatch<React.SetStateAction<UserType | undefined>>
+  userId: number | undefined
+  setUserId: React.Dispatch<React.SetStateAction<number | undefined>>
 })
 
 const App: FC = () => {
-
   const [loading, setLoading] = useState<boolean>(true)
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false)
   const [currentUser, setCurrentUser] = useState<UserType | undefined>()
+  const [userId, setUserId] = useState<number | undefined>()
 
   const handleGetCurrentUser = async () => {
     try {
@@ -61,7 +63,7 @@ const App: FC = () => {
   }
 
   return (
-    <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser }}>
+    <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser, userId, setUserId }}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Router />
