@@ -40,7 +40,7 @@ export const Router: FC = memo(() => {
           <UserManagement />
         </Private>
       } />
-      <Route path="home/user_management/:userId/list" element={
+      <Route path="home/list" element={
         <Private>
           <Lists />
         </Private>

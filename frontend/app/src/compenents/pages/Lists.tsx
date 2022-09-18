@@ -12,13 +12,14 @@
 //   Flex
 // } from "@chakra-ui/react";
 // import { DeleteIcon } from "@chakra-ui/icons"
-import { FC, memo, useEffect, useState } from "react";
+import { FC, memo, useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useAllLists } from "../../hooks/useAllLists";
 import { HeaderLayout } from "../templates/HeaderLayout";
 import { ListAdd } from "../organisms/list/ListAdd";
 import { ListType } from "../../types/api/list";
 import { ListDeleteDialog } from "../organisms/list/ListDeleteDialog";
+import { AuthContext } from "../../App";
 import { Stack } from "@mui/material";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box'
@@ -40,13 +41,13 @@ import Grid from '@mui/material/Grid';
 
 export const Lists: FC = memo(() => {
 
+  const { userId } = useContext(AuthContext);
+
   const [lists, setLists] = useState<Array<ListType>>([]);
 
   const [trigger, setTrigger] = useState(false);
 
   const { getLists, loading } = useAllLists();
-
-  const { userId } = useParams();
 
   useEffect(() => getLists(userId, setLists), [trigger])
 

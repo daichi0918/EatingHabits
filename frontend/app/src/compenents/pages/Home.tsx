@@ -19,7 +19,7 @@ export const Home: FC = memo(() => {
       <Button
         variant="outlined"
         component={Link}
-        to={`/home/user_management/${userId}/list`}
+        to={`/home/list`}
       >
         List
       </Button>
