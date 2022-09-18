@@ -6,7 +6,7 @@ import { AuthContext } from "../../App";
 import { SignUpParams } from "../../types/api/auth";
 
 export const SignUp = () => {
-  const { setIsSignedIn, setCurrentUser } = useContext(AuthContext);
+  const { setIsSignedIn, setCurrentUser, setUserId } = useContext(AuthContext);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -28,7 +28,6 @@ export const SignUp = () => {
 
     try {
       const res = await signUp(params)
-      console.log("res:" + res)
 
       if (res.status === 200) {
         Cookies.set("_access_token", res.headers["access-token"])
@@ -37,6 +36,7 @@ export const SignUp = () => {
 
         setIsSignedIn(true)
         setCurrentUser(res.data.data)
+        setUserId(res.data.data.id)
 
         navigate("/home")
 

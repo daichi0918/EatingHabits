@@ -5,7 +5,7 @@ import { signIn } from "../../apis/auth";
 import { AuthContext } from "../../App";
 
 export const SignIn = () => {
-  const { setIsSignedIn, setCurrentUser } = useContext(AuthContext);
+  const { setIsSignedIn, setCurrentUser, setUserId } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -34,7 +34,8 @@ export const SignIn = () => {
         console.log("res.data:" + res.data);
 
         setIsSignedIn(true);
-        setCurrentUser(res.data.data);
+        setCurrentUser(res.data.data)
+        setUserId(res.data.data.id)
 
         navigate("/home")
       }

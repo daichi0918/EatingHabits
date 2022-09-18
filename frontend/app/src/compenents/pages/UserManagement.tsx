@@ -37,7 +37,7 @@ export const UserManagement: FC = memo(() => {
           // </Wrap>
           <>
             {users.map((user) => (
-              <Link to={`/home/user_management/${user.id}/list`} key={user.id} >
+              <Link to={`/home/list`} key={user.id} >
                 <UserCard userName={user.name} userEmail={user.email} userGender={user.gender} />
               </Link>
 
