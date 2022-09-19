@@ -1,7 +1,7 @@
 // import { Box, Flex, Heading, Link, useDisclosure } from "@chakra-ui/react";
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -62,7 +62,7 @@ export const Header: FC = memo(() => {
               variant="h6"
               noWrap
               component="a"
-              href="/home"
+              onClick={onClickHome}
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
