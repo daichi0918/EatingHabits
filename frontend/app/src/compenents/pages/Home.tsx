@@ -4,7 +4,7 @@ import { FC, memo, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { AuthContext } from "../../App";
-import { HeaderLayout } from "../templates/HeaderLayout";
+import { TopHeaderLayout } from "../templates/TopHeaderLayout";
 
 export const Home: FC = memo(() => {
   const { userId } = useContext(AuthContext);
@@ -15,7 +15,7 @@ export const Home: FC = memo(() => {
   //     email: user.email
   //   }));
   return (
-    <HeaderLayout>
+    <TopHeaderLayout>
       <Button
         variant="outlined"
         component={Link}
@@ -23,6 +23,6 @@ export const Home: FC = memo(() => {
       >
         List
       </Button>
-    </HeaderLayout>
+    </TopHeaderLayout>
   )
 })

@@ -1,14 +1,22 @@
 // import { Box, Flex, Heading, Link, useDisclosure } from "@chakra-ui/react";
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
+import CssBaseline from '@mui/material/CssBaseline';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import StarIcon from '@mui/icons-material/StarBorder';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import Container from '@mui/material/Container';
 
 import { MenuIconButton } from "../../atoms/button/MenuIconButton";
 import { MenuDrawer } from "../../molecules/MenuDrawer";
@@ -55,7 +63,7 @@ export const Header: FC = memo(() => {
   <MenuDrawer onClose={onClose} isOpen={isOpen} onClickHome={onClickHome} onClickUserManagement={onClickUserManagement}
   />
   * /} */}
-      <Box sx={{ flexGrow: 1 }}>
+      {/* <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
             <Typography
@@ -75,9 +83,6 @@ export const Header: FC = memo(() => {
             >
               EH manager
           </Typography>
-            {/* <Typography >
-              EH manager
-          </Typography> */}
             <div style={{ flexGrow: 1 }}></div>
             <Button color="inherit" onClick={onClickUserManagement}>users</Button>
             <Button color="inherit">Logout</Button>
@@ -92,7 +97,50 @@ export const Header: FC = memo(() => {
             </IconButton>
           </Toolbar>
         </AppBar>
-      </Box>
+      </Box> */}
+      <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
+      <CssBaseline />
+      <AppBar
+        position="static"
+        color="default"
+        elevation={0}
+        sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+      >
+        <Toolbar sx={{ flexWrap: 'wrap' }}>
+          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+            EH manager
+          </Typography>
+          <nav>
+            {/* <Link
+              variant="button"
+              color="text.primary"
+              href="#"
+              sx={{ my: 1, mx: 1.5 }}
+            >
+              Features
+            </Link> */}
+            <Link
+              variant="button"
+              color="text.primary"
+              href="#"
+              sx={{ my: 1, mx: 1.5 }}
+            >
+              FAQ
+            </Link>
+            <Link
+              variant="button"
+              color="text.primary"
+              href="/signin"
+              sx={{ my: 1, mx: 1.5 }}
+            >
+              ログイン
+            </Link>
+          </nav>
+          <Button href="/signup" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+            新規登録
+          </Button>
+        </Toolbar>
+      </AppBar>
     </>
   )
 })

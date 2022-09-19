@@ -17,6 +17,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { signUp } from "../../apis/auth";
 import { AuthContext } from "../../App";
 import { SignUpParams } from "../../types/api/auth";
+import { TopHeaderLayout } from "../templates/TopHeaderLayout";
 
 export const SignUp = () => {
   const { setIsSignedIn, setCurrentUser, setUserId } = useContext(AuthContext);
@@ -121,125 +122,105 @@ export const SignUp = () => {
         </button>
       </form>
       <Link to="/signin">サインインへ</Link> */}
-      <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <Box
-            sx={{
-              marginTop: 8,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign up
+      <TopHeaderLayout>
+        <ThemeProvider theme={theme}>
+          <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <Box
+              sx={{
+                marginTop: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Sign up
           </Typography>
-            <Box component="form" noValidate sx={{ mt: 3 }}>
-              <Grid container spacing={2}>
-                {/* <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
+              <Box component="form" noValidate sx={{ mt: 3 }}>
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="Name"
+                      label="Name"
+                      name="name"
+                      autoComplete="name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="email"
+                      label="Email Address"
+                      name="email"
+                      autoComplete="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      name="password"
+                      label="Password"
+                      type="password"
+                      id="password"
+                      autoComplete="new-password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      name="password_confirmation"
+                      label="Password Confirmation"
+                      type="password"
+                      id="password_confirmation"
+                      autoComplete="new-password_confirmation"
+                      value={passwordConfirmation}
+                      onChange={(e) => setPasswordConfirmation(e.target.value)}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormControlLabel
+                      control={<Checkbox value="allowExtraEmails" color="primary" />}
+                      label="I want to receive inspiration, marketing promotions and updates via email."
+                    />
+                  </Grid>
+                </Grid>
+                <Button
+                  type="submit"
                   fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid> */}
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="Name"
-                    label="Name"
-                    name="name"
-                    autoComplete="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="new-password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="password_confirmation"
-                    label="Password Confirmation"
-                    type="password"
-                    id="password_confirmation"
-                    autoComplete="new-password_confirmation"
-                    value={passwordConfirmation}
-                    onChange={(e) => setPasswordConfirmation(e.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                    label="I want to receive inspiration, marketing promotions and updates via email."
-                  />
-                </Grid>
-              </Grid>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                onClick={(e) => handleSignUpSubmit(e)}
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Sign Up
+                  variant="contained"
+                  onClick={(e) => handleSignUpSubmit(e)}
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Sign Up
             </Button>
-              <Grid container justifyContent="flex-end">
-                <Grid item>
-                  <Link to="/signin">
-                    Already have an account? Sign in
+                <Grid container justifyContent="flex-end">
+                  <Grid item>
+                    <Link to="/signin">
+                      Already have an account? Sign in
                 </Link>
+                  </Grid>
                 </Grid>
-              </Grid>
+              </Box>
             </Box>
-          </Box>
 
-        </Container>
-      </ThemeProvider>
-
+          </Container>
+        </ThemeProvider>
+      </TopHeaderLayout>
     </>
   );
 };
