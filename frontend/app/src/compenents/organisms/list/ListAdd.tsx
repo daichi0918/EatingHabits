@@ -15,10 +15,13 @@
 //   Input,
 // } from "@chakra-ui/react";
 import { useRef, useState } from "react";
+import { styled } from '@mui/material/styles';
 import { createList } from "../../../apis/lists";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import Fab from '@mui/material/Fab';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -41,6 +44,15 @@ export const ListAdd = (props: any) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const StyledFab = styled(Fab)({
+    position: 'absolute',
+    zIndex: 1,
+    top: 550,
+    left: 600,
+    right: 0,
+    margin: '0 auto',
+  });
 
   return (
     <>
@@ -77,7 +89,11 @@ export const ListAdd = (props: any) => {
           </ModalFooter>
         </ModalContent>
       </Modal> */}
-      <AddCircleIcon onClick={handleClickOpen} sx={{ fontSize: 50 }} color="primary" style={{ marginLeft: '830px' }} />
+      {/* <AddCircleIcon onClick={handleClickOpen} sx={{ fontSize: 50 }} color="primary" style={{ marginLeft: '830px' }} /> */}
+      <StyledFab color="primary" aria-label="add">
+        <AddIcon onClick={handleClickOpen} />
+      </StyledFab>
+
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Subscribe</DialogTitle>
