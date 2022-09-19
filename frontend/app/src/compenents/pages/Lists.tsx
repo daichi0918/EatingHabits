@@ -15,7 +15,7 @@
 import { FC, memo, useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useAllLists } from "../../hooks/useAllLists";
-import { TopHeaderLayout } from "../templates/TopHeaderLayout";
+import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
 import { ListAdd } from "../organisms/list/ListAdd";
 import { ListType } from "../../types/api/list";
 import { ListDeleteDialog } from "../organisms/list/ListDeleteDialog";
@@ -73,7 +73,7 @@ export const Lists: FC = memo(() => {
 
 
   return (
-    <TopHeaderLayout>
+    <HomeHeaderLayout>
       {loading ? (
         // <Center h="100vh">
         //   <Spinner />
@@ -136,6 +136,6 @@ export const Lists: FC = memo(() => {
 
         )
       }
-    </TopHeaderLayout >
+    </HomeHeaderLayout >
   )
 })
