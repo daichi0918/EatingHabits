@@ -1,7 +1,7 @@
 // import { Box, Spinner, Stack, Text, Wrap, WrapItem, Center } from "@chakra-ui/react";
 import { FC, memo, useEffect } from "react";
 import { UserCard } from "../organisms/user/UserCard";
-import { TopHeaderLayout } from "../templates/TopHeaderLayout";
+import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
 import { useAllUsers } from "../../hooks/useAllUsers"
 import { Link } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
@@ -14,7 +14,7 @@ export const UserManagement: FC = memo(() => {
 
   useEffect(() => getUsers(), [])
   return (
-    <TopHeaderLayout>
+    <HomeHeaderLayout>
       {loading ? (
         <Stack alignItems="center" justifyContent="center" style={{ marginTop: '300px' }}>
           <Box sx={{ alignItems: 'center' }}>
@@ -47,6 +47,6 @@ export const UserManagement: FC = memo(() => {
         )
       }
 
-    </TopHeaderLayout>
+    </HomeHeaderLayout>
   )
 })

@@ -21,18 +21,18 @@ import Container from '@mui/material/Container';
 import { MenuIconButton } from "../../atoms/button/MenuIconButton";
 import { MenuDrawer } from "../../molecules/MenuDrawer";
 
-export const Header: FC = memo(() => {
+export const TopHeader: FC = memo(() => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
-  const onClickHome = useCallback(() => navigate("/home"), [navigate]);
-  const onClickUserManagement = useCallback(() => navigate("/home/user_management"), [navigate]);
+  const onClickTop = useCallback(() => navigate("/"), [navigate]);
 
-  useEffect(() => {
-    axios.get<any>("http://localhost:3002/api/v1/users").then((res) => {
-      console.log(res)
-    })
-  }, [])
+  // useEffect(() => {
+  //   axios.get<any>("http://localhost:3002/api/v1/users").then((res) => {
+  //     console.log(res)
+  //   })
+  // }, [])
+
 
 
 
@@ -107,7 +107,12 @@ export const Header: FC = memo(() => {
         sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
       >
         <Toolbar sx={{ flexWrap: 'wrap' }}>
-          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            color="inherit"
+            noWrap sx={{ flexGrow: 1 }}
+            onClick={onClickTop}
+          >
             EH manager
           </Typography>
           <nav>
