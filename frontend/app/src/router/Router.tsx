@@ -6,7 +6,7 @@ import { Login } from "../compenents/pages/Login";
 import { Page404 } from "../compenents/pages/Page404";
 import { UserManagement } from "../compenents/pages/UserManagement";
 import { Lists } from "../compenents/pages/Lists"
-import { HeaderLayout } from "../compenents/templates/HeaderLayout";
+import { TopHeaderLayout } from "../compenents/templates/TopHeaderLayout";
 import { homeRoutes } from "./HomeRoutes";
 import { SignUp } from "../compenents/pages/SignUp";
 import { SignIn } from "../compenents/pages/SignIn";
