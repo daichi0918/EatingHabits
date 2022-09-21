@@ -14,6 +14,16 @@
 #   user.save!
 # end
 
-Classification.create(name: '料理')
-Classification.create(name: '食材')
-Classification.create(name: 'その他')
+# Classification.create(name: '料理')
+# Classification.create(name: '食材')
+# Classification.create(name: 'その他')
+
+User.all.each do |user|
+  date = Date.new(2022,9,21)
+  user.foods.create!(
+    classification_id: 1,
+    name: '秋刀魚',
+    quantity: 3,
+    expired_at: date
+  )
+end
