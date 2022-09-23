@@ -8,7 +8,7 @@ class CreateFoods < ActiveRecord::Migration[7.0]
       t.date :expired_at, null: false
       t.datetime :notified_at
       t.string :image
-      t.string :memo 
+      t.string :memo
 
       t.timestamps
     end

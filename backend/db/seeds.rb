@@ -19,7 +19,7 @@
 # Classification.create(name: 'その他')
 
 User.all.each do |user|
-  date = Date.new(2022,9,21)
+  date = Date.new(2022, 9, 21)
   user.foods.create!(
     classification_id: 1,
     name: '秋刀魚',
