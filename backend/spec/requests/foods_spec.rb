@@ -19,6 +19,15 @@ RSpec.describe "Foods", type: :request do
     end
   end
 
+  describe 'Put /food' do
+    it 'works! (now write some real specs)' do
+      food = create(:food)
+      put 'http://localhost:3002/api/v1/users/1/foods/1',
+          params: { user_id: food.user_id, classification_id: food.classification_id, quantity: food.quantity, name: food.name, expired_at: food.expired_at}
+      expect(response.status).to eq(200)
+    end
+  end
+
   describe 'DELETE /food' do
     it 'works! (now write some real specs)' do
       food = create(:food)
