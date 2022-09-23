@@ -79,7 +79,12 @@ export const HomeHeader: FC = memo(() => {
             variant="h6"
             color="inherit"
             noWrap
-            sx={{ flexGrow: 1 }}
+            sx={{
+              flexGrow: 1,
+              '&:hover': {
+                cursor: "pointer",
+              },
+            }}
             onClick={onClickHome}
           >
             EH manager
