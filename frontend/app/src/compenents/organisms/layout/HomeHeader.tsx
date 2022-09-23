@@ -34,7 +34,6 @@ export const HomeHeader: FC = memo(() => {
 
   useEffect(() => {
     axios.get<any>("http://localhost:3002/api/v1/users").then((res) => {
-      console.log(res)
     })
   }, [])
 
