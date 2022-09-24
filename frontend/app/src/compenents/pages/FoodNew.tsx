@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import dayjs, { Dayjs } from 'dayjs';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,73 +17,35 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 import { signUp } from "../../apis/auth";
 import { AuthContext } from "../../App";
 import { SignUpParams } from "../../types/api/auth";
-import { TopHeaderLayout } from "../templates/TopHeaderLayout";
+import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
 
 export const FoodNew = () => {
-
-  const date = new Date
-  const today = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
 
   const { setIsSignedIn, setCurrentUser, setUserId } = useContext(AuthContext);
 
   const [name, setName] = useState("");
   const [classification, setClassification] = useState<number>();
   const [quantity, setQuantity] = useState<number>();
-  const [limitDate, setLimitDate] = useState(today);
-  const [alertDate, setAlertData] = useState()
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const confirmSuccessUrl = "https://yahoo.co.jp";
+  const [limitDate, setLimitDate] = useState<Dayjs | null>(dayjs());
+  const [alertDate, setAlertDate] = useState<Dayjs | null>(dayjs());
 
   const navigate = useNavigate();
 
   const onClickFoodAdd = () => console.log("aaa")
 
-  // const handleSignUpSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   e.preventDefault()
-
-  //   const params: SignUpParams = {
-  //     name: name,
-  //     email: email,
-  //     password: password,
-  //     passwordConfirmation: passwordConfirmation
-  //   }
-
-  //   try {
-  //     const res = await signUp(params)
-
-  //     if (res.status === 200) {
-  //       Cookies.set("_access_token", res.headers["access-token"])
-  //       Cookies.set("_client", res.headers["client"])
-  //       Cookies.set("_uid", res.headers["uid"])
-
-  //       setIsSignedIn(true)
-  //       setCurrentUser(res.data.data)
-  //       setUserId(res.data.data.id)
-
-  //       navigate("/home")
-
-  //       console.log("Signed in successfully!")
-  //     } else {
-  //       alert("elseエラー")
-  //     }
-  //   } catch (err) {
-  //     console.log(err)
-  //     alert("catchエラー")
-  //   }
-  // }
-
   const theme = createTheme();
   return (
     <>
 
-      <TopHeaderLayout>
+      <HomeHeaderLayout>
         <ThemeProvider theme={theme}>
           <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -108,7 +71,7 @@ export const FoodNew = () => {
                       onChange={(e) => setName(e.target.value)}
                     />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={6}>
                     <InputLabel id="demo-simple-select-autowidth-label">分類</InputLabel>
                     <Select
                       required
@@ -124,16 +87,16 @@ export const FoodNew = () => {
                       <MenuItem value={3}>その他</MenuItem>
                     </Select>
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={6}>
                     <InputLabel id="demo-simple-select-autowidth-label">数量</InputLabel>
                     <Select
                       required
                       fullWidth
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value="aaa"
-                      label="分類"
-                      onChange={(e) => setClassification(Number(e.target.value))}
+                      value={quantity}
+                      label="数量"
+                      onChange={(e) => setQuantity(Number(e.target.value))}
                     >
                       <MenuItem value={0}>0</MenuItem>
                       <MenuItem value={1}>1</MenuItem>
@@ -144,30 +107,30 @@ export const FoodNew = () => {
                       <MenuItem value={6}>6</MenuItem>
                     </Select>
                   </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="date"
-                      label="消費期限"
-                      type="date"
-                      defaultValue="2017-05-24"
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
+                  <Grid item xs={5}>
+                    <LocalizationProvider fullWidth dateAdapter={AdapterDayjs}>
+                      <DatePicker
+                        label="消費期限"
+                        value={limitDate}
+                        onChange={(newValue) => {
+                          setLimitDate(newValue);
+                        }}
+                        renderInput={(params) => <TextField {...params} />}
+                      />
+                    </LocalizationProvider>
                   </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      id="datetime-local"
-                      label="通知"
-                      type="datetime-local"
-                      defaultValue="2017-05-24"
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
+                  <Grid item xs={7}>
+                    <LocalizationProvider fullWidth dateAdapter={AdapterDayjs}>
+                      <DateTimePicker
+                        renderInput={(params: any) => <TextField {...params} />}
+                        label="通知"
+                        value={alertDate}
+                        onChange={(newValue: any) => {
+                          setAlertDate(newValue);
+                        }}
+                        minDateTime={dayjs()}
+                      />
+                    </LocalizationProvider>
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
@@ -177,7 +140,7 @@ export const FoodNew = () => {
                       label="画像を追加"
                       name="name"
                       autoComplete="name"
-                      defaultValue=""
+                      value=""
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -200,14 +163,13 @@ export const FoodNew = () => {
                   onClick={onClickFoodAdd}
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  登録する
+                  追加する
             </Button>
               </Box>
             </Box>
-
           </Container>
         </ThemeProvider>
-      </TopHeaderLayout>
+      </HomeHeaderLayout>
     </>
   );
 };
