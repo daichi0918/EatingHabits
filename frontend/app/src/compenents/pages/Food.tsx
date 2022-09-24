@@ -19,7 +19,7 @@ export const Food: FC = memo(() => {
 
   const { userId } = useContext(AuthContext);
 
-  const [foods, setFoods] = useState<Array<any>>([]);
+  const [foods, setFoods] = useState<Array<FoodType>>([]);
 
   const [trigger, setTrigger] = useState(false);
 
