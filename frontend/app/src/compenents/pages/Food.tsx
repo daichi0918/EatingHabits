@@ -11,6 +11,7 @@ import { FoodType } from "../../types/api/food";
 import { useAllFoods } from "../../hooks/useAllFoods";
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button';
+import { FoodContext, FoodContextProvider } from "../../providers/FoodProvider";
 
 
 
@@ -19,9 +20,11 @@ export const Food: FC = memo(() => {
 
   const { userId } = useContext(AuthContext);
 
-  const [foods, setFoods] = useState<Array<FoodType>>([]);
+  const { foods, setFoods, trigger, setTrigger } = useContext(FoodContext);
 
-  const [trigger, setTrigger] = useState(false);
+  // const [foods, setFoods] = useState<Array<FoodType>>([]);
+
+  // const [trigger, setTrigger] = useState(false);
 
   const { getFoods, loading } = useAllFoods();
 
@@ -43,7 +46,7 @@ export const Food: FC = memo(() => {
 
       ) : (
           <>
-            {foods.map((food) => (
+            {foods.map((food: any) => (
               <Box>
                 <FoodCard name={food.name} quantity={food.quantity} expired_at={food.expired_at} notified_at={food.notified_at} image={food.image} memo={food.memo} />
               </Box>
@@ -53,5 +56,6 @@ export const Food: FC = memo(() => {
         )}
       <Button onClick={onClickFoodNew}>New</Button>
     </HomeHeaderLayout>
+
   )
 })

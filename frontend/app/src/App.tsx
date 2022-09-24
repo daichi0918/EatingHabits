@@ -8,6 +8,7 @@ import { getCurrentUser } from "../src/apis/auth";
 import { Router } from './router/Router';
 import { UserType } from '../src/types/api/usertype';
 import { Home } from './compenents/pages/Home';
+import { FoodContextProvider } from './providers/FoodProvider';
 
 
 export const AuthContext = createContext({} as {
@@ -64,16 +65,19 @@ const App: FC = () => {
 
   return (
     <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser, userId, setUserId }}>
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <Router />
-          {/* <Private>
+      <FoodContextProvider>
+        <ThemeProvider theme={theme}>
+          <BrowserRouter>
+            <Router />
+            {/* <Private>
             <Route path="/">
               <Home />
             </Route>
           </Private> */}
-        </BrowserRouter >
-      </ThemeProvider>
+          </BrowserRouter >
+        </ThemeProvider>
+      </FoodContextProvider>
+
     </AuthContext.Provider>
   );
 }

@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, createContext, useState, useEffect } from 'react';
-import { FoodType } from '../../src/types/api/food';
+import { FoodType } from '../types/api/food';
 
 // ContextProviderType --------------
 type Props = {
@@ -25,7 +25,7 @@ export const FoodContextProvider: FC<Props> = ({ children }: Props) => {
 
   const [foods, setFoods] = useState<Array<FoodType>>([]);
 
-  const [trigger, setTrigger] = useState(false)
+  const [trigger, setTrigger] = useState(false);
 
   return (
     <FoodContext.Provider value={{ foods, setFoods, trigger, setTrigger }}>
