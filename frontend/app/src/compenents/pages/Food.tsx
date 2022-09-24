@@ -1,4 +1,5 @@
 import { FC, memo, useEffect, useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Stack } from "@mui/material";
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -9,6 +10,9 @@ import { AuthContext } from "../../App";
 import { FoodType } from "../../types/api/food";
 import { useAllFoods } from "../../hooks/useAllFoods";
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button';
+
+
 
 
 export const Food: FC = memo(() => {
@@ -20,6 +24,10 @@ export const Food: FC = memo(() => {
   const [trigger, setTrigger] = useState(false);
 
   const { getFoods, loading } = useAllFoods();
+
+  const navigate = useNavigate()
+
+  const onClickFoodNew = () => navigate("/home/food/new")
 
   useEffect(() => getFoods(userId, setFoods), [trigger])
 
@@ -43,7 +51,7 @@ export const Food: FC = memo(() => {
           </>
 
         )}
-
+      <Button onClick={onClickFoodNew}>New</Button>
     </HomeHeaderLayout>
   )
 })

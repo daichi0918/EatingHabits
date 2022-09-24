@@ -12,6 +12,7 @@ import { SignUp } from "../compenents/pages/SignUp";
 import { SignIn } from "../compenents/pages/SignIn";
 import { AuthContext } from "../App";
 import { Food } from "../compenents/pages/Food";
+import { FoodNew } from "../compenents/pages/FoodNew";
 
 export const Router: FC = memo(() => {
   const auth = useContext(AuthContext);
@@ -49,6 +50,11 @@ export const Router: FC = memo(() => {
       <Route path="home/food" element={
         <Private>
           <Food />
+        </Private>
+      } />
+      <Route path="home/food/new" element={
+        <Private>
+          <FoodNew />
         </Private>
       } />
       <Route path="*" element={<Page404 />} />
