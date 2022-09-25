@@ -26,20 +26,23 @@ import { signUp } from "../../apis/auth";
 import { AuthContext } from "../../App";
 import { SignUpParams } from "../../types/api/auth";
 import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
+import { createFood } from "../../apis/food";
+import { FoodContext } from "../../providers/FoodProvider";
 
 export const FoodNew = () => {
 
-  const { setIsSignedIn, setCurrentUser, setUserId } = useContext(AuthContext);
+  const { userId } = useContext(AuthContext);
+  const { setTrigger } = useContext(FoodContext);
 
   const [name, setName] = useState("");
   const [classification, setClassification] = useState<number>();
   const [quantity, setQuantity] = useState<number>();
   const [limitDate, setLimitDate] = useState<Dayjs | null>(dayjs());
   const [alertDate, setAlertDate] = useState<Dayjs | null>(dayjs());
+  const [image, setImage] = useState("");
+  const [memo, setMemo] = useState("");
 
   const navigate = useNavigate();
-
-  const onClickFoodAdd = () => console.log("aaa")
 
   const theme = createTheme();
   return (
@@ -67,7 +70,7 @@ export const FoodNew = () => {
                       label="名称"
                       name="name"
                       autoComplete="name"
-                      value={name}
+                      // value={name}
                       onChange={(e) => setName(e.target.value)}
                     />
                   </Grid>
@@ -78,7 +81,7 @@ export const FoodNew = () => {
                       fullWidth
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={classification}
+                      // value={classification}
                       label="分類"
                       onChange={(e) => setClassification(Number(e.target.value))}
                     >
@@ -94,7 +97,7 @@ export const FoodNew = () => {
                       fullWidth
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={quantity}
+                      // value={quantity}
                       label="数量"
                       onChange={(e) => setQuantity(Number(e.target.value))}
                     >
@@ -140,7 +143,7 @@ export const FoodNew = () => {
                       label="画像を追加"
                       name="name"
                       autoComplete="name"
-                      value=""
+                    // value={image}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -153,18 +156,19 @@ export const FoodNew = () => {
                       defaultValue=""
                       margin="normal"
                       variant="outlined"
+                      // value={memo}
+                      onChange={(e) => setMemo(e.target.value)}
                     />
                   </Grid>
                 </Grid>
                 <Button
-                  type="submit"
                   fullWidth
                   variant="contained"
-                  onClick={onClickFoodAdd}
+                  onClick={() => createFood(userId, setTrigger, navigate, name, classification, quantity, limitDate, alertDate, image, memo)}
                   sx={{ mt: 3, mb: 2 }}
                 >
                   追加する
-            </Button>
+                </Button>
               </Box>
             </Box>
           </Container>

@@ -1,11 +1,27 @@
 import axios from "axios";
-import { foodCreate, foodDestroy } from "../urls";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import dayjs, { Dayjs } from 'dayjs';
 
-export const createFood = (userId: string | undefined, text: string | undefined, setTrigger: any) => {
+import { AuthContext } from "../App";
+import { FoodContext } from "../providers/FoodProvider";
+import { foodCreate, foodDestroy } from "../urls";
+import { FoodType } from "../types/api/food"
+
+export const createFood = (userId: string | undefined, setTrigger: any, navigate: any, name: string | undefined, classification: number | undefined, quantity: number | undefined, limitDate: Dayjs | null, alertDate: Dayjs | null, image: string | undefined, memo: string | undefined) => {
+  // const { userId } = useContext(AuthContext);
+  // const { setTrigger } = useContext(FoodContext);
   return axios.post(foodCreate(userId), {
-    name: text
+    name: name,
+    classification_id: classification,
+    quantity: quantity,
+    expired_at: limitDate,
+    notified_at: alertDate,
+    image: image,
+    memo: memo
   }).then(() => {
     setTrigger((prev: any) => { return !prev });
+    navigate("/home/food")
   })
     .catch((e) => console.error(e))
 }
