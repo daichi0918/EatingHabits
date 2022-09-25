@@ -1,7 +1,10 @@
 import { FC, memo, useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Stack } from "@mui/material";
+import { styled } from '@mui/material/styles';
 import CircularProgress from '@mui/material/CircularProgress';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 
 
 import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
@@ -14,6 +17,14 @@ import Button from '@mui/material/Button';
 import { FoodContext, FoodContextProvider } from "../../providers/FoodProvider";
 
 
+const StyledFab = styled(Fab)({
+  position: 'fixed',
+  zIndex: 1,
+  top: 600,
+  left: 1050,
+  right: 0,
+  margin: '0 auto',
+});
 
 
 export const Food: FC = memo(() => {
@@ -47,14 +58,14 @@ export const Food: FC = memo(() => {
       ) : (
           <>
             {foods.map((food: any) => (
-              <Box>
-                <FoodCard name={food.name} quantity={food.quantity} expired_at={food.expired_at} notified_at={food.notified_at} image={food.image} memo={food.memo} />
-              </Box>
+              <FoodCard name={food.name} quantity={food.quantity} expired_at={food.expired_at} notified_at={food.notified_at} image={food.image} memo={food.memo} />
             ))}
           </>
 
         )}
-      <Button onClick={onClickFoodNew}>New</Button>
+      <StyledFab color="primary" aria-label="add">
+        <AddIcon onClick={onClickFoodNew} />
+      </StyledFab>
     </HomeHeaderLayout>
 
   )
