@@ -11,6 +11,9 @@ import { homeRoutes } from "./HomeRoutes";
 import { SignUp } from "../compenents/pages/SignUp";
 import { SignIn } from "../compenents/pages/SignIn";
 import { AuthContext } from "../App";
+import { Food } from "../compenents/pages/Food";
+import { FoodNew } from "../compenents/pages/FoodNew";
+import { FoodContextProvider } from "../providers/FoodProvider";
 
 export const Router: FC = memo(() => {
   const auth = useContext(AuthContext);
@@ -43,6 +46,21 @@ export const Router: FC = memo(() => {
       <Route path="home/list" element={
         <Private>
           <Lists />
+        </Private>
+      } />
+      <Route path="home/food" element={
+        <Private>
+          <FoodContextProvider>
+            <Food />
+          </FoodContextProvider>
+
+        </Private>
+      } />
+      <Route path="home/food/new" element={
+        <Private>
+          <FoodContextProvider>
+            <FoodNew />
+          </FoodContextProvider>
         </Private>
       } />
       <Route path="*" element={<Page404 />} />

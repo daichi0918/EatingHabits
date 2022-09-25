@@ -8,6 +8,7 @@ import { getCurrentUser } from "../src/apis/auth";
 import { Router } from './router/Router';
 import { UserType } from '../src/types/api/usertype';
 import { Home } from './compenents/pages/Home';
+import { FoodContextProvider } from './providers/FoodProvider';
 
 
 export const AuthContext = createContext({} as {
@@ -50,28 +51,11 @@ const App: FC = () => {
     handleGetCurrentUser()
   }, [setCurrentUser])
 
-  const Private = ({ children }: { children: React.ReactElement }) => {
-    if (!loading) {
-      if (isSignedIn) {
-        return children
-      } else {
-        return <Navigate to="/signin" />
-      }
-    } else {
-      return <></>
-    }
-  }
-
   return (
     <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser, userId, setUserId }}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Router />
-          {/* <Private>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Private> */}
         </BrowserRouter >
       </ThemeProvider>
     </AuthContext.Provider>

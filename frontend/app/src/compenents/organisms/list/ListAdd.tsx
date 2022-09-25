@@ -46,7 +46,7 @@ export const ListAdd = (props: any) => {
   };
 
   const StyledFab = styled(Fab)({
-    position: 'absolute',
+    position: 'fixed',
     zIndex: 1,
     top: 550,
     left: 600,

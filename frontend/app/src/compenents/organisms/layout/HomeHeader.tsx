@@ -34,7 +34,6 @@ export const HomeHeader: FC = memo(() => {
 
   useEffect(() => {
     axios.get<any>("http://localhost:3002/api/v1/users").then((res) => {
-      console.log(res)
     })
   }, [])
 
@@ -79,7 +78,12 @@ export const HomeHeader: FC = memo(() => {
             variant="h6"
             color="inherit"
             noWrap
-            sx={{ flexGrow: 1 }}
+            sx={{
+              flexGrow: 1,
+              '&:hover': {
+                cursor: "pointer",
+              },
+            }}
             onClick={onClickHome}
           >
             EH manager
