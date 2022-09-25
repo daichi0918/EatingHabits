@@ -1,5 +1,5 @@
 // import { Box, Button, Stack, Text } from "@chakra-ui/react";
-import { FC, memo } from "react";
+import { FC, memo, useContext } from "react";
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -7,6 +7,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+
+import { destroyFood } from "../../../apis/food";
+import { AuthContext } from "../../../App";
+import { FoodContext } from "../../../providers/FoodProvider";
 
 type Props = {
   name: string;
@@ -18,7 +22,10 @@ type Props = {
 }
 
 export const FoodCard: FC<any> = memo((props) => {
-  const { name, quantity, expired_at, notified_at, image, memo } = props;
+  const { id, name, quantity, expired_at, notified_at, image, memo } = props;
+  const { userId } = useContext(AuthContext);
+  const { setTrigger } = useContext(FoodContext);
+
   return (
     <Box
       component="span"
@@ -41,10 +48,10 @@ export const FoodCard: FC<any> = memo((props) => {
         </CardContent>
         <CardActions>
           <Button size="small">EDIT</Button>
-          <Button size="small">DELETE</Button>
+          <Button size="small" onClick={() => destroyFood(userId, id, setTrigger)}>DELETE</Button>
         </CardActions>
       </Card>
-    </Box>
+    </Box >
 
   )
 })

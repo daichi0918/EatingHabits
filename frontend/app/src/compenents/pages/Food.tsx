@@ -14,14 +14,14 @@ import { FoodType } from "../../types/api/food";
 import { useAllFoods } from "../../hooks/useAllFoods";
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button';
-import { FoodContext, FoodContextProvider } from "../../providers/FoodProvider";
+import { FoodContext } from "../../providers/FoodProvider";
 
 
 const StyledFab = styled(Fab)({
   position: 'fixed',
   zIndex: 1,
-  top: 600,
-  left: 1050,
+  top: 630,
+  left: 1100,
   right: 0,
   margin: '0 auto',
 });
@@ -58,7 +58,7 @@ export const Food: FC = memo(() => {
       ) : (
           <>
             {foods.map((food: any) => (
-              <FoodCard name={food.name} quantity={food.quantity} expired_at={food.expired_at} notified_at={food.notified_at} image={food.image} memo={food.memo} />
+              <FoodCard id={food.id} name={food.name} quantity={food.quantity} expired_at={food.expired_at} notified_at={food.notified_at} image={food.image} memo={food.memo} />
             ))}
           </>
 
