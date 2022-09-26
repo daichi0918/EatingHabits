@@ -14,6 +14,7 @@ import { AuthContext } from "../App";
 import { Food } from "../compenents/pages/Food";
 import { FoodNew } from "../compenents/pages/FoodNew";
 import { FoodContextProvider } from "../providers/FoodProvider";
+import { FoodEdit } from "../compenents/pages/FoodEdit";
 
 export const Router: FC = memo(() => {
   const auth = useContext(AuthContext);
@@ -60,6 +61,13 @@ export const Router: FC = memo(() => {
         <Private>
           <FoodContextProvider>
             <FoodNew />
+          </FoodContextProvider>
+        </Private>
+      } />
+      <Route path="home/food/edit" element={
+        <Private>
+          <FoodContextProvider>
+            <FoodEdit />
           </FoodContextProvider>
         </Private>
       } />
