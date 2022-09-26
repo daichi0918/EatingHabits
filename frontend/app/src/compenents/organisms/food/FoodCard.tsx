@@ -1,5 +1,6 @@
 // import { Box, Button, Stack, Text } from "@chakra-ui/react";
 import { FC, memo, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -24,7 +25,14 @@ type Props = {
 export const FoodCard: FC<any> = memo((props) => {
   const { id, name, quantity, expired_at, notified_at, image, memo } = props;
   const { userId } = useContext(AuthContext);
-  const { setTrigger } = useContext(FoodContext);
+  const { setFoodId, setTrigger } = useContext(FoodContext);
+
+  const navigate = useNavigate();
+
+  const onClickFoodEdit = () => {
+    setFoodId(id)
+    navigate("/home/food/edit")
+  }
 
   return (
     <Box
@@ -47,7 +55,7 @@ export const FoodCard: FC<any> = memo((props) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">EDIT</Button>
+          <Button size="small" onClick={onClickFoodEdit}>EDIT</Button>
           <Button size="small" onClick={() => destroyFood(userId, id, setTrigger)}>DELETE</Button>
         </CardActions>
       </Card>

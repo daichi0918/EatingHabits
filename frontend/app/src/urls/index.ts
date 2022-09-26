@@ -12,6 +12,10 @@ export const foodsIndex = (userId: string | undefined) =>
   `${DEFAULT_API_LOCALHOST}/users/${userId}/foods`
 export const foodCreate = (userId: string | undefined) =>
   `${DEFAULT_API_LOCALHOST}/users/${userId}/foods`
+export const foodEdit = (userId: string | undefined, id: string | undefined) =>
+  `${DEFAULT_API_LOCALHOST}/users/${userId}/foods/${id}/edit`
+export const foodUpdate = (userId: string | undefined, id: string | undefined) =>
+  `${DEFAULT_API_LOCALHOST}/users/${userId}/foods/${id}`
 export const foodDestroy = (userId: string | undefined, id: string | undefined) =>
   `${DEFAULT_API_LOCALHOST}/users/${userId}/foods/${id}`
 

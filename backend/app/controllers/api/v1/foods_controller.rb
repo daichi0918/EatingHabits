@@ -1,7 +1,7 @@
 module Api
   module V1
     class FoodsController < ApplicationController
-      before_action :set_food, only: %i[update destroy]
+      before_action :set_food, only: %i[edit update destroy]
 
       def index
         user = User.find(params[:user_id])
@@ -19,6 +19,12 @@ module Api
         else
           render json: { status: 'ERROR', data: food.errors }
         end
+      end
+
+      def edit
+        render json: {
+          food: @food
+        }, status: :ok
       end
 
       def update
