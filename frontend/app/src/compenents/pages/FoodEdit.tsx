@@ -38,7 +38,7 @@ export const FoodEdit = () => {
   const { editFood, loading } = useEditFood();
   useEffect(() => editFood(userId, foodId, setFoodEdit), [])
 
-  const [name, setName] = useState("");
+  const [name, setName] = useState(foodEdit?.name);
   const [classification, setClassification] = useState<number | undefined>();
   const [quantity, setQuantity] = useState<any>();
   const [limitDate, setLimitDate] = useState<any>(dayjs());
