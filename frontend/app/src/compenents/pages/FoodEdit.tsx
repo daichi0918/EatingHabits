@@ -26,7 +26,7 @@ import { signUp } from "../../apis/auth";
 import { AuthContext } from "../../App";
 import { SignUpParams } from "../../types/api/auth";
 import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
-import { createFood } from "../../apis/food";
+import { updateFood } from "../../apis/food";
 import { FoodContext } from "../../providers/FoodProvider";
 import { useEditFood } from "../../hooks/useEditFood";
 
@@ -38,13 +38,13 @@ export const FoodEdit = () => {
   const { editFood, loading } = useEditFood();
   useEffect(() => editFood(userId, foodId, setFoodEdit), [])
 
-  const [name, setName] = useState(foodEdit?.name);
-  const [classification, setClassification] = useState<number | undefined>(foodEdit?.classification_id);
-  const [quantity, setQuantity] = useState<any>(foodEdit?.quantity);
-  const [limitDate, setLimitDate] = useState<any>(foodEdit?.expired_at);
-  const [alertDate, setAlertDate] = useState<any>(foodEdit?.notified_at);
-  const [image, setImage] = useState(foodEdit?.image);
-  const [memo, setMemo] = useState(foodEdit?.memo);
+  const [name, setName] = useState("");
+  const [classification, setClassification] = useState<number | undefined>();
+  const [quantity, setQuantity] = useState<any>();
+  const [limitDate, setLimitDate] = useState<any>(dayjs());
+  const [alertDate, setAlertDate] = useState<any>(dayjs());
+  const [image, setImage] = useState("");
+  const [memo, setMemo] = useState("");
 
   console.log("name:" + foodEdit?.name)
 
@@ -76,7 +76,7 @@ export const FoodEdit = () => {
                       label="編集名称"
                       name="name"
                       autoComplete="name"
-                      value={foodEdit?.name}
+                      value={name}
                       onChange={(e) => setName(e.target.value)}
                     />
                   </Grid>
@@ -87,8 +87,7 @@ export const FoodEdit = () => {
                       fullWidth
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      // value={classification}
-                      value={1}
+                      value={classification}
                       label="分類"
                       onChange={(e) => setClassification(Number(e.target.value))}
                     >
@@ -171,10 +170,10 @@ export const FoodEdit = () => {
                 <Button
                   fullWidth
                   variant="contained"
-                  onClick={() => createFood(userId, setTrigger, navigate, name, classification, quantity, limitDate, alertDate, image, memo)}
+                  onClick={() => updateFood(foodId, userId, setTrigger, navigate, name, classification, quantity, limitDate, alertDate, image, memo)}
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  追加する
+                  更新する
                 </Button>
               </Box>
             </Box>
