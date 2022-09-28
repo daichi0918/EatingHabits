@@ -18,7 +18,9 @@ type Props = {
   quantity: any;
   expired_at: string;
   notified_at: string | undefined | null;
-  image: string | undefined | null;
+  image?: {
+    url: string
+  }
   memo: string | undefined | null;
 }
 
@@ -43,7 +45,7 @@ export const FoodCard: FC<any> = memo((props) => {
         <CardMedia
           component="img"
           height="140"
-          image=""
+          image={image.url}
           alt="green iguana"
         />
         <CardContent>
