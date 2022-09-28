@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
-import { useContext, useState } from "react";
+import { useContext, useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { styled } from '@mui/material/styles'
 import dayjs, { Dayjs } from 'dayjs';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -21,6 +22,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import IconButton from '@mui/material/IconButton';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 import { signUp } from "../../apis/auth";
 import { AuthContext } from "../../App";
@@ -28,6 +32,38 @@ import { SignUpParams } from "../../types/api/auth";
 import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
 import { createFood } from "../../apis/food";
 import { FoodContext } from "../../providers/FoodProvider";
+
+const Input = styled("input")({
+  display: "none"
+})
+
+// const useStyles = styled("input")((theme: Theme) => ({
+//   form: {
+//     display: "flex",
+//     flexWrap: "wrap",
+//     width: 320
+//   },
+//   inputFileBtn: {
+//     marginTop: "10px"
+//   },
+//   submitBtn: {
+//     marginTop: "10px",
+//     marginLeft: "auto"
+//   },
+//   box: {
+//     margin: "2rem 0 4rem",
+//     width: 320
+//   },
+//   preview: {
+//     width: "100%"
+//   }
+// }))
+
+const formStyles = styled("form")((theme: any) => ({
+  display: "flex",
+  flexWrap: "wrap",
+  width: 320
+}))
 
 export const FoodNew = () => {
 
@@ -39,8 +75,26 @@ export const FoodNew = () => {
   const [quantity, setQuantity] = useState<number>();
   const [limitDate, setLimitDate] = useState<Dayjs | null>(dayjs());
   const [alertDate, setAlertDate] = useState<Dayjs | null>(dayjs());
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState<File>();
   const [memo, setMemo] = useState("");
+
+
+
+  const [preview, setPreview] = useState<string>("")
+
+  const uploadImage = useCallback((e: any) => {
+    const file = e.target.files[0]
+    console.log("file:" + file)
+    setImage(file)
+  }, [])
+
+  // プレビュー機能
+  const previewImage = useCallback((e: any) => {
+    const file = e.target.files[0]
+    console.log(window.URL.createObjectURL(file))
+    setPreview(window.URL.createObjectURL(file))
+  }, [])
+
 
   const navigate = useNavigate();
 
@@ -136,7 +190,7 @@ export const FoodNew = () => {
                     </LocalizationProvider>
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
+                    {/* <TextField
                       required
                       fullWidth
                       id="Name"
@@ -144,7 +198,21 @@ export const FoodNew = () => {
                       name="name"
                       autoComplete="name"
                     // value={image}
-                    />
+                    /> */}
+                    <label htmlFor="icon-button-file">
+                      <input
+                        accept="image/*"
+                        id="icon-button-file"
+                        type="file"
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                          uploadImage(e)
+                          previewImage(e)
+                        }}
+                      />
+                    </label>
+                    <IconButton color="inherit" component="span">
+                      <CameraAltIcon />
+                    </IconButton>
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
@@ -174,6 +242,20 @@ export const FoodNew = () => {
           </Container>
         </ThemeProvider>
       </HomeHeaderLayout>
+      { preview ?
+        <Box>
+          <IconButton
+            color="inherit"
+            onClick={() => setPreview("")}
+          >
+            <CancelIcon />
+          </IconButton>
+          <img
+            src={preview}
+            alt="preview img"
+          />
+        </Box> : null
+      }
     </>
   );
 };

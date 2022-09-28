@@ -8,7 +8,7 @@ import { FoodContext } from "../providers/FoodProvider";
 import { foodCreate, foodDestroy, foodUpdate } from "../urls";
 import { FoodType } from "../types/api/food"
 
-export const createFood = (userId: string | undefined, setTrigger: any, navigate: any, name: string | undefined, classification: number | undefined, quantity: number | undefined, limitDate: Dayjs | null, alertDate: Dayjs | null, image: string | undefined, memo: string | undefined) => {
+export const createFood = (userId: string | undefined, setTrigger: any, navigate: any, name: string | undefined, classification: number | undefined, quantity: number | undefined, limitDate: Dayjs | null, alertDate: Dayjs | null, image: any, memo: string | undefined) => {
   // const { userId } = useContext(AuthContext);
   // const { setTrigger } = useContext(FoodContext);
   return axios.post(foodCreate(userId), {
