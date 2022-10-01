@@ -35,32 +35,6 @@ export const ListDeleteDialog = (props: any) => {
 
   return (
     <>
-      {/* <DeleteIcon _hover={{ cursor: "pointer" }} onClick={onOpen} />
-      <AlertDialog
-        motionPreset='slideInBottom'
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
-        isOpen={isOpen}
-        isCentered
-      >
-        <AlertDialogOverlay />
-
-        <AlertDialogContent>
-          <AlertDialogHeader>確認</AlertDialogHeader>
-          <AlertDialogCloseButton />
-          <AlertDialogBody>
-            削除してよろしいですか？
-          </AlertDialogBody>
-          <AlertDialogFooter>
-            <Button ref={cancelRef} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button colorScheme='teal' ml={3} onClick={() => destroyList(userId, id, setTrigger)}>
-              OK
-            </Button>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog> */}
       <Tooltip title="Delete">
         <IconButton>
           <DeleteIcon onClick={OpenDialog} />
