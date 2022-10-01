@@ -252,7 +252,7 @@ export const FoodNew = () => {
                         onChange={(e: any) => {
                           // uploadImage(e)
                           // previewImage(e)
-                          setImage(window.URL.createObjectURL(e.target.files[0]))
+                          setImage(e.targe.files[0])
                           setPreview(window.URL.createObjectURL(e.target.files[0]))
                         }}
                       />
