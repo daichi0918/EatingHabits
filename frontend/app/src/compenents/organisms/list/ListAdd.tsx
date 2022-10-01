@@ -56,40 +56,6 @@ export const ListAdd = (props: any) => {
 
   return (
     <>
-      {/* <IconButton
-        aria-label='add-icon'
-        colorScheme='teal'
-        icon={<AddIcon />}
-        borderRadius="full"
-        size="lg"
-        onClick={onOpen}
-      />
-      <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
-      >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Subscribe</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
-            <FormControl>
-              <FormLabel>名前</FormLabel>
-              <Input ref={initialRef} placeholder='Name' value={text}
-                onChange={(event) => setText(event.target.value)} />
-            </FormControl>
-          </ModalBody>
-          <ModalFooter>
-            <Button colorScheme='teal' mr={3} onClick={() => { createList(userId, text, setTrigger) }}>
-              登録
-            </Button>
-            <Button onClick={onClose}>Cancel</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal> */}
-      {/* <AddCircleIcon onClick={handleClickOpen} sx={{ fontSize: 50 }} color="primary" style={{ marginLeft: '830px' }} /> */}
       <StyledFab color="primary" aria-label="add">
         <AddIcon onClick={handleClickOpen} />
       </StyledFab>
