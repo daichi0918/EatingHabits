@@ -17,6 +17,9 @@ export const createFood = (userId: string | undefined, setTrigger: any, navigate
     quantity: quantity,
     expired_at: limitDate,
     notified_at: alertDate,
+    // image: {
+    //   url: image
+    // },
     image: image,
     memo: memo
   }).then(() => {

@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import axios from 'axios'
 import { useContext, useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles'
@@ -71,11 +72,11 @@ export const FoodNew = () => {
   const { setTrigger } = useContext(FoodContext);
 
   const [name, setName] = useState("");
-  const [classification, setClassification] = useState<number>();
-  const [quantity, setQuantity] = useState<number>();
-  const [limitDate, setLimitDate] = useState<Dayjs | null>(dayjs());
-  const [alertDate, setAlertDate] = useState<Dayjs | null>(dayjs());
-  const [image, setImage] = useState<File>();
+  const [classification, setClassification] = useState<any>();
+  const [quantity, setQuantity] = useState<any>();
+  const [limitDate, setLimitDate] = useState<any>(dayjs());
+  const [alertDate, setAlertDate] = useState<any>(dayjs());
+  const [image, setImage] = useState<any>()
   const [memo, setMemo] = useState("");
 
 
@@ -84,19 +85,56 @@ export const FoodNew = () => {
 
   const uploadImage = useCallback((e: any) => {
     const file = e.target.files[0]
+    setImage(e.target.files[0]);
     console.log("file:" + file)
-    setImage(file)
+    console.log("image:" + image)
   }, [])
 
   // プレビュー機能
   const previewImage = useCallback((e: any) => {
     const file = e.target.files[0]
-    console.log(window.URL.createObjectURL(file))
     setPreview(window.URL.createObjectURL(file))
   }, [])
 
+  const confirmButton = () => {
+    console.log("image:" + image)
+    console.log("preview:" + preview)
+    console.log(image.mozFullPath)
+  }
 
   const navigate = useNavigate();
+
+  // const createFormData = () => {
+  //   const formData = new FormData()
+  //   if (!image) return
+  //   formData.append('name', name)
+  //   formData.append('classification', classification)
+  //   formData.append('quantity', quantity)
+  //   formData.append('limitDate', limitDate)
+  //   formData.append('alertDate', alertDate)
+  //   formData.append('image', image)
+  //   formData.append('memo', memo)
+  //   formData.append('food[name]', name)
+  //   formData.append('food[classification]', classification)
+  //   formData.append('food[quantity]', quantity)
+  //   formData.append('food[limitDate]', limitDate)
+  //   formData.append('food[alertDate]', alertDate)
+  //   formData.append('food[image]', image)
+  //   formData.append('food[memo]', memo)
+
+  //   return formData
+  // }
+
+  // const sendFormData = () => {
+  //   const url = `http://localhost:3002/api/v1/users/2/foods`
+  //   const data = createFormData()
+  //   axios.post(url, data)
+  //     .then(() => navigate('/home/food'))
+  //     .catch(e => {
+  //       console.error(e)
+  //     })
+
+  // }
 
   const theme = createTheme();
   return (
@@ -197,20 +235,29 @@ export const FoodNew = () => {
                       label="画像を追加"
                       name="name"
                       autoComplete="name"
-                    // value={image}
+                      // value={image}
+                      type="file"
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        uploadImage(e)
+                        previewImage(e)
+                        console.log("image:" + image)
+                        console.log("preview:" + preview)
+                      }}
                     /> */}
                     <label htmlFor="icon-button-file">
                       <input
                         accept="image/*"
                         id="icon-button-file"
                         type="file"
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                          uploadImage(e)
-                          previewImage(e)
+                        onChange={(e: any) => {
+                          // uploadImage(e)
+                          // previewImage(e)
+                          setImage(window.URL.createObjectURL(e.target.files[0]))
+                          setPreview(window.URL.createObjectURL(e.target.files[0]))
                         }}
                       />
                     </label>
-                    <IconButton color="inherit" component="span">
+                    < IconButton color="inherit" component="span" >
                       <CameraAltIcon />
                     </IconButton>
                   </Grid>
@@ -233,9 +280,14 @@ export const FoodNew = () => {
                   fullWidth
                   variant="contained"
                   onClick={() => createFood(userId, setTrigger, navigate, name, classification, quantity, limitDate, alertDate, image, memo)}
+                  // onClick={sendFormData}
                   sx={{ mt: 3, mb: 2 }}
                 >
                   追加する
+                </Button>
+                <Button onClick={confirmButton}
+                >
+                  kakuninn
                 </Button>
               </Box>
             </Box>
