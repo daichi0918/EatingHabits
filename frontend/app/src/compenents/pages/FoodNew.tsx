@@ -1,6 +1,8 @@
 import Cookies from "js-cookie";
-import { useContext, useState } from "react";
+import axios from 'axios'
+import { useContext, useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { styled } from '@mui/material/styles'
 import dayjs, { Dayjs } from 'dayjs';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -21,6 +23,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import IconButton from '@mui/material/IconButton';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 import { signUp } from "../../apis/auth";
 import { AuthContext } from "../../App";
@@ -29,20 +34,107 @@ import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
 import { createFood } from "../../apis/food";
 import { FoodContext } from "../../providers/FoodProvider";
 
+const Input = styled("input")({
+  display: "none"
+})
+
+// const useStyles = styled("input")((theme: Theme) => ({
+//   form: {
+//     display: "flex",
+//     flexWrap: "wrap",
+//     width: 320
+//   },
+//   inputFileBtn: {
+//     marginTop: "10px"
+//   },
+//   submitBtn: {
+//     marginTop: "10px",
+//     marginLeft: "auto"
+//   },
+//   box: {
+//     margin: "2rem 0 4rem",
+//     width: 320
+//   },
+//   preview: {
+//     width: "100%"
+//   }
+// }))
+
+const formStyles = styled("form")((theme: any) => ({
+  display: "flex",
+  flexWrap: "wrap",
+  width: 320
+}))
+
 export const FoodNew = () => {
 
   const { userId } = useContext(AuthContext);
   const { setTrigger } = useContext(FoodContext);
 
   const [name, setName] = useState("");
-  const [classification, setClassification] = useState<number>();
-  const [quantity, setQuantity] = useState<number>();
-  const [limitDate, setLimitDate] = useState<Dayjs | null>(dayjs());
-  const [alertDate, setAlertDate] = useState<Dayjs | null>(dayjs());
-  const [image, setImage] = useState("");
+  const [classification, setClassification] = useState<any>();
+  const [quantity, setQuantity] = useState<any>();
+  const [limitDate, setLimitDate] = useState<any>(dayjs());
+  const [alertDate, setAlertDate] = useState<any>(dayjs());
+  const [image, setImage] = useState<any>()
   const [memo, setMemo] = useState("");
 
+
+
+  const [preview, setPreview] = useState<string>("")
+
+  const uploadImage = useCallback((e: any) => {
+    const file = e.target.files[0]
+    setImage(e.target.files[0]);
+    console.log("file:" + file)
+    console.log("image:" + image)
+  }, [])
+
+  // プレビュー機能
+  const previewImage = useCallback((e: any) => {
+    const file = e.target.files[0]
+    setPreview(window.URL.createObjectURL(file))
+  }, [])
+
+  const confirmButton = () => {
+    console.log("image:" + image)
+    console.log("preview:" + preview)
+    console.log(image.mozFullPath)
+  }
+
   const navigate = useNavigate();
+
+  // const createFormData = () => {
+  //   const formData = new FormData()
+  //   if (!image) return
+  //   formData.append('name', name)
+  //   formData.append('classification', classification)
+  //   formData.append('quantity', quantity)
+  //   formData.append('limitDate', limitDate)
+  //   formData.append('alertDate', alertDate)
+  //   formData.append('image', image)
+  //   formData.append('memo', memo)
+  //   formData.append('food[name]', name)
+  //   formData.append('food[classification]', classification)
+  //   formData.append('food[quantity]', quantity)
+  //   formData.append('food[limitDate]', limitDate)
+  //   formData.append('food[alertDate]', alertDate)
+  //   formData.append('food[image]', image)
+  //   formData.append('food[memo]', memo)
+
+  //   return formData
+  // }
+
+  // const sendFormData = () => {
+  //   const url = `http://localhost:3002/api/v1/users/2/foods`
+  //   const data = createFormData()
+  //   axios.post(url, data)
+  //     .then(() => navigate('/home/food'))
+  //     .catch(e => {
+  //       console.error(e)
+  //     })
+
+  // }
 
   const theme = createTheme();
   return (
@@ -136,15 +228,38 @@ export const FoodNew = () => {
                     </LocalizationProvider>
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
+                    {/* <TextField
                       required
                       fullWidth
                       id="Name"
                       label="画像を追加"
                       name="name"
                       autoComplete="name"
-                    // value={image}
-                    />
+                      // value={image}
+                      type="file"
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        uploadImage(e)
+                        previewImage(e)
+                        console.log("image:" + image)
+                        console.log("preview:" + preview)
+                      }}
+                    /> */}
+                    <label htmlFor="icon-button-file">
+                      <input
+                        accept="image/*"
+                        id="icon-button-file"
+                        type="file"
+                        onChange={(e: any) => {
+                          // uploadImage(e)
+                          // previewImage(e)
+                          setImage(e.targe.files[0])
+                          setPreview(window.URL.createObjectURL(e.target.files[0]))
+                        }}
+                      />
+                    </label>
+                    < IconButton color="inherit" component="span" >
+                      <CameraAltIcon />
+                    </IconButton>
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
@@ -165,15 +280,34 @@ export const FoodNew = () => {
                   fullWidth
                   variant="contained"
                   onClick={() => createFood(userId, setTrigger, navigate, name, classification, quantity, limitDate, alertDate, image, memo)}
+                  // onClick={sendFormData}
                   sx={{ mt: 3, mb: 2 }}
                 >
                   追加する
+                </Button>
+                <Button onClick={confirmButton}
+                >
+                  kakuninn
                 </Button>
               </Box>
             </Box>
           </Container>
         </ThemeProvider>
       </HomeHeaderLayout>
+      { preview ?
+        <Box>
+          <IconButton
+            color="inherit"
+            onClick={() => setPreview("")}
+          >
+            <CancelIcon />
+          </IconButton>
+          <img
+            src={preview}
+            alt="preview img"
+          />
+        </Box> : null
+      }
     </>
   );
 };
