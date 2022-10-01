@@ -1,17 +1,3 @@
-// import {
-//   Spinner,
-//   Center,
-//   Table,
-//   Thead,
-//   Tbody,
-//   Tr,
-//   Th,
-//   Td,
-//   TableContainer,
-//   Grid,
-//   Flex
-// } from "@chakra-ui/react";
-// import { DeleteIcon } from "@chakra-ui/icons"
 import { FC, memo, useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useAllLists } from "../../hooks/useAllLists";
@@ -51,33 +37,9 @@ export const Lists: FC = memo(() => {
 
   useEffect(() => getLists(userId, setLists), [trigger])
 
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
-  }));
-
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
-    '&:last-child td, &:last-child th': {
-      border: 0,
-    },
-  }));
-
-
   return (
     <HomeHeaderLayout>
       {loading ? (
-        // <Center h="100vh">
-        //   <Spinner />
-        // </Center>
         <Stack alignItems="center" justifyContent="center" style={{ marginTop: '300px' }}>
           <Box sx={{ alignItems: 'center' }}>
             <CircularProgress />
@@ -86,32 +48,6 @@ export const Lists: FC = memo(() => {
 
       ) : (
           <>
-            {/* <Flex justify='center'>
-              <div style={{ margin: "0 auto" }}>
-                <TableContainer>
-                  <Table variant='simple'>
-                    <Thead>
-                      <Tr>
-                        <Th>Name</Th>
-                        <Th>Delete</Th>
-                      </Tr>
-                    </Thead>
-                    <Tbody>
-                      {lists.map((list) => (
-                        <Tr>
-                          <Td>{list.name}</Td>
-                          <Td>
-                            <ListDeleteDialog userId={userId} id={list.id} setTrigger={setTrigger} />
-                          </Td>
-                        </Tr>
-                      ))}
-                    </Tbody>
-                  </Table>
-                </TableContainer>
-              </div>
-              <Center>
-                <ListAdd userId={userId} lists={lists} setLists={setLists} setTrigger={setTrigger} />
-              </Center> */}
             <Grid container style={{ marginTop: '100px' }}>
               <Grid item xs>
               </Grid>
@@ -133,7 +69,6 @@ export const Lists: FC = memo(() => {
             </Grid>
             <ListAdd userId={userId} lists={lists} setLists={setLists} setTrigger={setTrigger} />
           </>
-
         )
       }
     </HomeHeaderLayout >
