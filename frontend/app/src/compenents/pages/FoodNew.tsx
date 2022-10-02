@@ -104,37 +104,37 @@ export const FoodNew = () => {
 
   const navigate = useNavigate();
 
-  // const createFormData = () => {
-  //   const formData = new FormData()
-  //   if (!image) return
-  //   formData.append('name', name)
-  //   formData.append('classification', classification)
-  //   formData.append('quantity', quantity)
-  //   formData.append('limitDate', limitDate)
-  //   formData.append('alertDate', alertDate)
-  //   formData.append('image', image)
-  //   formData.append('memo', memo)
-  //   formData.append('food[name]', name)
-  //   formData.append('food[classification]', classification)
-  //   formData.append('food[quantity]', quantity)
-  //   formData.append('food[limitDate]', limitDate)
-  //   formData.append('food[alertDate]', alertDate)
-  //   formData.append('food[image]', image)
-  //   formData.append('food[memo]', memo)
+  const createFormData = () => {
+    const formData = new FormData()
+    if (!image) return
+    formData.append('name', name)
+    formData.append('classification_id', classification)
+    formData.append('quantity', quantity)
+    formData.append('expired_at', limitDate)
+    formData.append('notified_at', alertDate)
+    formData.append('image', image)
+    formData.append('memo', memo)
+    // formData.append('food[name]', name)
+    // formData.append('food[classification]', classification)
+    // formData.append('food[quantity]', quantity)
+    // formData.append('food[limitDate]', limitDate)
+    // formData.append('food[alertDate]', alertDate)
+    // formData.append('food[image]', image)
+    // formData.append('food[memo]', memo)
 
-  //   return formData
-  // }
+    return formData
+  }
 
-  // const sendFormData = () => {
-  //   const url = `http://localhost:3002/api/v1/users/2/foods`
-  //   const data = createFormData()
-  //   axios.post(url, data)
-  //     .then(() => navigate('/home/food'))
-  //     .catch(e => {
-  //       console.error(e)
-  //     })
+  const sendFormData = () => {
+    const url = `http://localhost:3002/api/v1/users/${userId}/foods`
+    const data = createFormData()
+    axios.post(url, data)
+      .then(() => navigate('/home/food'))
+      .catch(e => {
+        console.error(e)
+      })
 
-  // }
+  }
 
   const theme = createTheme();
   return (
@@ -252,7 +252,7 @@ export const FoodNew = () => {
                         onChange={(e: any) => {
                           // uploadImage(e)
                           // previewImage(e)
-                          setImage(e.targe.files[0])
+                          setImage(e.target.files[0])
                           setPreview(window.URL.createObjectURL(e.target.files[0]))
                         }}
                       />
@@ -279,8 +279,8 @@ export const FoodNew = () => {
                 <Button
                   fullWidth
                   variant="contained"
-                  onClick={() => createFood(userId, setTrigger, navigate, name, classification, quantity, limitDate, alertDate, image, memo)}
-                  // onClick={sendFormData}
+                  // onClick={() => createFood(userId, setTrigger, navigate, name, classification, quantity, limitDate, alertDate, image, memo)}
+                  onClick={sendFormData}
                   sx={{ mt: 3, mb: 2 }}
                 >
                   追加する
