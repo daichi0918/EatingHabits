@@ -47,7 +47,7 @@ module Api
       end
 
       def food_params
-        params.permit(:classification_id, :name, :quantity, :expired_at, :notified_at, :image, :memo).merge(user_id: params[:user_id])
+        params.permit(:user_id,:classification_id, :name, :quantity, :expired_at, :notified_at, :image, :memo)
       end
     end
   end
