@@ -4,5 +4,5 @@ class Restaurant < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  valida
+  validates :text, presence: true
 end
