@@ -11,8 +11,12 @@ class User < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  has_many :lists
-  has_many :foods
+  has_many :lists, dependent: :destroy 
+  has_many :foods, dependent: :destroy 
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy 
+  has_many :bookmarks, dependent: :destroy 
+  has_many :favorites, dependent: :destroy 
 
   validates :name, :email, :encrypted_password, :gender, presence: true
   validates :name, length: { maximum: 30 }
