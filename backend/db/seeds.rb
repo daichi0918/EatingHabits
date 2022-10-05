@@ -27,3 +27,13 @@ User.all.each do |user|
     expired_at: date
   )
 end
+
+3.times do |n|
+  post = Post.new(
+    user_id: 2,
+    text: "sampletext#{n}"
+  )
+
+  post.save!
+
+end
