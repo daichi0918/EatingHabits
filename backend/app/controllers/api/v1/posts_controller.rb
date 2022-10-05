@@ -1,7 +1,7 @@
 module Api
   module V1
     class PostsController < ApplicationController
-      before_action :set_food, only: %i[edit update destroy]
+      before_action :set_post, only: %i[edit update destroy]
 
       def index
         posts = Post.all
@@ -18,6 +18,25 @@ module Api
         else
           render json: { status: 'ERROR', data: post.errors }
         end
+      end
+
+      def edit
+        render json: {
+          post: @post
+        }, status: :ok
+      end
+
+      def update
+        if @post.update(post_params)
+          render json: { status: 'SUCCESS', message: 'Updated the post', data: @post }
+        else
+          render json: { status: 'SUCCESS', message: 'Not updated', data: @post.errors }
+        end
+      end
+
+      def destroy
+        @post.destroy
+        render json: { status: 'SUCCESS', message: 'Deleted the post', data: @post }
       end
 
       private
