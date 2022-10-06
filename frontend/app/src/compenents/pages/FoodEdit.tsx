@@ -43,8 +43,8 @@ export const FoodEdit = () => {
   const [name, setName] = useState("");
   const [classification, setClassification] = useState<any>("");
   const [quantity, setQuantity] = useState<any>("");
-  const [limitDate, setLimitDate] = useState<any>(dayjs());
-  const [alertDate, setAlertDate] = useState<any>(dayjs());
+  const [limitDate, setLimitDate] = useState<any>("");
+  const [alertDate, setAlertDate] = useState<any>("");
   const [image, setImage] = useState("");
   const [memo, setMemo] = useState("");
   const [preview, setPreview] = useState<string>("")
