@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { grey } from '@mui/material/colors';
 import { CardActionArea } from '@mui/material';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import CreateIcon from '@mui/icons-material/Create';
 import TimerIcon from '@mui/icons-material/Timer';
 import Avatar from '@mui/material/Avatar';
 import Grid from '@mui/material/Grid';
@@ -28,6 +29,7 @@ export const Home: FC = memo(() => {
 
   const onClickList = () => navigate("list")
   const onClickFood = () => navigate("food")
+  const onClickPost = () => navigate("post")
 
   return (
     <HomeHeaderLayout>
@@ -108,7 +110,37 @@ export const Home: FC = memo(() => {
             </Typography>
           </CardContent>
         </Card>
-
+        <Card
+          sx={{
+            width: 280,
+            height: 150,
+            m: 2,
+            backgroundColor: grey[100],
+            '&:hover': {
+              opacity: [0.9, 0.8, 0.7],
+              cursor: 'pointer'
+            },
+          }}
+          onClick={onClickPost}
+        >
+          <CardContent>
+            <Grid container>
+              <Grid item xs={6} md={3}>
+                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                  <CreateIcon />
+                </Avatar>
+              </Grid>
+              <Grid item xs={6} md={9}>
+                <Typography variant="h6" component="div" sx={{ m: 1.5 }}>
+                  投稿一覧
+                </Typography>
+              </Grid>
+            </Grid>
+            <Typography variant="body2" align="center" sx={{ m: 1.5 }}>
+              食生活で役立つ情報を投稿&閲覧する
+            </Typography>
+          </CardContent>
+        </Card>
       </Box>
     </HomeHeaderLayout>
   )

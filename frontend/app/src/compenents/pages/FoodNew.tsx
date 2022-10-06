@@ -97,7 +97,7 @@ export const FoodNew = () => {
   }, [])
 
   const confirmButton = () => {
-    console.log("image:" + image)
+    console.log("image:" + image);
     console.log("preview:" + preview)
     console.log(image.mozFullPath)
   }

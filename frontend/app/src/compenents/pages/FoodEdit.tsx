@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import dayjs, { Dayjs } from 'dayjs';
 import Avatar from '@mui/material/Avatar';
@@ -21,6 +21,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import IconButton from '@mui/material/IconButton';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 import { signUp } from "../../apis/auth";
 import { AuthContext } from "../../App";
@@ -36,17 +39,34 @@ export const FoodEdit = () => {
   const { foodId, foodEdit, setFoodEdit, trigger, setTrigger } = useContext(FoodContext);
 
   const { editFood, loading } = useEditFood();
-  useEffect(() => editFood(userId, foodId, setFoodEdit), [])
 
-  const [name, setName] = useState(foodEdit?.name);
-  const [classification, setClassification] = useState<number | undefined>();
-  const [quantity, setQuantity] = useState<any>();
+  const [name, setName] = useState("");
+  const [classification, setClassification] = useState<any>("");
+  const [quantity, setQuantity] = useState<any>("");
   const [limitDate, setLimitDate] = useState<any>(dayjs());
   const [alertDate, setAlertDate] = useState<any>(dayjs());
   const [image, setImage] = useState("");
   const [memo, setMemo] = useState("");
+  const [preview, setPreview] = useState<string>("")
+
+  const uploadImage = useCallback((e: any) => {
+    const file = e.target.files[0]
+    setImage(e.target.files[0]);
+    console.log("file:" + file)
+    console.log("image:" + image)
+  }, [])
+
+  // プレビュー機能
+  const previewImage = useCallback((e: any) => {
+    const file = e.target.files[0]
+    setPreview(window.URL.createObjectURL(file))
+  }, [])
+
+  useEffect(() => { editFood(userId, foodId, setFoodEdit, setName, setClassification, setQuantity, setLimitDate, setAlertDate, setImage, setMemo) }, [])
 
   console.log("name:" + foodEdit?.name)
+
+  console.log("abc:" + name)
 
   const navigate = useNavigate();
 
@@ -142,7 +162,7 @@ export const FoodEdit = () => {
                     </LocalizationProvider>
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
+                    {/* <TextField
                       required
                       fullWidth
                       id="Name"
@@ -150,7 +170,24 @@ export const FoodEdit = () => {
                       name="name"
                       autoComplete="name"
                       value={image}
-                    />
+                    /> */}
+                    <label htmlFor="icon-button-file">
+                      <input
+                        accept="image/*"
+                        id="icon-button-file"
+                        type="file"
+                        // value={image}
+                        onChange={(e: any) => {
+                          // uploadImage(e)
+                          // previewImage(e)
+                          setImage(e.target.files[0])
+                          setPreview(window.URL.createObjectURL(e.target.files[0]))
+                        }}
+                      />
+                    </label>
+                    < IconButton color="inherit" component="span" >
+                      <CameraAltIcon />
+                    </IconButton>
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
@@ -180,6 +217,20 @@ export const FoodEdit = () => {
           </Container>
         </ThemeProvider>
       </HomeHeaderLayout>
+      { preview ?
+        <Box>
+          <IconButton
+            color="inherit"
+            onClick={() => setPreview("")}
+          >
+            <CancelIcon />
+          </IconButton>
+          <img
+            src={preview}
+            alt="preview img"
+          />
+        </Box> : null
+      }
     </>
   );
 };
