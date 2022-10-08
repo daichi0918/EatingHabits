@@ -19,14 +19,12 @@ import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
 
 
 //
-import { FoodCard } from "../organisms/food/FoodCard";
+import { PostCard } from "../organisms/post/PostCard";
 import { AuthContext } from "../../App";
-import { FoodType } from "../../types/api/food";
-import { useAllFoods } from "../../hooks/useAllFoods";
+import { PostType } from "../../types/api/post";
+import { useAllPosts } from "../../hooks/useAllPosts";
 import Button from '@mui/material/Button';
-import { FoodContext } from "../../providers/FoodProvider";
-//
-
+import { PostContext } from "../../providers/PostProvider";
 
 
 
@@ -79,6 +77,16 @@ export const Post: FC = memo(() => {
 
   const { userId } = useContext(AuthContext);
 
+  const { postId, setPostId, posts, setPosts, trigger, setTrigger } = useContext(PostContext);
+
+  const { getPosts, loading } = useAllPosts();
+
+  const navigate = useNavigate()
+
+  useEffect(() => getPosts(setPosts), [trigger])
+
+  console.log("posts" + posts)
+
   // // const { foods, setFoods, trigger, setTrigger } = useContext(FoodContext);
 
   // // const [foods, setFoods] = useState<Array<FoodType>>([]);
@@ -112,7 +120,7 @@ export const Post: FC = memo(() => {
       </Container>
       <Fragment>
         <div>投稿一覧</div>
-        {/* {loading ? (
+        {loading ? (
           <Stack alignItems="center" justifyContent="center" style={{ marginTop: '300px' }}>
             <Box sx={{ alignItems: 'center' }}>
               <CircularProgress />
@@ -121,10 +129,11 @@ export const Post: FC = memo(() => {
 
         ) : (
             <>
-              <div>aaaaa</div>
+              {posts.map((post: any) => (
+                <PostCard id={post.id} user_id={post.user_id} text={post.text} image={post.image} title={post.title} />
+              ))}
             </>
-
-          )} */}
+          )}
       </Fragment>
     </HomeHeaderLayout>
 

@@ -1,44 +1,34 @@
 import React, { FC, ReactNode, createContext, useState } from 'react';
-import { FoodType } from '../types/api/food';
+import { PostType } from '../types/api/post';
 
 // ContextProviderType --------------
 type Props = {
   children: ReactNode
 }
 
-export const FoodContext = createContext({} as {
-  // loading: boolean
-  // setLoading: React.Dispatch<React.SetStateAction<boolean>>
-  // isSignedIn: boolean
-  // setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>
-  // currentUser: FoodType | undefined
-  // setCurrentUser: React.Dispatch<React.SetStateAction<FoodType | undefined>>
-  // userId: string | undefined
-  // setUserId: React.Dispatch<React.SetStateAction<string | undefined>>
-  foodId: string | undefined
-  setFoodId: React.Dispatch<React.SetStateAction<string | undefined>>
-  foodEdit: FoodType | undefined
-  setFoodEdit: React.Dispatch<React.SetStateAction<FoodType | undefined>>
-  foods: Array<FoodType>
-  setFoods: React.Dispatch<React.SetStateAction<Array<FoodType>>>
+export const PostContext = createContext({} as {
+  postId: string | undefined
+  setPostId: React.Dispatch<React.SetStateAction<string | undefined>>
+  posts: Array<PostType>
+  setPosts: React.Dispatch<React.SetStateAction<Array<PostType>>>
   trigger: boolean
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>
 })
 
-export const FoodContextProvider: FC<Props> = ({ children }: Props) => {
+export const PostContextProvider: FC<Props> = ({ children }: Props) => {
 
-  const [foodId, setFoodId] = useState<string>();
+  const [postId, setPostId] = useState<string>();
 
-  const [foodEdit, setFoodEdit] = useState<FoodType | undefined>();
+  // const [foodEdit, setFoodEdit] = useState<FoodType | undefined>();
 
-  const [foods, setFoods] = useState<Array<FoodType>>([]);
+  const [posts, setPosts] = useState<Array<PostType>>([]);
 
   const [trigger, setTrigger] = useState(false);
 
   return (
-    <FoodContext.Provider value={{ foodId, setFoodId, foodEdit, setFoodEdit, foods, setFoods, trigger, setTrigger }}>
+    <PostContext.Provider value={{ postId, setPostId, posts, setPosts, trigger, setTrigger }}>
       {children}
-    </FoodContext.Provider>
+    </PostContext.Provider>
   )
 
 }

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         resources :foods, only: %i[index create edit update destroy]
       end
 
-      resources :posts do
+      resources :posts, only: %i[index create edit update destroy] do
         resources :comments, only: %i[create destroy]
         resource  :bookmarks, only: %i[create destroy]
         resource  :favorites, only: %i[create destroy]
