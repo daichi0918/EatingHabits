@@ -157,7 +157,7 @@ export const FoodEdit = () => {
                         onChange={(newValue: any) => {
                           setAlertDate(newValue);
                         }}
-                        minDateTime={dayjs()}
+                      // minDateTime={dayjs()}
                       />
                     </LocalizationProvider>
                   </Grid>
