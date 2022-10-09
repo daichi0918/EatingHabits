@@ -4,7 +4,7 @@ module Api
       before_action :set_post, only: %i[edit update destroy]
 
       def index
-        posts = Post.all
+        posts = Post.joins(:user).select('posts.*, users.name')
 
         render json: {
           posts: posts
