@@ -1,4 +1,5 @@
 // import { Box, Button, Stack, Text } from "@chakra-ui/react";
+import dayjs, { Dayjs } from 'dayjs';
 import { FC, memo, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
@@ -90,7 +91,7 @@ export const PostCard: FC<Props> = memo((props) => {
             </IconButton>
           }
           title={username}
-          subheader={created_at}
+          subheader={dayjs(created_at).format('YYYY/MM/DD HH:mm')}
         />
         <CardMedia
           component="img"
