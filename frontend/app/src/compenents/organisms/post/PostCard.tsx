@@ -32,6 +32,8 @@ type Props = {
   };
   created_at: string;
   title: string;
+  username: string;
+  userimage: string
 }
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -52,7 +54,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 
 export const PostCard: FC<Props> = memo((props) => {
-  const { id, user_id, text, image, title, created_at } = props;
+  const { id, user_id, text, image, title, created_at, username, userimage } = props;
   const { userId } = useContext(AuthContext);
   const { setPostId, setTrigger } = useContext(PostContext);
 
@@ -87,7 +89,7 @@ export const PostCard: FC<Props> = memo((props) => {
               <MoreVertIcon />
             </IconButton>
           }
-          title="Name"
+          title={username}
           subheader={created_at}
         />
         <CardMedia
