@@ -19,6 +19,9 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Collapse from '@mui/material/Collapse';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
+import Tooltip from '@mui/material/Tooltip';
 
 import { destroyFood } from "../../../apis/food";
 import { AuthContext } from "../../../App";
@@ -105,20 +108,37 @@ export const PostCard: FC<Props> = memo((props) => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
-          <ExpandMore
+          <Tooltip title="Reply">
+            <IconButton aria-label="comment">
+              <ChatBubbleOutlineIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Like">
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Bookmark">
+            <IconButton aria-label="share">
+              <BookmarkAddOutlinedIcon />
+            </IconButton>
+          </Tooltip>
+          {/* <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
             aria-expanded={expanded}
             aria-label="show more"
           >
             <ExpandMoreIcon />
-          </ExpandMore>
+          </ExpandMore> */}
+          <Button
+            variant="contained"
+            sx={{
+              ml: 3
+            }}
+          >
+            Detail
+          </Button>
         </CardActions>
         {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
