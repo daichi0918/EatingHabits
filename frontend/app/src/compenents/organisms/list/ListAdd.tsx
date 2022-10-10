@@ -30,7 +30,17 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
-export const ListAdd = (props: any) => {
+import { AddButton } from "../../atoms/button/AddButton"
+import { ListType } from "../../../types/api/list";
+
+type Props = {
+  userId: string | undefined;
+  lists: Array<ListType>;
+  setLists: React.Dispatch<React.SetStateAction<Array<ListType>>>;
+  setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const ListAdd = (props: Props) => {
 
   const { userId, lists, setLists, setTrigger } = props;
 
@@ -45,20 +55,21 @@ export const ListAdd = (props: any) => {
     setOpen(false);
   };
 
-  const StyledFab = styled(Fab)({
-    position: 'fixed',
-    zIndex: 1,
-    top: 550,
-    left: 600,
-    right: 0,
-    margin: '0 auto',
-  });
+  // const StyledFab = styled(Fab)({
+  //   position: 'fixed',
+  //   zIndex: 1,
+  //   top: 550,
+  //   left: 600,
+  //   right: 0,
+  //   margin: '0 auto',
+  // });
 
   return (
     <>
-      <StyledFab color="primary" aria-label="add">
+      <AddButton onClick={handleClickOpen} />
+      {/* <StyledFab color="primary" aria-label="add">
         <AddIcon onClick={handleClickOpen} />
-      </StyledFab>
+      </StyledFab> */}
 
 
       <Dialog open={open} onClose={handleClose}>

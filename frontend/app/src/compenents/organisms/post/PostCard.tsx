@@ -26,6 +26,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { destroyFood } from "../../../apis/food";
 import { AuthContext } from "../../../App";
 import { PostContext } from "../../../providers/PostProvider";
+import { PostDetail } from "./PostDetail"
 
 type Props = {
   id: string;
@@ -88,11 +89,16 @@ export const PostCard: FC<Props> = memo((props) => {
               R
           </Avatar>
           }
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
+          // action={
+          //   // <IconButton aria-label="settings">
+          //   //   <MoreVertIcon />
+          //   // </IconButton>
+          //   <Tooltip title="Bookmark">
+          //     <IconButton aria-label="share">
+          //       <BookmarkAddOutlinedIcon />
+          //     </IconButton>
+          //   </Tooltip>
+          // }
           title={username}
           subheader={dayjs(created_at).format('YYYY/MM/DD HH:mm')}
         />
@@ -131,18 +137,11 @@ export const PostCard: FC<Props> = memo((props) => {
           >
             <ExpandMoreIcon />
           </ExpandMore> */}
-          <Button
-            variant="contained"
-            sx={{
-              ml: 3
-            }}
-          >
-            Detail
-          </Button>
+          <PostDetail title={title} image={image} text={text} />
         </CardActions>
         {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Typography paragraph>Method:</Typography>
+          <CardContent> */}
+        {/* <Typography paragraph>Method:</Typography>
             <Typography paragraph>
               Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
               aside for 10 minutes.
@@ -166,10 +165,11 @@ export const PostCard: FC<Props> = memo((props) => {
           </Typography>
             <Typography>
               Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
-          </CardContent>
+          </Typography> */}
+
+        {/* </CardContent>
         </Collapse> */}
-      </Card>
+      </Card >
     </Box >
 
   )

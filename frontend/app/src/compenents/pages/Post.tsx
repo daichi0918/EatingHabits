@@ -25,7 +25,7 @@ import { PostType } from "../../types/api/post";
 import { useAllPosts } from "../../hooks/useAllPosts";
 import Button from '@mui/material/Button';
 import { PostContext } from "../../providers/PostProvider";
-
+import { AddButton } from "../atoms/button/AddButton"
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -83,9 +83,15 @@ export const Post: FC = memo(() => {
 
   const navigate = useNavigate()
 
+  const onClickPostNew = () => {
+    navigate("/home/post/new")
+  }
+
   useEffect(() => getPosts(setPosts), [trigger])
 
   console.log("posts" + posts)
+
+
 
   // // const { foods, setFoods, trigger, setTrigger } = useContext(FoodContext);
 
@@ -135,6 +141,7 @@ export const Post: FC = memo(() => {
             </>
           )}
       </Fragment>
+      <AddButton onClick={onClickPostNew} />
     </HomeHeaderLayout>
 
   )
