@@ -32,18 +32,21 @@ import { signUp } from "../../apis/auth";
 import { AuthContext } from "../../App";
 import { SignUpParams } from "../../types/api/auth";
 import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
-import { createFood } from "../../apis/food";
-import { FoodContext } from "../../providers/FoodProvider";
+import { createPost } from "../../apis/post";
+import { PostContext } from "../../providers/PostProvider";
 
 
 export const PostNew = () => {
 
   const { userId } = useContext(AuthContext);
+  const { setTrigger } = useContext(PostContext);
 
-  const [title, setTitle] = useState<string>()
+  const [title, setTitle] = useState<string>("")
   const [image, setImage] = useState<File>()
-  const [text, setText] = useState<string>()
-  const [preview, setPreview] = useState<string>()
+  const [text, setText] = useState<string>("")
+  const [preview, setPreview] = useState<string>("")
+
+  const navigate = useNavigate();
 
   return (
     <HomeHeaderLayout>
@@ -104,9 +107,10 @@ export const PostNew = () => {
                     < IconButton color="inherit" component="span" >
                       <CameraAltIcon />
                     </IconButton> */}
-                <IconButton color="primary" aria-label="upload picture" component="label">
+                {/* <IconButton color="primary" aria-label="upload picture" component="label">
                   <input
-                    required
+                    // hidden
+                    // required
                     accept="image/*"
                     id="icon-button-file"
                     type="file"
@@ -121,6 +125,22 @@ export const PostNew = () => {
                     }}
                   />
                   <PhotoCamera />
+                </IconButton> */}
+                <label htmlFor="icon-button-file">
+                  <input
+                    accept="image/*"
+                    id="icon-button-file"
+                    type="file"
+                    onChange={(e: any) => {
+                      // uploadImage(e)
+                      // previewImage(e)
+                      setImage(e.target.files[0])
+                      setPreview(window.URL.createObjectURL(e.target.files[0]))
+                    }}
+                  />
+                </label>
+                < IconButton color="inherit" component="span" >
+                  <CameraAltIcon />
                 </IconButton>
               </Grid>
               <Grid item xs={12}>
@@ -143,11 +163,11 @@ export const PostNew = () => {
               variant="contained"
               // onClick={() => createFood(userId, setTrigger, navigate, title, classification, quantity, limitDate, alertDate, image, text)}
               // onClick={sendFormData}
-
+              onClick={() => createPost(setTrigger, userId, title, image, text, navigate)}
               sx={{ mt: 3, mb: 2 }}
             >
               追加する
-                </Button>
+              </Button>
           </Box>
         </Box>
       </Container>

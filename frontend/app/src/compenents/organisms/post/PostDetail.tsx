@@ -50,13 +50,18 @@ export const PostDetail = (props: any) => {
     }
   }))
 
+  const DetailButton = styled(Button)(() => ({
+    marginRight: 0,
+    marginLeft: 5
+  }))
+
 
   return (
     <>
       <Button
         variant="contained"
         sx={{
-          ml: 3,
+          ml: 8,
           mr: 0
         }}
         onClick={handleClickOpen}

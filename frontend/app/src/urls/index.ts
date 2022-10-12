@@ -21,7 +21,7 @@ export const foodDestroy = (userId: string | undefined, id: string | undefined) 
 
 
 export const postsIndex = `${DEFAULT_API_LOCALHOST}/posts`
-export const postsCreate = `${DEFAULT_API_LOCALHOST}/posts`
+export const postCreate = `${DEFAULT_API_LOCALHOST}/posts`
 export const postEdit = (id: string) =>
   `${DEFAULT_API_LOCALHOST}/posts/${id}`
 export const postUpdate = (id: string) =>

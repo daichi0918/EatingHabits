@@ -46,7 +46,7 @@ module Api
       end
 
       def post_params
-        params.permit(:user_id,:text,:image)
+        params.permit(:user_id,:text,:image, :title)
       end
     end
   end
