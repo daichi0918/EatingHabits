@@ -29,4 +29,7 @@ export const postUpdate = (id: string) =>
 export const postDestroy = (id: string) =>
   `${DEFAULT_API_LOCALHOST}/posts/${id}`
 
+export const favoriteCretate = (id: string | undefined) =>
+  `${DEFAULT_API_LOCALHOST}/posts/${id}/favorites`
+
 

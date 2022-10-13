@@ -1,0 +1,28 @@
+import { FC, memo, ReactNode, useContext } from "react";
+import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
+import { AuthContext } from "../../../App";
+import { PostContext } from "../../../providers/PostProvider";
+import { createFavorite } from "../../../apis/favorite";
+
+
+
+type Props = {
+  id: string;
+}
+
+export const FavoriteButton: FC<Props> = memo((props) => {
+  const { id } = props
+  const { userId } = useContext(AuthContext);
+  const { setPostId, setTrigger } = useContext(PostContext);
+  // const { onClick } = props;
+  return (
+    <Tooltip title="Like">
+      <IconButton aria-label="add to favorites">
+        <FavoriteIcon onClick={() => createFavorite(userId, id)} />
+      </IconButton>
+    </Tooltip>
+  )
+})

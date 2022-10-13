@@ -27,6 +27,7 @@ import { destroyFood } from "../../../apis/food";
 import { AuthContext } from "../../../App";
 import { PostContext } from "../../../providers/PostProvider";
 import { PostDetail } from "./PostDetail"
+import { FavoriteButton } from '../../atoms/button/FavoriteButton';
 
 type Props = {
   id: string;
@@ -64,9 +65,7 @@ export const PostCard: FC<Props> = memo((props) => {
   const { setPostId, setTrigger } = useContext(PostContext);
 
   const navigate = useNavigate();
-
   const onClickFoodEdit = () => {
-    setPostId(id)
     navigate("/home/food/edit")
   }
 
@@ -119,11 +118,7 @@ export const PostCard: FC<Props> = memo((props) => {
               <ChatBubbleOutlineIcon />
             </IconButton>
           </Tooltip>
-          <Tooltip title="Like">
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-          </Tooltip>
+          <FavoriteButton id={id} />
           <Tooltip title="Bookmark">
             <IconButton aria-label="share">
               <BookmarkAddOutlinedIcon />
