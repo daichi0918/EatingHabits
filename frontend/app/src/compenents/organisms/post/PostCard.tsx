@@ -81,7 +81,12 @@ export const PostCard: FC<Props> = memo((props) => {
       // sx={{ display: 'inline-block', m: 0, transform: 'scale(0.8)' }}
       sx={{ display: 'inline-block', m: 0.5 }}
     >
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{
+        // width: 270,
+        // height: 400
+        maxWidth: 345
+      }}
+      >
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
