@@ -22,7 +22,8 @@ module Api
       private
 
       def set_favorite
-        @user = User.find_by(id: current_api_v1_user.id)
+        # @user = User.find_by(id: current_api_v1_user.id)
+        @user = User.find_by(id: params[:user_id])
         @like = Like.find_by(user_id: @user.id, post_id: params[:post_id])
         # @like = Like.find_by(user_id: params[:user_id], post_id: params[:post_id])
       end
