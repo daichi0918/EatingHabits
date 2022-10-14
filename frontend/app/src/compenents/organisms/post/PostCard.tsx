@@ -28,6 +28,7 @@ import { AuthContext } from "../../../App";
 import { PostContext } from "../../../providers/PostProvider";
 import { PostDetail } from "./PostDetail"
 import { FavoriteButton } from '../../atoms/button/FavoriteButton';
+import { BookmarkButton } from '../../atoms/button/BookmarkButton';
 
 type Props = {
   id: string;
@@ -124,11 +125,12 @@ export const PostCard: FC<Props> = memo((props) => {
             </IconButton>
           </Tooltip>
           <FavoriteButton id={id} />
-          <Tooltip title="Bookmark">
+          {/* <Tooltip title="Bookmark">
             <IconButton aria-label="share">
               <BookmarkAddOutlinedIcon />
             </IconButton>
-          </Tooltip>
+          </Tooltip> */}
+          <BookmarkButton id={id} />
           {/* <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}

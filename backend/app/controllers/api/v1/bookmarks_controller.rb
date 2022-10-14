@@ -4,7 +4,7 @@ module Api
       before_action :set_bookmark, only: %i[destroy]
 
       def create
-        bookmark = Favorite.new(bookmark_params)
+        bookmark = Bookmark.new(bookmark_params)
         if bookmark.save
           # bookmarks_count = Favorite.where(post_id: params[:post_id]).count
           # render json: { status: 'SUCCESS', data: bookmark_count }

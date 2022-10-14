@@ -33,3 +33,8 @@ export const favoriteCretate = (id: string | undefined) =>
   `${DEFAULT_API_LOCALHOST}/posts/${id}/favorites`
 
 
+
+export const bookmarkCretate = (id: string | undefined) =>
+  `${DEFAULT_API_LOCALHOST}/posts/${id}/bookmarks`
+
+
