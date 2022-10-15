@@ -23,8 +23,9 @@ module Api
 
       def set_bookmark
         # @user = User.find_by(id: current_api_v1_user.id)
-        @user = User.find_by(id: params[:user_id])
-        @like = Like.find_by(user_id: @user.id, post_id: params[:post_id])
+        # @user = User.find(id: params[:user_id])
+        # @bookmark = Bookmark.find(user_id: @user.id, post_id: params[:post_id])
+        @bookmark = Bookmark.find(params[:id])
         # @like = Like.find_by(user_id: params[:user_id], post_id: params[:post_id])
       end
 
