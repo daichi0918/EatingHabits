@@ -21,8 +21,11 @@ export const FavoriteButton: FC<Props> = memo((props) => {
   return (
     <>
       <Tooltip title="Like">
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon onClick={() => createFavorite(userId, id)} />
+        <IconButton
+          aria-label="add to favorites"
+          onClick={() => createFavorite(userId, id)}
+        >
+          <FavoriteIcon />
         </IconButton>
       </Tooltip>
       {/* <Tooltip title="Unlike">

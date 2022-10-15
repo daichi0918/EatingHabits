@@ -136,7 +136,7 @@ export const Post: FC = memo(() => {
         ) : (
             <>
               {posts.map((post: any) => (
-                <PostCard id={post.id} user_id={post.user_id} text={post.text} image={post.image} title={post.title} created_at={post.created_at} username={post.userName} userimage={post.userImage} />
+                <PostCard key={post.id} id={post.id} user_id={post.user_id} text={post.text} image={post.image} title={post.title} created_at={post.created_at} username={post.userName} userimage={post.userImage} />
               ))}
             </>
           )}

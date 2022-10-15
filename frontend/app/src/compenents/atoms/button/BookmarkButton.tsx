@@ -19,8 +19,11 @@ export const BookmarkButton: FC<Props> = memo((props) => {
   // const { onClick } = props;
   return (
     <Tooltip title="Bookmark">
-      <IconButton aria-label="share">
-        <BookmarkAddOutlinedIcon onClick={() => createBookmark(userId, id)} />
+      <IconButton
+        aria-label="share"
+        onClick={() => createBookmark(userId, id)}
+      >
+        <BookmarkAddOutlinedIcon />
       </IconButton>
     </Tooltip>
   )
