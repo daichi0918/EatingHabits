@@ -19,10 +19,17 @@ export const FavoriteButton: FC<Props> = memo((props) => {
   const { setPostId, setTrigger } = useContext(PostContext);
   // const { onClick } = props;
   return (
-    <Tooltip title="Like">
-      <IconButton aria-label="add to favorites">
-        <FavoriteIcon onClick={() => createFavorite(userId, id)} />
-      </IconButton>
-    </Tooltip>
+    <>
+      <Tooltip title="Like">
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon onClick={() => createFavorite(userId, id)} />
+        </IconButton>
+      </Tooltip>
+      {/* <Tooltip title="Unlike">
+        <IconButton aria-label="delete to favorites" style={{ color: "red" }}>
+          <FavoriteIcon onClick={() => createFavorite(userId, id)} />
+        </IconButton>
+      </Tooltip> */}
+    </>
   )
 })
