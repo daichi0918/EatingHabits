@@ -22,6 +22,7 @@ import Collapse from '@mui/material/Collapse';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
 import Tooltip from '@mui/material/Tooltip';
+import Divider from '@mui/material/Divider';
 
 import { destroyFood } from "../../../apis/food";
 import { AuthContext } from "../../../App";
@@ -58,6 +59,15 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
+const textTypography = styled(Typography)({
+  width: '250px',
+  color: 'rgba(0,0,0,0.6)',
+  fontSize: '0.875rem',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis'
+});
+
 
 
 export const PostCard: FC<Props> = memo((props) => {
@@ -66,9 +76,6 @@ export const PostCard: FC<Props> = memo((props) => {
   const { setPostId, setTrigger } = useContext(PostContext);
 
   const navigate = useNavigate();
-  const onClickFoodEdit = () => {
-    navigate("/home/food/edit")
-  }
 
   const [expanded, setExpanded] = useState(false);
 
@@ -83,9 +90,9 @@ export const PostCard: FC<Props> = memo((props) => {
       sx={{ display: 'inline-block', m: 0.5 }}
     >
       <Card sx={{
-        // width: 270,
-        // height: 400
-        maxWidth: 345
+        width: 270,
+        height: 400
+        // maxWidth: 345
       }}
       >
         <CardHeader
@@ -94,16 +101,9 @@ export const PostCard: FC<Props> = memo((props) => {
               R
           </Avatar>
           }
-          // action={
-          //   // <IconButton aria-label="settings">
-          //   //   <MoreVertIcon />
-          //   // </IconButton>
-          //   <Tooltip title="Bookmark">
-          //     <IconButton aria-label="share">
-          //       <BookmarkAddOutlinedIcon />
-          //     </IconButton>
-          //   </Tooltip>
-          // }
+          action={
+            <BookmarkButton id={id} />
+          }
           title={username}
           subheader={dayjs(created_at).format('YYYY/MM/DD HH:mm')}
         />
@@ -114,23 +114,29 @@ export const PostCard: FC<Props> = memo((props) => {
           alt="No Image"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h6" component="div">
             {title}
           </Typography>
+          <Typography
+            sx={{
+              width: '250px',
+              color: 'rgba(0,0,0,0.6)',
+              fontSize: '0.875rem',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
+            }}>
+            {text}
+          </Typography>
         </CardContent>
+        <Divider />
         <CardActions disableSpacing>
-          <Tooltip title="Reply">
+          {/* <Tooltip title="Reply">
             <IconButton aria-label="comment">
               <ChatBubbleOutlineIcon />
             </IconButton>
-          </Tooltip>
-          <FavoriteButton id={id} />
-          {/* <Tooltip title="Bookmark">
-            <IconButton aria-label="share">
-              <BookmarkAddOutlinedIcon />
-            </IconButton>
           </Tooltip> */}
-          <BookmarkButton id={id} />
+          <FavoriteButton id={id} />
           {/* <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
@@ -139,7 +145,7 @@ export const PostCard: FC<Props> = memo((props) => {
           >
             <ExpandMoreIcon />
           </ExpandMore> */}
-          <PostDetail title={title} image={image} text={text} />
+          {/* <PostDetail title={title} image={image} text={text} /> */}
         </CardActions>
         {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent> */}

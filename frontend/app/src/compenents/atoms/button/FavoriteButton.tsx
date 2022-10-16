@@ -2,6 +2,7 @@ import { FC, memo, ReactNode, useContext } from "react";
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import { AuthContext } from "../../../App";
 import { PostContext } from "../../../providers/PostProvider";
@@ -24,8 +25,12 @@ export const FavoriteButton: FC<Props> = memo((props) => {
         <IconButton
           aria-label="add to favorites"
           onClick={() => createFavorite(userId, id)}
+          sx={{
+            paddingTop: 0,
+            marginLeft: 25
+          }}
         >
-          <FavoriteIcon />
+          <FavoriteBorderIcon />
         </IconButton>
       </Tooltip>
       {/* <Tooltip title="Unlike">
