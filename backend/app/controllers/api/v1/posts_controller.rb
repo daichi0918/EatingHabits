@@ -10,6 +10,7 @@ module Api
         render json: {
           posts: posts
         }, status: :ok
+        # render json :{...}, include: [:favarits]
       end
 
       def create

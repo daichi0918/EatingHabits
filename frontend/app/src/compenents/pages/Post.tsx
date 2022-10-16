@@ -87,7 +87,7 @@ export const Post: FC = memo(() => {
     navigate("/home/post/new")
   }
 
-  useEffect(() => getPosts(setPosts), [trigger])
+  useEffect(() => { getPosts(setPosts) }, [trigger])
 
   console.log("posts" + posts)
 

@@ -2,6 +2,7 @@
 import React, { FC, createContext, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from "@mui/material";
+import Cookies from "js-cookie"
 
 import theme from "./theme/theme";
 import { getCurrentUser } from "../src/apis/auth";
@@ -48,8 +49,12 @@ const App: FC = () => {
   }
 
   useEffect(() => {
+    // setTimeout(handleGetCurrentUser, 3000);
     handleGetCurrentUser()
   }, [setCurrentUser])
+
+
+  console.log("daadadadad:" + Cookies.get("_client"))
 
   return (
     <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser, userId, setUserId }}>
