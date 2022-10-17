@@ -13,8 +13,8 @@ Rails.application.routes.draw do
 
       resources :posts, only: %i[index create edit update destroy] do
         resources :comments, only: %i[create destroy]
-        resource  :bookmarks, only: %i[create destroy]
-        resource  :favorites, only: %i[create destroy]
+        resources  :bookmarks, only: %i[index create destroy]
+        resources  :favorites, only: %i[index create destroy]
       end
 
       mount_devise_token_auth_for 'User', at: 'auth', controllers: {
