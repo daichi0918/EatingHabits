@@ -18,6 +18,7 @@ import { FoodEdit } from "../compenents/pages/FoodEdit";
 import { Post } from "../compenents/pages/Post";
 import { PostContextProvider } from "../providers/PostProvider";
 import { PostNew } from "../compenents/pages/PostNew";
+import { DailyPage } from "../compenents/pages/DailyPage";
 
 export const Router: FC = memo(() => {
   const auth = useContext(AuthContext);
@@ -87,6 +88,16 @@ export const Router: FC = memo(() => {
           </PostContextProvider>
         </Private>
       } />
+
+      <Route path="home/daily" element={
+        <Private>
+          <DailyPage />
+        </Private>
+      } />
+
+
+
+
 
       <Route path="*" element={<Page404 />} />
       {/* <Route path="/home" render={({ match: { url } }) => {
