@@ -54,15 +54,12 @@ const App: FC = () => {
     handleGetCurrentUser()
   }, [setCurrentUser])
 
-
-  console.log("daadadadad:" + Cookies.get("_client"))
-
   return (
     <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser, userId, setUserId }}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Router />
-        </BrowserRouter >
+        </BrowserRouter>
       </ThemeProvider>
     </AuthContext.Provider>
   );
