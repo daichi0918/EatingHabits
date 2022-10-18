@@ -28,9 +28,6 @@ export const signOut = () => {
 export const getCurrentUser = () => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid")) return
 
-  console.log("access_token:" + Cookies.get("_access_token"))
-  console.log("client:" + Cookies.get("_client"))
-  console.log("uid:" + Cookies.get("_uid"))
   return client.get("/auth/sessions", {
     headers: {
       "access-token": Cookies.get("_access_token") as any,

@@ -89,8 +89,6 @@ export const Post: FC = memo(() => {
 
   useEffect(() => { getPosts(setPosts) }, [trigger])
 
-  console.log("posts" + posts)
-
 
 
   // // const { foods, setFoods, trigger, setTrigger } = useContext(FoodContext);
