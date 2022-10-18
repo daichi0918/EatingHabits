@@ -36,6 +36,7 @@ const App: FC = () => {
       if (res?.data.isLogin === true) {
         setIsSignedIn(true)
         setCurrentUser(res?.data.data)
+        setUserId(res.data.data.id)
 
         console.log(res?.data.data)
       } else {
