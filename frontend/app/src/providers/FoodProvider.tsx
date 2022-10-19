@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, createContext, useState, useEffect } from 'react';
+import React, { FC, ReactNode, createContext, useState } from 'react';
 import { FoodType } from '../types/api/food';
 
 // ContextProviderType --------------

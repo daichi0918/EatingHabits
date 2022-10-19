@@ -11,6 +11,12 @@ Rails.application.routes.draw do
         resources :foods, only: %i[index create edit update destroy]
       end
 
+      resources :posts, only: %i[index create edit update destroy] do
+        resources :comments, only: %i[create destroy]
+        resources  :bookmarks, only: %i[index create destroy]
+        resources  :favorites, only: %i[index create destroy]
+      end
+
       mount_devise_token_auth_for 'User', at: 'auth', controllers: {
         registrations: 'api/v1/auth/registrations'
       }

@@ -33,10 +33,6 @@ export const Food: FC = memo(() => {
 
   const { foods, setFoods, trigger, setTrigger } = useContext(FoodContext);
 
-  // const [foods, setFoods] = useState<Array<FoodType>>([]);
-
-  // const [trigger, setTrigger] = useState(false);
-
   const { getFoods, loading } = useAllFoods();
 
   const navigate = useNavigate()

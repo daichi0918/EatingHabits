@@ -18,12 +18,23 @@
 # Classification.create(name: '食材')
 # Classification.create(name: 'その他')
 
-User.all.each do |user|
-  date = Date.new(2022, 9, 21)
-  user.foods.create!(
-    classification_id: 1,
-    name: '秋刀魚',
-    quantity: 3,
-    expired_at: date
+# User.all.each do |user|
+#   date = Date.new(2022, 9, 21)
+#   user.foods.create!(
+#     classification_id: 1,
+#     name: '秋刀魚',
+#     quantity: 3,
+#     expired_at: date
+#   )
+# end
+
+3.times do |n|
+  post = Post.new(
+    user_id: 2,
+    title: "タイトル#{n}",
+    text: "sampletext#{n}"
   )
+
+  post.save!
+
 end

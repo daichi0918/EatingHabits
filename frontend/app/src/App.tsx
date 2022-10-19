@@ -2,6 +2,7 @@
 import React, { FC, createContext, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from "@mui/material";
+import Cookies from "js-cookie"
 
 import theme from "./theme/theme";
 import { getCurrentUser } from "../src/apis/auth";
@@ -35,8 +36,7 @@ const App: FC = () => {
       if (res?.data.isLogin === true) {
         setIsSignedIn(true)
         setCurrentUser(res?.data.data)
-
-        console.log(res?.data.data)
+        setUserId(res.data.data.id)
       } else {
         console.log("No current user")
       }
@@ -48,6 +48,7 @@ const App: FC = () => {
   }
 
   useEffect(() => {
+    // setTimeout(handleGetCurrentUser, 3000);
     handleGetCurrentUser()
   }, [setCurrentUser])
 
@@ -56,7 +57,7 @@ const App: FC = () => {
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Router />
-        </BrowserRouter >
+        </BrowserRouter>
       </ThemeProvider>
     </AuthContext.Provider>
   );
