@@ -1,6 +1,6 @@
 // import { Box, Button, Stack, Text } from "@chakra-ui/react";
 import dayjs, { Dayjs } from 'dayjs';
-import { FC, memo, useContext, useState } from "react";
+import { FC, memo, useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -30,6 +30,7 @@ import { PostContext } from "../../../providers/PostProvider";
 import { PostDetail } from "./PostDetail"
 import { FavoriteButton } from '../../atoms/button/FavoriteButton';
 import { BookmarkButton } from '../../atoms/button/BookmarkButton';
+import { useAllFavorites } from "../../../hooks/useAllFavorites";
 
 type Props = {
   id: string;
@@ -72,8 +73,25 @@ const textTypography = styled(Typography)({
 
 export const PostCard: FC<Props> = memo((props) => {
   const { id, user_id, text, image, title, created_at, username, userimage } = props;
+
   const { userId } = useContext(AuthContext);
   const { setPostId, setTrigger } = useContext(PostContext);
+
+  const [favoriteTrigger, setFavoriteTrigger] = useState(false);
+  const [favorites, setFavorites] = useState([]);
+
+  const { getFavorites, favoriteLoading } = useAllFavorites();
+
+  useEffect(() => { getFavorites(id, favorites, setFavorites) }, [favoriteTrigger])
+
+  // const isFavorite = () => {
+  //   let favoriteBool = false
+  //   if (favorites.length == 0) { return favoriteBool }
+  //   favorites.forEach(favorite => {
+  //     favorite.user_id = 
+  //   })
+
+  // }
 
   const navigate = useNavigate();
 
@@ -136,7 +154,8 @@ export const PostCard: FC<Props> = memo((props) => {
               <ChatBubbleOutlineIcon />
             </IconButton>
           </Tooltip> */}
-          <FavoriteButton id={id} />
+          <FavoriteButton post_id={id} user_id={user_id} favorites={favorites} />
+          {favorites.length}
           {/* <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}

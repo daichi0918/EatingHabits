@@ -23,6 +23,7 @@ import { PostCard } from "../organisms/post/PostCard";
 import { AuthContext } from "../../App";
 import { PostType } from "../../types/api/post";
 import { useAllPosts } from "../../hooks/useAllPosts";
+import { useAllFavorites } from "../../hooks/useAllFavorites";
 import Button from '@mui/material/Button';
 import { PostContext } from "../../providers/PostProvider";
 import { AddButton } from "../atoms/button/AddButton"
@@ -79,7 +80,12 @@ export const Post: FC = memo(() => {
 
   const { postId, setPostId, posts, setPosts, trigger, setTrigger } = useContext(PostContext);
 
+  const [favorites, setFavorites] = useState([]);
+  // const [favoriteTrigger, setFavoriteTrigger] = useState(false);
+
   const { getPosts, loading } = useAllPosts();
+
+  // const { getFavorites, favoriteLoading } = useAllFavorites();
 
   const navigate = useNavigate()
 
@@ -88,8 +94,6 @@ export const Post: FC = memo(() => {
   }
 
   useEffect(() => { getPosts(setPosts) }, [trigger])
-
-
 
   // // const { foods, setFoods, trigger, setTrigger } = useContext(FoodContext);
 
