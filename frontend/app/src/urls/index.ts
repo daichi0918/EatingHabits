@@ -34,8 +34,8 @@ export const favoritesIndex = (postId: string | undefined) =>
   `${DEFAULT_API_LOCALHOST}/posts/${postId}/favorites`
 export const favoriteCretate = (postId: string | undefined) =>
   `${DEFAULT_API_LOCALHOST}/posts/${postId}/favorites`
-export const favoriteDestroy = (postId: string | undefined, id: string | undefined) =>
-  `${DEFAULT_API_LOCALHOST}/posts/${postId}/favorites/${id}`
+export const favoriteDestroy = (favoriteId: string | undefined, postId: string | undefined) =>
+  `${DEFAULT_API_LOCALHOST}/posts/${postId}/favorites/${favoriteId}`
 
 
 

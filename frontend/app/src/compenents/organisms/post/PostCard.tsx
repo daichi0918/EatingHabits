@@ -154,7 +154,7 @@ export const PostCard: FC<Props> = memo((props) => {
               <ChatBubbleOutlineIcon />
             </IconButton>
           </Tooltip> */}
-          <FavoriteButton post_id={id} user_id={user_id} favorites={favorites} />
+          <FavoriteButton post_id={id} user_id={user_id} favorites={favorites} setFavoriteTrigger={setFavoriteTrigger} />
           {favorites.length}
           {/* <ExpandMore
             expand={expanded}
