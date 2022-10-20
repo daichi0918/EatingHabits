@@ -49,11 +49,13 @@ export const INITIAL_EVENTS: EventInput[] = [
     id: createEventId(),
     title: "朝",
     start: todayStr,
+    color: 'red'
   },
   {
     id: createEventId(),
     title: "昼",
-    start: todayStr // 時刻はTで結ぶ
+    start: todayStr, // 時刻はTで結ぶ
+    color: '#708090'
   },
 ];
 
