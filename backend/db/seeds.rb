@@ -28,13 +28,18 @@
 #   )
 # end
 
-3.times do |n|
-  post = Post.new(
-    user_id: 2,
-    title: "タイトル#{n}",
-    text: "sampletext#{n}"
-  )
+# 3.times do |n|
+#   post = Post.new(
+#     user_id: 2,
+#     title: "タイトル#{n}",
+#     text: "sampletext#{n}"
+#   )
 
-  post.save!
+#   post.save!
 
-end
+# end
+
+Mealtime.create(name: '朝',color: '#E3C576')
+Mealtime.create(name: '昼',color: '#67a8dd')
+Mealtime.create(name: '夕',color: '#F08300')
+Mealtime.create(name: 'その他',color: '#734e30')
