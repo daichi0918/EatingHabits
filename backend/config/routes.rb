@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :users do
         resources :lists, only: %i[index create destroy]
         resources :foods, only: %i[index create edit update destroy]
+        resources :diaries, only: %i[index create edit update destroy]
       end
 
       resources :posts, only: %i[index create edit update destroy] do
