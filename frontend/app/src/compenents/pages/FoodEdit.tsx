@@ -49,6 +49,8 @@ export const FoodEdit = () => {
   const [memo, setMemo] = useState("");
   const [preview, setPreview] = useState<string>("")
 
+
+
   const uploadImage = useCallback((e: any) => {
     const file = e.target.files[0]
     setImage(e.target.files[0]);

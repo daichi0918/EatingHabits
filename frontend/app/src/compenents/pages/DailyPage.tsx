@@ -37,6 +37,7 @@ import allLocales from "@fullcalendar/core/locales-all";
 import { AddButton } from "../atoms/button/AddButton";
 import { useAllDiaries } from "../../hooks/useAllDiaries";
 import { DiaryIndexType } from "../../types/api/diary";
+import { DiaryContext } from "../../providers/DiaryProvider";
 
 const StyledFullCalendar = styled(FullCalendar)({
   padding: '2px 4px',
@@ -81,6 +82,20 @@ export const INITIAL_EVENTS: EventInput[] = [
 
 export const DailyPage: FC = memo(() => {
 
+  const { userId } = useContext(AuthContext);
+
+  const { setDiaryId, trigger, setTrigger } = useContext(DiaryContext)
+
+  const [diaries, setDiaries] = useState<Array<EventInput>>([]);
+
+  const { getDiaries, loading } = useAllDiaries();
+
+  useEffect(() => { getDiaries(userId, setDiaries) }, [trigger])
+
+  const navigate = useNavigate()
+
+  const onClickDailyNew = () => navigate("/home/daily/new")
+
   const [currentEvents, setCurrentEvents] = useState<EventApi[]>([]);
   const handleEvents = useCallback(
     (events: EventApi[]) => setCurrentEvents(events),
@@ -101,26 +116,11 @@ export const DailyPage: FC = memo(() => {
     }
   }, []);
   const handleEventClick = useCallback((clickInfo: EventClickArg) => {
-    if (
-      window.confirm(`このイベント「${clickInfo.event.title}」を削除しますか`)
-    ) {
-      clickInfo.event.remove();
-    }
+    console.log("id:" + clickInfo.event.id)
+    setDiaryId(clickInfo.event.id)
+
+    navigate("/home/daily/edit")
   }, []);
-
-  const { userId } = useContext(AuthContext);
-
-  const [diaries, setDiaries] = useState<Array<EventInput>>([]);
-
-  const [trigger, setTrigger] = useState(false);
-
-  const { getDiaries, loading } = useAllDiaries();
-
-  useEffect(() => { getDiaries(userId, setDiaries) }, [trigger])
-
-  const navigate = useNavigate()
-
-  const onClickDailyNew = () => navigate("/home/daily/new")
 
   return (
     <HomeHeaderLayout>
