@@ -1,6 +1,7 @@
 module Api
   module V1
     class DiariesController < ApplicationController
+      before_action :set_diary, only: %i[edit update destroy]
       def index
         # diaries = Diary.joins(:mealtime).select('diaries.*, mealtimes.name as mealtimeName, mealtimes.color as mealtimecolor').where(user_id: params[:user_id])
 
@@ -18,6 +19,25 @@ module Api
         else
           render json: { status: 'ERROR', data: diary.errors }
         end
+      end
+
+      def edit
+        render json: {
+          diary: @diary
+        }, status: :ok
+      end
+
+      def update
+        if @diary.update(diary_params)
+          render json: { status: 'SUCCESS', message: 'Updated the diary', data: @diary }
+        else
+          render json: { status: 'SUCCESS', message: 'Not updated', data: @diary.errors }
+        end
+      end
+
+      def destroy
+        @diary.destroy
+        render json: { status: 'SUCCESS', message: 'Deleted the diary', data: @diary }
       end
 
       private
