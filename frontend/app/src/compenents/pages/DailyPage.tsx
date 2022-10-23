@@ -1,5 +1,5 @@
 import React, { FC, memo, useEffect, useState, useContext, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAllLists } from "../../hooks/useAllLists";
 import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
 import { ListAdd } from "../organisms/list/ListAdd";
@@ -118,6 +118,10 @@ export const DailyPage: FC = memo(() => {
 
   useEffect(() => { getDiaries(userId, setDiaries) }, [trigger])
 
+  const navigate = useNavigate()
+
+  const onClickDailyNew = () => navigate("/home/daily/new")
+
   return (
     <HomeHeaderLayout>
       {loading ? (
@@ -141,7 +145,7 @@ export const DailyPage: FC = memo(() => {
               select={handleDateSelect}
               eventClick={handleEventClick}
             />
-            <AddButton onClick={() => console.log("aaa")} />
+            <AddButton onClick={onClickDailyNew} />
           </>
         )
       }

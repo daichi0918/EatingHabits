@@ -66,7 +66,7 @@ const formStyles = styled("form")((theme: any) => ({
   width: 320
 }))
 
-export const FoodNew = () => {
+export const DailyNew = () => {
 
   const { userId } = useContext(AuthContext);
   const { setTrigger } = useContext(FoodContext);
@@ -74,7 +74,7 @@ export const FoodNew = () => {
   const [name, setName] = useState("");
   const [classification, setClassification] = useState<any>();
   const [quantity, setQuantity] = useState<any>();
-  const [limitDate, setLimitDate] = useState<any>(dayjs());
+  const [limitDate, setLimitDate] = useState<any>();
   const [alertDate, setAlertDate] = useState<any>(dayjs());
   const [image, setImage] = useState<any>()
   const [memo, setMemo] = useState("");
@@ -95,6 +95,12 @@ export const FoodNew = () => {
     const file = e.target.files[0]
     setPreview(window.URL.createObjectURL(file))
   }, [])
+
+  const confirmButton = () => {
+    console.log("image:" + image);
+    console.log("preview:" + preview)
+    console.log(image.mozFullPath)
+  }
 
   const navigate = useNavigate();
 
@@ -117,31 +123,32 @@ export const FoodNew = () => {
               <Box component="form" noValidate sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="Name"
-                      label="名称"
-                      name="name"
-                      autoComplete="name"
-                      // value={name}
-                      onChange={(e) => setName(e.target.value)}
-                    />
+                    <LocalizationProvider fullWidth dateAdapter={AdapterDayjs}>
+                      <DatePicker
+                        label="消費期限"
+                        value={limitDate}
+                        onChange={(newValue) => {
+                          setLimitDate(newValue);
+                        }}
+                        renderInput={(params) => <TextField {...params} />}
+                      />
+                    </LocalizationProvider>
                   </Grid>
                   <Grid item xs={6}>
-                    <InputLabel id="demo-simple-select-autowidth-label">分類</InputLabel>
+                    <InputLabel id="demo-simple-select-autowidth-label">時間帯</InputLabel>
                     <Select
                       required
                       fullWidth
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       // value={classification}
-                      label="分類"
+                      label="時間帯"
                       onChange={(e) => setClassification(Number(e.target.value))}
                     >
                       <MenuItem value={1}>料理</MenuItem>
                       <MenuItem value={2}>食材</MenuItem>
-                      <MenuItem value={3}>その他</MenuItem>
+                      <MenuItem value={3}>食材</MenuItem>
+                      <MenuItem value={4}>その他</MenuItem>
                     </Select>
                   </Grid>
                   <Grid item xs={6}>
@@ -246,6 +253,10 @@ export const FoodNew = () => {
                   sx={{ mt: 3, mb: 2 }}
                 >
                   追加する
+                </Button>
+                <Button onClick={confirmButton}
+                >
+                  kakuninn
                 </Button>
               </Box>
             </Box>
