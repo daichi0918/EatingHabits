@@ -10,6 +10,25 @@ module Api
           diaries: diaries
         }, status: :ok
       end
+
+      def create
+        diary = Diary.new(diary_params)
+        if diary.save
+          render json: { status: 'SUCCESS', data: diary }
+        else
+          render json: { status: 'ERROR', data: diary.errors }
+        end
+      end
+
+      private
+
+      def set_diary
+        @diary = Diary.find(params[:id])
+      end
+
+      def diary_params
+        params.permit(:user_id,:mealtime_id, :eat_on, :main_menu, :side_menu, :image)
+      end
     end
   end
 end

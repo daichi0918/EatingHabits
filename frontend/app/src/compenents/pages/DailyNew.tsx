@@ -26,13 +26,14 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import IconButton from '@mui/material/IconButton';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import CancelIcon from '@mui/icons-material/Cancel';
+import FormControl from '@mui/material/FormControl';
 
 import { signUp } from "../../apis/auth";
 import { AuthContext } from "../../App";
 import { SignUpParams } from "../../types/api/auth";
 import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
-import { createFood } from "../../apis/food";
-import { FoodContext } from "../../providers/FoodProvider";
+import { createDiary } from "../../apis/diary";
+import { DiaryContext } from "../../providers/DiaryProvider";
 
 const Input = styled("input")({
   display: "none"
@@ -69,18 +70,21 @@ const formStyles = styled("form")((theme: any) => ({
 export const DailyNew = () => {
 
   const { userId } = useContext(AuthContext);
-  const { setTrigger } = useContext(FoodContext);
+  const { setTrigger } = useContext(DiaryContext);
 
-  const [name, setName] = useState("");
-  const [classification, setClassification] = useState<any>();
-  const [quantity, setQuantity] = useState<any>();
-  const [limitDate, setLimitDate] = useState<any>();
-  const [alertDate, setAlertDate] = useState<any>(dayjs());
-  const [image, setImage] = useState<any>()
-  const [memo, setMemo] = useState("");
+  // const [name, setName] = useState("");
+  // const [classification, setClassification] = useState<any>();
+  // const [quantity, setQuantity] = useState<any>();
+  // const [limitDate, setLimitDate] = useState<any>();
+  // const [alertDate, setAlertDate] = useState<any>();
+  // const [image, setImage] = useState<any>()
+  // const [memo, setMemo] = useState("");
 
-
-
+  const [mealtime, setMealtime] = useState<any>();
+  const [eatOn, setEatOn] = useState<any>("");
+  const [mainmenu, setMainmenu] = useState<string>("");
+  const [sidemenu, setSidemenu] = useState<string>("");
+  const [image, setImage] = useState<any>();
   const [preview, setPreview] = useState<string>("")
 
   const uploadImage = useCallback((e: any) => {
@@ -99,7 +103,7 @@ export const DailyNew = () => {
   const confirmButton = () => {
     console.log("image:" + image);
     console.log("preview:" + preview)
-    console.log(image.mozFullPath)
+    console.log(eatOn)
   }
 
   const navigate = useNavigate();
@@ -122,79 +126,59 @@ export const DailyNew = () => {
             >
               <Box component="form" noValidate sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
+                  <Grid item xs={6}>
+                    <LocalizationProvider fullWidth dateAdapter={AdapterDayjs}>
+                      <DatePicker
+                        views={['year', 'month', 'day']}
+                        label="日付"
+                        value={eatOn}
+                        onChange={(newValue) => { setEatOn(newValue.format('YYYY-MM-DD')) }}
+                        renderInput={(params) => <TextField {...params} helperText={null} />}
+                      />
+                    </LocalizationProvider>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">時間帯</InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        // value={mealtime}
+                        label="Age"
+                        onChange={(e) => { setMealtime(Number(e.target.value)) }}
+                        required
+                      >
+                        <MenuItem value={1}>朝</MenuItem>
+                        <MenuItem value={2}>昼</MenuItem>
+                        <MenuItem value={3}>夕</MenuItem>
+                        <MenuItem value={4}>その他</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
                   <Grid item xs={12}>
-                    <LocalizationProvider fullWidth dateAdapter={AdapterDayjs}>
-                      <DatePicker
-                        label="消費期限"
-                        value={limitDate}
-                        onChange={(newValue) => {
-                          setLimitDate(newValue);
-                        }}
-                        renderInput={(params) => <TextField {...params} />}
-                      />
-                    </LocalizationProvider>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <InputLabel id="demo-simple-select-autowidth-label">時間帯</InputLabel>
-                    <Select
+                    <TextField
                       required
                       fullWidth
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      // value={classification}
-                      label="時間帯"
-                      onChange={(e) => setClassification(Number(e.target.value))}
-                    >
-                      <MenuItem value={1}>料理</MenuItem>
-                      <MenuItem value={2}>食材</MenuItem>
-                      <MenuItem value={3}>食材</MenuItem>
-                      <MenuItem value={4}>その他</MenuItem>
-                    </Select>
+                      id="Name"
+                      label="メインメニュー"
+                      name="name"
+                      autoComplete="name"
+                      onChange={(e) => setMainmenu(e.target.value)}
+                    />
                   </Grid>
-                  <Grid item xs={6}>
-                    <InputLabel id="demo-simple-select-autowidth-label">数量</InputLabel>
-                    <Select
-                      required
+                  <Grid item xs={12}>
+                    <TextField
                       fullWidth
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      // value={quantity}
-                      label="数量"
-                      onChange={(e) => setQuantity(Number(e.target.value))}
-                    >
-                      <MenuItem value={0}>0</MenuItem>
-                      <MenuItem value={1}>1</MenuItem>
-                      <MenuItem value={2}>2</MenuItem>
-                      <MenuItem value={3}>3</MenuItem>
-                      <MenuItem value={4}>4</MenuItem>
-                      <MenuItem value={5}>5</MenuItem>
-                      <MenuItem value={6}>6</MenuItem>
-                    </Select>
-                  </Grid>
-                  <Grid item xs={5}>
-                    <LocalizationProvider fullWidth dateAdapter={AdapterDayjs}>
-                      <DatePicker
-                        label="消費期限"
-                        value={limitDate}
-                        onChange={(newValue) => {
-                          setLimitDate(newValue);
-                        }}
-                        renderInput={(params) => <TextField {...params} />}
-                      />
-                    </LocalizationProvider>
-                  </Grid>
-                  <Grid item xs={7}>
-                    <LocalizationProvider fullWidth dateAdapter={AdapterDayjs}>
-                      <DateTimePicker
-                        renderInput={(params: any) => <TextField {...params} />}
-                        label="通知"
-                        value={alertDate}
-                        onChange={(newValue: any) => {
-                          setAlertDate(newValue);
-                        }}
-                        minDateTime={dayjs()}
-                      />
-                    </LocalizationProvider>
+                      id="outlined-multiline-static"
+                      label="memo"
+                      multiline
+                      rows="3"
+                      defaultValue=""
+                      margin="normal"
+                      variant="outlined"
+                      // value={memo}
+                      onChange={(e) => setSidemenu(e.target.value)}
+                    />
                   </Grid>
                   <Grid item xs={12}>
                     {/* <TextField
@@ -230,7 +214,7 @@ export const DailyNew = () => {
                       <CameraAltIcon />
                     </IconButton>
                   </Grid>
-                  <Grid item xs={12}>
+                  {/* <Grid item xs={12}>
                     <TextField
                       fullWidth
                       id="outlined-multiline-static"
@@ -243,12 +227,12 @@ export const DailyNew = () => {
                       // value={memo}
                       onChange={(e) => setMemo(e.target.value)}
                     />
-                  </Grid>
+                  </Grid> */}
                 </Grid>
                 <Button
                   fullWidth
                   variant="contained"
-                  onClick={() => createFood(userId, setTrigger, navigate, name, classification, quantity, limitDate, alertDate, image, memo)}
+                  onClick={() => createDiary(userId, setTrigger, navigate, mealtime, eatOn, mainmenu, sidemenu, image)}
                   // onClick={sendFormData}
                   sx={{ mt: 3, mb: 2 }}
                 >
@@ -263,7 +247,7 @@ export const DailyNew = () => {
           </Container>
         </ThemeProvider>
       </HomeHeaderLayout>
-      { preview ?
+      {preview ?
         <Box>
           <IconButton
             color="inherit"

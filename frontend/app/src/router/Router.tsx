@@ -20,6 +20,7 @@ import { PostContextProvider } from "../providers/PostProvider";
 import { PostNew } from "../compenents/pages/PostNew";
 import { DailyPage } from "../compenents/pages/DailyPage";
 import { DailyNew } from "../compenents/pages/DailyNew";
+import { DiaryContextProvider } from "../providers/DiaryProvider";
 
 export const Router: FC = memo(() => {
   const auth = useContext(AuthContext);
@@ -92,13 +93,18 @@ export const Router: FC = memo(() => {
 
       <Route path="home/daily" element={
         <Private>
-          <DailyPage />
+          <DiaryContextProvider>
+            <DailyPage />
+          </DiaryContextProvider>
+
         </Private>
       } />
 
       <Route path="home/daily/new" element={
         <Private>
-          <DailyNew />
+          <DiaryContextProvider>
+            <DailyNew />
+          </DiaryContextProvider>
         </Private>
       } />
 

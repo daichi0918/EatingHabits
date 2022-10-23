@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_22_114349) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_23_094804) do
   create_table "bookmarks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_114349) do
     t.text "side_menu"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["mealtime_id"], name: "index_diaries_on_mealtime_id"
     t.index ["user_id"], name: "index_diaries_on_user_id"
   end
