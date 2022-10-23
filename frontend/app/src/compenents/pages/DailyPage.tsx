@@ -35,11 +35,14 @@ import allLocales from "@fullcalendar/core/locales-all";
 
 
 import { AddButton } from "../atoms/button/AddButton";
+import { useAllDiaries } from "../../hooks/useAllDiaries";
+import { DiaryIndexType } from "../../types/api/diary";
 
 const StyledFullCalendar = styled(FullCalendar)({
   padding: '2px 4px',
   marginTop: '15px'
 })
+
 
 let eventGuid = 0;
 const todayStr = new Date().toISOString().replace(/T.*$/, "");  // 今日の日付をYYYY-MM-DD形式にする
@@ -107,29 +110,41 @@ export const DailyPage: FC = memo(() => {
 
   const { userId } = useContext(AuthContext);
 
-  const [lists, setLists] = useState<Array<ListType>>([]);
+  const [diaries, setDiaries] = useState<Array<EventInput>>([]);
 
   const [trigger, setTrigger] = useState(false);
 
-  const { getLists, loading } = useAllLists();
+  const { getDiaries, loading } = useAllDiaries();
 
-  useEffect(() => getLists(userId, setLists), [trigger])
+  useEffect(() => { getDiaries(userId, setDiaries) }, [trigger])
 
   return (
     <HomeHeaderLayout>
-      <StyledFullCalendar
-        plugins={[dayGridPlugin, interactionPlugin]}
-        initialView="dayGridMonth"
-        selectable={true}
-        editable={true}
-        initialEvents={INITIAL_EVENTS}
-        locales={allLocales}
-        locale="ja"
-        eventsSet={handleEvents}
-        select={handleDateSelect}
-        eventClick={handleEventClick}
-      />
-      <AddButton onClick={() => console.log("aaa")} />
+      {loading ? (
+        <Stack alignItems="center" justifyContent="center" style={{ marginTop: '300px' }}>
+          <Box sx={{ alignItems: 'center' }}>
+            <CircularProgress />
+          </Box>
+        </Stack>
+
+      ) : (
+          <>
+            <StyledFullCalendar
+              plugins={[dayGridPlugin, interactionPlugin]}
+              initialView="dayGridMonth"
+              selectable={true}
+              editable={true}
+              initialEvents={diaries}
+              locales={allLocales}
+              locale="ja"
+              eventsSet={handleEvents}
+              select={handleDateSelect}
+              eventClick={handleEventClick}
+            />
+            <AddButton onClick={() => console.log("aaa")} />
+          </>
+        )
+      }
     </HomeHeaderLayout>
   )
 })
