@@ -32,7 +32,7 @@ import { signUp } from "../../apis/auth";
 import { AuthContext } from "../../App";
 import { SignUpParams } from "../../types/api/auth";
 import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
-import { createDiary, updateDiary } from "../../apis/diary";
+import { createDiary, updateDiary, destroyDiary } from "../../apis/diary";
 import { DiaryContext } from "../../providers/DiaryProvider";
 import { useEditDiary } from "../../hooks/useEditDiary";
 
@@ -231,7 +231,7 @@ export const DailyEdit = () => {
                     <Button
                       fullWidth
                       variant="contained"
-                      onClick={() => createDiary(userId, setTrigger, navigate, mealtime, eatOn, mainmenu, sidemenu, image)}
+                      onClick={() => destroyDiary(userId, diaryId, setTrigger, navigate)}
                       // onClick={sendFormData}
                       sx={{ mt: 3, mb: 2 }}
                     >

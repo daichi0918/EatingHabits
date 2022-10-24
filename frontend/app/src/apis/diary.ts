@@ -57,3 +57,12 @@ export const updateDiary = (userId: string | undefined, diaryId: string | undefi
     })
     .catch((e) => console.error(e))
 }
+
+export const destroyDiary = (userId: string | undefined, id: string | undefined, setTrigger: any, navigate: any) => {
+  return axios.delete(diaryDestroy(userId, id))
+    .then(() => {
+      setTrigger((prev: any) => { return !prev });
+      navigate("/home/daily")
+    })
+    .catch((e) => console.error(e))
+}
