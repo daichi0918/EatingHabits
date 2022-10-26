@@ -12,7 +12,7 @@ module Api
         if favorite.save
           # favorites_count = Favorite.where(post_id: params[:post_id]).count
           # render json: { status: 'SUCCESS', data: favorite_count }
-          render json: { status: 'SUCCESS' }
+          render json: { status: 'SUCCESS', data: favorite }
         else
           render json: { status: 'ERROR', data: favorite.errors }
         end

@@ -5,6 +5,9 @@ module RackSessionFixController
     def enabled?
       false
     end
+
+    def destroy
+    end
   end
 
   included do
