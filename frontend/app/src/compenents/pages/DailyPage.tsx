@@ -1,5 +1,5 @@
 import React, { FC, memo, useEffect, useState, useContext, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAllLists } from "../../hooks/useAllLists";
 import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
 import { ListAdd } from "../organisms/list/ListAdd";
@@ -35,11 +35,15 @@ import allLocales from "@fullcalendar/core/locales-all";
 
 
 import { AddButton } from "../atoms/button/AddButton";
+import { useAllDiaries } from "../../hooks/useAllDiaries";
+import { DiaryIndexType } from "../../types/api/diary";
+import { DiaryContext } from "../../providers/DiaryProvider";
 
 const StyledFullCalendar = styled(FullCalendar)({
   padding: '2px 4px',
   marginTop: '15px'
 })
+
 
 let eventGuid = 0;
 const todayStr = new Date().toISOString().replace(/T.*$/, "");  // 今日の日付をYYYY-MM-DD形式にする
@@ -49,16 +53,48 @@ export const INITIAL_EVENTS: EventInput[] = [
     id: createEventId(),
     title: "朝",
     start: todayStr,
+    color: '#E3C576',
+    type: 1
   },
   {
     id: createEventId(),
     title: "昼",
-    start: todayStr // 時刻はTで結ぶ
+    start: todayStr, // 時刻はTで結ぶ
+    color: '#67a8dd',
+    type: 2
   },
+  {
+    id: createEventId(),
+    title: "夕",
+    start: todayStr, // 時刻はTで結ぶ
+    color: '#F08300',
+    type: 3
+  },
+  {
+    id: createEventId(),
+    title: "その他",
+    start: todayStr, // 時刻はTで結ぶ
+    color: '#734e30',
+    type: 4
+  }
 ];
 
 
 export const DailyPage: FC = memo(() => {
+
+  const { userId } = useContext(AuthContext);
+
+  const { setDiaryId, trigger, setTrigger } = useContext(DiaryContext)
+
+  const [diaries, setDiaries] = useState<Array<EventInput>>([]);
+
+  const { getDiaries, loading } = useAllDiaries();
+
+  useEffect(() => { getDiaries(userId, setDiaries) }, [trigger])
+
+  const navigate = useNavigate()
+
+  const onClickDailyNew = () => navigate("/home/daily/new")
 
   const [currentEvents, setCurrentEvents] = useState<EventApi[]>([]);
   const handleEvents = useCallback(
@@ -80,38 +116,39 @@ export const DailyPage: FC = memo(() => {
     }
   }, []);
   const handleEventClick = useCallback((clickInfo: EventClickArg) => {
-    if (
-      window.confirm(`このイベント「${clickInfo.event.title}」を削除しますか`)
-    ) {
-      clickInfo.event.remove();
-    }
+    console.log("id:" + clickInfo.event.id)
+    setDiaryId(clickInfo.event.id)
+
+    navigate("/home/daily/edit")
   }, []);
-
-  const { userId } = useContext(AuthContext);
-
-  const [lists, setLists] = useState<Array<ListType>>([]);
-
-  const [trigger, setTrigger] = useState(false);
-
-  const { getLists, loading } = useAllLists();
-
-  useEffect(() => getLists(userId, setLists), [trigger])
 
   return (
     <HomeHeaderLayout>
-      <StyledFullCalendar
-        plugins={[dayGridPlugin, interactionPlugin]}
-        initialView="dayGridMonth"
-        selectable={true}
-        editable={true}
-        initialEvents={INITIAL_EVENTS}
-        locales={allLocales}
-        locale="ja"
-        eventsSet={handleEvents}
-        select={handleDateSelect}
-        eventClick={handleEventClick}
-      />
-      <AddButton onClick={() => console.log("aaa")} />
+      {loading ? (
+        <Stack alignItems="center" justifyContent="center" style={{ marginTop: '300px' }}>
+          <Box sx={{ alignItems: 'center' }}>
+            <CircularProgress />
+          </Box>
+        </Stack>
+
+      ) : (
+          <>
+            <StyledFullCalendar
+              plugins={[dayGridPlugin, interactionPlugin]}
+              initialView="dayGridMonth"
+              selectable={true}
+              editable={true}
+              initialEvents={diaries}
+              locales={allLocales}
+              locale="ja"
+              eventsSet={handleEvents}
+              select={handleDateSelect}
+              eventClick={handleEventClick}
+            />
+            <AddButton onClick={onClickDailyNew} />
+          </>
+        )
+      }
     </HomeHeaderLayout>
   )
 })

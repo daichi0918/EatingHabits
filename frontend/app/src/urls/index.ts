@@ -43,3 +43,16 @@ export const bookmarkCretate = (id: string | undefined) =>
   `${DEFAULT_API_LOCALHOST}/posts/${id}/bookmarks`
 
 
+
+export const diariesIndex = (userId: string | undefined) =>
+  `${DEFAULT_API_LOCALHOST}/users/${userId}/diaries`
+export const diaryCreate = (userId: string | undefined) =>
+  `${DEFAULT_API_LOCALHOST}/users/${userId}/diaries`
+export const diaryEdit = (userId: string | undefined, id: string | undefined) =>
+  `${DEFAULT_API_LOCALHOST}/users/${userId}/diaries/${id}/edit`
+export const diaryUpdate = (userId: string | undefined, id: string | undefined) =>
+  `${DEFAULT_API_LOCALHOST}/users/${userId}/diaries/${id}`
+export const diaryDestroy = (userId: string | undefined, id: string | undefined) =>
+  `${DEFAULT_API_LOCALHOST}/users/${userId}/diaries/${id}`
+
+
