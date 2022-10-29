@@ -130,6 +130,9 @@ export const Router: FC = memo(() => {
           ))
         }
       }} /> */}
+      {/* <Route path="home">
+        <Route path="example" />
+      </Route> */}
     </Routes>
   )
 })
