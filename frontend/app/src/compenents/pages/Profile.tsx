@@ -29,6 +29,9 @@ import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import Divider from '@mui/material/Divider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { Stack } from "@mui/material";
+import { styled } from '@mui/material/styles';
+import CircularProgress from '@mui/material/CircularProgress';
 
 // import Image from 'react-image-resizer';
 
@@ -37,24 +40,24 @@ import { signUp } from "../../apis/auth";
 import { AuthContext } from "../../App";
 import { SignUpParams } from "../../types/api/auth";
 import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
-import { updateFood } from "../../apis/food";
+import { updateUser } from "../../apis/user";
 import { FoodContext } from "../../providers/FoodProvider";
-import { useEditFood } from "../../hooks/useEditFood";
+import { useEditUser } from "../../hooks/useEditUser";
 import nouser from "../../images/nouser.png";
 
 export const Profile = () => {
 
   const { userId } = useContext(AuthContext);
-  const { foodId, foodEdit, setFoodEdit, trigger, setTrigger } = useContext(FoodContext);
 
-  // const { editFood, loading } = useEditFood();
+  const { editUser, loading } = useEditUser();
 
-  const [name, setName] = useState("");
-  const [gender, setGender] = useState("");
-  const [date, setDate] = useState<any>("");
+  const [name, setName] = useState<string>("");
+  const [gender, setGender] = useState<number>(0);
+  const [date, setDate] = useState<string>("");
   const [image, setImage] = useState<any>("");
-  const [memo, setMemo] = useState("");
+  const [memo, setMemo] = useState<string>("");
   const [preview, setPreview] = useState("");
+  const [trigger, setTrigger] = useState(false);
 
 
 
@@ -71,45 +74,51 @@ export const Profile = () => {
     setPreview(window.URL.createObjectURL(file))
   }, [])
 
-  // useEffect(() => { editFood(userId, foodId, setFoodEdit, setName, setClassification, setQuantity, setLimitDate, setAlertDate, setImage, setMemo) }, [])
+  useEffect(() => { editUser(userId, setName, setGender, setDate, setImage, setMemo) }, [trigger])
 
   const navigate = useNavigate();
 
   const theme = createTheme();
   return (
     <>
-
       <HomeHeaderLayout>
-        <ThemeProvider theme={theme}>
-          <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <Box
-              sx={{
-                marginTop: 8,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              <Box component="form" noValidate sx={{ mt: 3 }}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    プロフィール変更
+        {loading ? (
+          <Stack alignItems="center" justifyContent="center" style={{ marginTop: '300px' }}>
+            <Box sx={{ alignItems: 'center' }}>
+              <CircularProgress />
+            </Box>
+          </Stack>
+        ) : (
+            <ThemeProvider theme={theme}>
+              <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <Box
+                  sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Box component="form" noValidate sx={{ mt: 3 }}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12}>
+                        プロフィール変更
                   </Grid>
-                  <Grid item xs={12}>
-                    <CardMedia
-                      component="img"
-                      height="500"
-                      // image={image?.url}
-                      image={image?.url != null ? image?.url : nouser}
-                      alt="No Image"
-                      sx={{
-                        borderRadius: "50%"
-                      }}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    {/* <TextField
+                      <Grid item xs={12}>
+                        <CardMedia
+                          component="img"
+                          height="500"
+                          // image={image?.url}
+                          image={image?.url != null ? image?.url : nouser}
+                          alt="No Image"
+                          sx={{
+                            borderRadius: "50%"
+                          }}
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        {/* <TextField
                       required
                       fullWidth
                       id="Name"
@@ -118,11 +127,11 @@ export const Profile = () => {
                       autoComplete="name"
                       value={image}
                     /> */}
-                    <label htmlFor="icon-button-file">
-                      < IconButton color="inherit" component="span" >
-                        <CameraAltIcon />
-                      </IconButton>
-                      {/* <FormControl variant="standard">
+                        <label htmlFor="icon-button-file">
+                          < IconButton color="inherit" component="span" >
+                            <CameraAltIcon />
+                          </IconButton>
+                          {/* <FormControl variant="standard">
                         <InputLabel htmlFor="component-simple">Name</InputLabel>
                         <Input
                           // accept="image/*"
@@ -136,19 +145,19 @@ export const Profile = () => {
                             setPreview(window.URL.createObjectURL(e.target.files[0]))
                           }} />
                       </FormControl> */}
-                      <input
-                        accept="image/*"
-                        id="icon-button-file"
-                        type="file"
-                        // value={image}
-                        onChange={(e: any) => {
-                          // uploadImage(e)
-                          // previewImage(e)
-                          setImage(e.target.files[0])
-                          setPreview(window.URL.createObjectURL(e.target.files[0]))
-                        }}
-                      />
-                      {/* <TextField
+                          <input
+                            accept="image/*"
+                            id="icon-button-file"
+                            type="file"
+                            // value={image}
+                            onChange={(e: any) => {
+                              // uploadImage(e)
+                              // previewImage(e)
+                              setImage(e.target.files[0])
+                              setPreview(window.URL.createObjectURL(e.target.files[0]))
+                            }}
+                          />
+                          {/* <TextField
                         // accept="image/*"
                         type="file"
                         hidden
@@ -166,9 +175,9 @@ export const Profile = () => {
                           setPreview(window.URL.createObjectURL(e.target.files[0]))
                         }}
                       /> */}
-                    </label>
-                  </Grid>
-                  {/* <Grid item xs={6}>
+                        </label>
+                      </Grid>
+                      {/* <Grid item xs={6}>
                     <Button variant="contained">
                       アップロード
                     </Button>
@@ -178,92 +187,96 @@ export const Profile = () => {
                       画像削除
                     </Button>
                   </Grid> */}
-                  <Grid item xs={12}>
-                    <Divider />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="Name"
-                      label="氏名"
-                      name="name"
-                      autoComplete="name"
-                      value={name}
-                      size="small"
-                      color="success"
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormControl sx={{ width: 600 }} size="small" color="success">
-                      <InputLabel id="demo-select-small">性別</InputLabel>
-                      <Select
-                        labelId="demo-select-small"
-                        id="demo-select-small"
-                        // value={age}
-                        label="Age"
-                      >
-                        {/* <MenuItem value="">
+                      <Grid item xs={12}>
+                        <Divider />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField
+                          required
+                          fullWidth
+                          id="Name"
+                          label="氏名"
+                          name="name"
+                          autoComplete="name"
+                          value={name}
+                          size="small"
+                          color="success"
+                          onChange={(e) => setName(e.target.value)}
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <FormControl sx={{ width: 600 }} size="small" color="success">
+                          <InputLabel id="demo-select-small">性別</InputLabel>
+                          <Select
+                            labelId="demo-select-small"
+                            id="demo-select-small"
+                            value={gender}
+                            label="Age"
+                            onChange={(e) => setGender(Number(e.target.value))}
+                          >
+                            {/* <MenuItem value="">
                           <em></em>
                         </MenuItem> */}
-                        <MenuItem value={10}>男性</MenuItem>
-                        <MenuItem value={20}>女性</MenuItem>
-                        <MenuItem value={30}>未回答</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
+                            <MenuItem value={0}>未回答</MenuItem>
+                            <MenuItem value={1}>男性</MenuItem>
+                            <MenuItem value={2}>女性</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField
+                          fullWidth
+                          size="small"
+                          id="date"
+                          label="誕生日"
+                          type="date"
+                          color="success"
+                          value={date}
+                          onChange={(e) => setDate(e.target.value)}
+                          // defaultValue="2017-05-24"
+                          // sx={{ width: 220 }}
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField
+                          fullWidth
+                          id="outlined-multiline-static"
+                          label="プロフィール"
+                          multiline
+                          rows="3"
+                          // margin="normal"
+                          variant="outlined"
+                          value={memo}
+                          color="success"
+                          onChange={(e) => setMemo(e.target.value)}
+                        />
+                      </Grid>
+                    </Grid>
+                    <Button
                       fullWidth
-                      size="small"
-                      id="date"
-                      label="誕生日"
-                      type="date"
-                      color="success"
-                      // defaultValue="2017-05-24"
-                      // sx={{ width: 220 }}
-                      InputLabelProps={{
-                        shrink: true,
+                      variant="contained"
+                      onClick={() => updateUser(userId, name, String(gender), date, image, memo, setTrigger)}
+                      sx={{
+                        mt: 3,
+                        mb: 2,
+                        backgroundColor: '#117768',
+                        '&:hover': {
+                          backgroundColor: '#117768',
+                          opacity: 0.8
+                        },
                       }}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      id="outlined-multiline-static"
-                      label="プロフィール"
-                      multiline
-                      rows="3"
-                      defaultValue=""
-                      // margin="normal"
-                      variant="outlined"
-                      value={memo}
-                      color="success"
-                      onChange={(e) => setMemo(e.target.value)}
-                    />
-                  </Grid>
-                </Grid>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  // onClick={() => updateFood(foodId, userId, setTrigger, navigate, name, classification, quantity, limitDate, alertDate, image, memo)}
-                  sx={{
-                    mt: 3,
-                    mb: 2,
-                    backgroundColor: '#117768',
-                    '&:hover': {
-                      backgroundColor: '#117768',
-                      opacity: 0.8
-                    },
-                  }}
-                >
-                  保存する
+                    >
+                      保存する
                 </Button>
-              </Box>
-            </Box>
-          </Container>
-        </ThemeProvider>
+                  </Box>
+                </Box>
+              </Container>
+            </ThemeProvider>
+          )
+        }
       </HomeHeaderLayout>
       {preview ?
         <Box>

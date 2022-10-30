@@ -31,7 +31,7 @@ module Api
       end
 
       def user_params
-        params.permit(:user_id,:name,:image,:memo)
+        params.permit(:id, :name, :gender, :birthday, :image, :memo)
       end
     end
   end

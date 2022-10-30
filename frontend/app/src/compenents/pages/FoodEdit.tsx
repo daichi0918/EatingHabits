@@ -75,7 +75,6 @@ export const FoodEdit = () => {
   const theme = createTheme();
   return (
     <>
-
       <HomeHeaderLayout>
         <ThemeProvider theme={theme}>
           <Container component="main" maxWidth="xs">
