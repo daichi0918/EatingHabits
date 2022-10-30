@@ -27,7 +27,11 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import CardMedia from '@mui/material/CardMedia';
 import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
+import Divider from '@mui/material/Divider';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+
 // import Image from 'react-image-resizer';
+
 
 import { signUp } from "../../apis/auth";
 import { AuthContext } from "../../App";
@@ -47,7 +51,8 @@ export const Profile = () => {
 
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
-  const [image, setImage] = useState(null)
+  const [date, setDate] = useState<any>("");
+  const [image, setImage] = useState<any>("");
   const [memo, setMemo] = useState("");
   const [preview, setPreview] = useState("");
 
@@ -92,26 +97,19 @@ export const Profile = () => {
               <Box component="form" noValidate sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    {/* <TextField
-                      required
-                      fullWidth
-                      id="Name"
-                      label="編集名称"
-                      name="name"
-                      autoComplete="name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                    /> */}
-                    {/* <CardMedia
+                    プロフィール変更
+                  </Grid>
+                  <Grid item xs={12}>
+                    <CardMedia
                       component="img"
                       height="500"
                       // image={image?.url}
-                      image={user}
+                      image={image?.url != null ? image?.url : user}
                       alt="No Image"
                       sx={{
                         borderRadius: "50%"
                       }}
-                    /> */}
+                    />
                   </Grid>
                   <Grid item xs={12}>
                     {/* <TextField
@@ -145,7 +143,6 @@ export const Profile = () => {
                         accept="image/*"
                         id="icon-button-file"
                         type="file"
-                        hidden
                         // value={image}
                         onChange={(e: any) => {
                           // uploadImage(e)
@@ -174,11 +171,69 @@ export const Profile = () => {
                       /> */}
                     </label>
                   </Grid>
+                  {/* <Grid item xs={6}>
+                    <Button variant="contained">
+                      アップロード
+                    </Button>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Button>
+                      画像削除
+                    </Button>
+                  </Grid> */}
+                  <Grid item xs={12}>
+                    <Divider />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="Name"
+                      label="氏名"
+                      name="name"
+                      autoComplete="name"
+                      value={name}
+                      size="small"
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormControl sx={{ width: 600 }} size="small">
+                      <InputLabel id="demo-select-small">性別</InputLabel>
+                      <Select
+                        labelId="demo-select-small"
+                        id="demo-select-small"
+                        // value={age}
+                        label="Age"
+                      >
+                        {/* <MenuItem value="">
+                          <em></em>
+                        </MenuItem> */}
+                        <MenuItem value={10}>男性</MenuItem>
+                        <MenuItem value={20}>女性</MenuItem>
+                        <MenuItem value={30}>未回答</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      fullWidth
+                      size="small"
+                      id="date"
+                      label="誕生日"
+                      type="date"
+                      // defaultValue="2017-05-24"
+                      // sx={{ width: 220 }}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </Grid>
                   <Grid item xs={12}>
                     <TextField
                       fullWidth
                       id="outlined-multiline-static"
-                      label="memo"
+                      label="プロフィール"
                       multiline
                       rows="3"
                       defaultValue=""
@@ -195,14 +250,14 @@ export const Profile = () => {
                   // onClick={() => updateFood(foodId, userId, setTrigger, navigate, name, classification, quantity, limitDate, alertDate, image, memo)}
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  更新する
+                  保存する
                 </Button>
               </Box>
             </Box>
           </Container>
         </ThemeProvider>
       </HomeHeaderLayout>
-      { preview ?
+      {preview ?
         <Box>
           <IconButton
             color="inherit"
