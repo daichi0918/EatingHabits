@@ -194,11 +194,12 @@ export const Profile = () => {
                       autoComplete="name"
                       value={name}
                       size="small"
+                      color="success"
                       onChange={(e) => setName(e.target.value)}
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <FormControl sx={{ width: 600 }} size="small">
+                    <FormControl sx={{ width: 600 }} size="small" color="success">
                       <InputLabel id="demo-select-small">性別</InputLabel>
                       <Select
                         labelId="demo-select-small"
@@ -222,6 +223,7 @@ export const Profile = () => {
                       id="date"
                       label="誕生日"
                       type="date"
+                      color="success"
                       // defaultValue="2017-05-24"
                       // sx={{ width: 220 }}
                       InputLabelProps={{
@@ -237,9 +239,10 @@ export const Profile = () => {
                       multiline
                       rows="3"
                       defaultValue=""
-                      margin="normal"
+                      // margin="normal"
                       variant="outlined"
                       value={memo}
+                      color="success"
                       onChange={(e) => setMemo(e.target.value)}
                     />
                   </Grid>
@@ -248,7 +251,15 @@ export const Profile = () => {
                   fullWidth
                   variant="contained"
                   // onClick={() => updateFood(foodId, userId, setTrigger, navigate, name, classification, quantity, limitDate, alertDate, image, memo)}
-                  sx={{ mt: 3, mb: 2 }}
+                  sx={{
+                    mt: 3,
+                    mb: 2,
+                    backgroundColor: '#117768',
+                    '&:hover': {
+                      backgroundColor: '#117768',
+                      opacity: 0.8
+                    },
+                  }}
                 >
                   保存する
                 </Button>
