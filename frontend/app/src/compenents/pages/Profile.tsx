@@ -33,7 +33,7 @@ import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
 import { updateFood } from "../../apis/food";
 import { FoodContext } from "../../providers/FoodProvider";
 import { useEditFood } from "../../hooks/useEditFood";
-import user from "../../../public/user.png";
+import user from "../../images/user.png";
 
 export const Profile = () => {
 
@@ -101,7 +101,7 @@ export const Profile = () => {
                     /> */}
                     <CardMedia
                       component="img"
-                      height="194"
+                      height="500"
                       // image={image?.url}
                       image={user}
                       alt="No Image"
@@ -121,6 +121,9 @@ export const Profile = () => {
                       value={image}
                     /> */}
                     <label htmlFor="icon-button-file">
+                      < IconButton color="inherit" component="span" >
+                        <CameraAltIcon />
+                      </IconButton>
                       <input
                         accept="image/*"
                         id="icon-button-file"
@@ -135,9 +138,6 @@ export const Profile = () => {
                         }}
                       />
                     </label>
-                    < IconButton color="inherit" component="span" >
-                      <CameraAltIcon />
-                    </IconButton>
                   </Grid>
                   <Grid item xs={12}>
                     <TextField

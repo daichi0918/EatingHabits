@@ -22,6 +22,7 @@ import { DailyPage } from "../compenents/pages/DailyPage";
 import { DailyNew } from "../compenents/pages/DailyNew";
 import { DiaryContextProvider } from "../providers/DiaryProvider";
 import { DailyEdit } from "../compenents/pages/DailyEdit";
+import { Profile } from "../compenents/pages/Profile";
 
 export const Router: FC = memo(() => {
   const auth = useContext(AuthContext);
@@ -116,6 +117,13 @@ export const Router: FC = memo(() => {
           </DiaryContextProvider>
         </Private>
       } />
+
+      <Route path="home/settings/profile" element={
+        <Private>
+          <Profile />
+        </Private>
+      } />
+
 
 
 
