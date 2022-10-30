@@ -24,6 +24,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import IconButton from '@mui/material/IconButton';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import CancelIcon from '@mui/icons-material/Cancel';
+import CardMedia from '@mui/material/CardMedia';
 
 import { signUp } from "../../apis/auth";
 import { AuthContext } from "../../App";
@@ -32,6 +33,7 @@ import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
 import { updateFood } from "../../apis/food";
 import { FoodContext } from "../../providers/FoodProvider";
 import { useEditFood } from "../../hooks/useEditFood";
+import user from "../../../public/user.png";
 
 export const Profile = () => {
 
@@ -42,7 +44,7 @@ export const Profile = () => {
 
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
-  const [image, setImage] = useState("")
+  const [image, setImage] = useState(null)
   const [memo, setMemo] = useState("");
   const [preview, setPreview] = useState("");
 
@@ -87,7 +89,7 @@ export const Profile = () => {
               <Box component="form" noValidate sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField
+                    {/* <TextField
                       required
                       fullWidth
                       id="Name"
@@ -96,6 +98,16 @@ export const Profile = () => {
                       autoComplete="name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
+                    /> */}
+                    <CardMedia
+                      component="img"
+                      height="194"
+                      // image={image?.url}
+                      image={user}
+                      alt="No Image"
+                      sx={{
+                        borderRadius: "50%"
+                      }}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -113,6 +125,7 @@ export const Profile = () => {
                         accept="image/*"
                         id="icon-button-file"
                         type="file"
+                        hidden
                         // value={image}
                         onChange={(e: any) => {
                           // uploadImage(e)
