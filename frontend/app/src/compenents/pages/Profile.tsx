@@ -25,6 +25,9 @@ import IconButton from '@mui/material/IconButton';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CardMedia from '@mui/material/CardMedia';
+import FormControl from '@mui/material/FormControl';
+import Input from '@mui/material/Input';
+// import Image from 'react-image-resizer';
 
 import { signUp } from "../../apis/auth";
 import { AuthContext } from "../../App";
@@ -99,7 +102,7 @@ export const Profile = () => {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                     /> */}
-                    <CardMedia
+                    {/* <CardMedia
                       component="img"
                       height="500"
                       // image={image?.url}
@@ -108,7 +111,7 @@ export const Profile = () => {
                       sx={{
                         borderRadius: "50%"
                       }}
-                    />
+                    /> */}
                   </Grid>
                   <Grid item xs={12}>
                     {/* <TextField
@@ -124,6 +127,20 @@ export const Profile = () => {
                       < IconButton color="inherit" component="span" >
                         <CameraAltIcon />
                       </IconButton>
+                      {/* <FormControl variant="standard">
+                        <InputLabel htmlFor="component-simple">Name</InputLabel>
+                        <Input
+                          // accept="image/*"
+                          id="component-simple"
+                          // type="file"
+                          hidden
+                          onChange={(e: any) => {
+                            // uploadImage(e)
+                            // previewImage(e)
+                            setImage(e.target.files[0])
+                            setPreview(window.URL.createObjectURL(e.target.files[0]))
+                          }} />
+                      </FormControl> */}
                       <input
                         accept="image/*"
                         id="icon-button-file"
@@ -137,6 +154,24 @@ export const Profile = () => {
                           setPreview(window.URL.createObjectURL(e.target.files[0]))
                         }}
                       />
+                      {/* <TextField
+                        // accept="image/*"
+                        type="file"
+                        hidden
+                        required
+                        fullWidth
+                        id="Name"
+                        label="画像を追加"
+                        name="name"
+                        autoComplete="name"
+                        // value={image}
+                        onChange={(e: any) => {
+                          // uploadImage(e)
+                          // previewImage(e)
+                          setImage(e.target.files[0])
+                          setPreview(window.URL.createObjectURL(e.target.files[0]))
+                        }}
+                      /> */}
                     </label>
                   </Grid>
                   <Grid item xs={12}>
