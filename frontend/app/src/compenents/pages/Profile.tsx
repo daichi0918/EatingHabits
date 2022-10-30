@@ -40,7 +40,7 @@ import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
 import { updateFood } from "../../apis/food";
 import { FoodContext } from "../../providers/FoodProvider";
 import { useEditFood } from "../../hooks/useEditFood";
-import user from "../../images/user.png";
+import nouser from "../../images/nouser.png";
 
 export const Profile = () => {
 
@@ -73,9 +73,6 @@ export const Profile = () => {
 
   // useEffect(() => { editFood(userId, foodId, setFoodEdit, setName, setClassification, setQuantity, setLimitDate, setAlertDate, setImage, setMemo) }, [])
 
-
-  console.log("abc:" + name)
-
   const navigate = useNavigate();
 
   const theme = createTheme();
@@ -104,7 +101,7 @@ export const Profile = () => {
                       component="img"
                       height="500"
                       // image={image?.url}
-                      image={image?.url != null ? image?.url : user}
+                      image={image?.url != null ? image?.url : nouser}
                       alt="No Image"
                       sx={{
                         borderRadius: "50%"

@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   #                   size: { less_than: 1.megabytes,
   #                           message: 'should be less than 1MB' }
 
-  enum gender: { man: 0, woman: 1 }
+  enum gender: { blank:0, man: 1, woman: 2 }
 
   # フォローしたときの処理
   def follow(user_id)
