@@ -4,7 +4,7 @@ module Api
       before_action :set_favorite, only: %i[destroy]
 
       def index
-        render json: Favorite.filter_by_post(params[:post_id]).select(:id, :user_id, :post_id)
+        render json: Favorite.filtered_by_post(params[:post_id]).select(:id, :user_id, :post_id)
       end
 
       def create
