@@ -29,7 +29,7 @@ module Api
       end
 
       def comment_params
-        params.permit(:user_id,:post_id,:text,:image)
+        params.permit(:user_id, :post_id, :text, :image)
       end
     end
   end

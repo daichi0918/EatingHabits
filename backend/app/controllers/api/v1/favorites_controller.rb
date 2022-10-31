@@ -6,7 +6,7 @@ module Api
       def index
         render json: Favorite.filter_by_post(params[:post_id]).select(:id, :user_id, :post_id)
       end
-    
+
       def create
         favorite = Favorite.new(favorite_params)
         if favorite.save
@@ -34,7 +34,7 @@ module Api
       end
 
       def favorite_params
-        params.permit(:user_id,:post_id)
+        params.permit(:user_id, :post_id)
       end
     end
   end

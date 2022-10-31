@@ -44,7 +44,6 @@
 # Mealtime.create(name: '夕',color: '#F08300')
 # Mealtime.create(name: 'その他',color: '#734e30')
 
-
 # 3.times do |n|
 #   diary = Diary.new(
 #     user_id: 2,

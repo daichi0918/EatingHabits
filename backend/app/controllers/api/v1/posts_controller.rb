@@ -5,7 +5,7 @@ module Api
       # before_action :current_api_v1_user, :api_v1_user_signed_in?
 
       def index
-        posts = Post.joins(:user).select('posts.*, users.name as userName,users.image as userImage').order(created_at: "DESC")
+        posts = Post.joins(:user).select('posts.*, users.name as userName,users.image as userImage').order(created_at: 'DESC')
 
         render json: {
           posts: posts
@@ -48,7 +48,7 @@ module Api
       end
 
       def post_params
-        params.permit(:user_id,:text,:image, :title)
+        params.permit(:user_id, :text, :image, :title)
       end
     end
   end
