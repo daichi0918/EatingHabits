@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api do
     namespace :v1 do
-      resources :users do
+      resources :users, only: %i[index create edit update destroy] do
         resources :lists, only: %i[index create destroy]
         resources :foods, only: %i[index create edit update destroy]
         resources :diaries, only: %i[index create edit update destroy]

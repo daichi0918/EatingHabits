@@ -82,7 +82,7 @@ export const PostCard: FC<Props> = memo((props) => {
 
   const { getFavorites, favoriteLoading } = useAllFavorites();
 
-  useEffect(() => { getFavorites(id, favorites, setFavorites) }, [favoriteTrigger])
+  useEffect(() => { getFavorites(id, setFavorites) }, [favoriteTrigger])
 
   // const isFavorite = () => {
   //   let favoriteBool = false

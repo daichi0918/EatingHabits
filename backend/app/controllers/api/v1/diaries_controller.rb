@@ -47,7 +47,7 @@ module Api
       end
 
       def diary_params
-        params.permit(:user_id,:mealtime_id, :eat_on, :main_menu, :side_menu, :image)
+        params.permit(:user_id, :mealtime_id, :eat_on, :main_menu, :side_menu, :image)
       end
     end
   end

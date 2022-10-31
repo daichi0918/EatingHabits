@@ -4,15 +4,15 @@ module Api
       before_action :set_favorite, only: %i[destroy]
 
       def index
-        render json: Favorite.filter_by_post(params[:post_id]).select(:id, :user_id, :post_id)
+        render json: Favorite.filtered_by_post(params[:post_id]).select(:id, :user_id, :post_id)
       end
-    
+
       def create
         favorite = Favorite.new(favorite_params)
         if favorite.save
           # favorites_count = Favorite.where(post_id: params[:post_id]).count
           # render json: { status: 'SUCCESS', data: favorite_count }
-          render json: { status: 'SUCCESS' }
+          render json: { status: 'SUCCESS', data: favorite }
         else
           render json: { status: 'ERROR', data: favorite.errors }
         end
@@ -34,7 +34,7 @@ module Api
       end
 
       def favorite_params
-        params.permit(:user_id,:post_id)
+        params.permit(:user_id, :post_id)
       end
     end
   end

@@ -107,7 +107,7 @@ export const HomeHeader: FC = memo(() => {
             <Link
               variant="button"
               color="text.primary"
-              href="#"
+              href="home/settings/profile"
               sx={{ my: 1, mx: 1.5 }}
             >
               マイページ

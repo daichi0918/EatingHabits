@@ -9,7 +9,7 @@ export const useAllFavorites = () => {
   // const [food, setLists] = useState<Array<FoodType>>([]);
   const [error, setError] = useState(false);
 
-  const getFavorites = useCallback((postId: string | undefined, favorites: Array<any>, setFavorites: any) => {
+  const getFavorites = useCallback((postId: string | undefined, setFavorites: any) => {
     setFavoriteLoading(true);
     setError(false);
     axios.get<any>(favoritesIndex(postId)).then((res) => {
