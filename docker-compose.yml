@@ -40,6 +40,8 @@ services:
     ports:
       - "4000:3000"
     shm_size: 4GB
+    environment:
+      - CHOKIDAR_USEPOLLING=true
 
 volumes:
   mysql-data:

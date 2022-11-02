@@ -108,12 +108,14 @@ export const Profile = () => {
                       <Grid item xs={12}>
                         <CardMedia
                           component="img"
+                          // width="15"
                           height="500"
                           // image={image?.url}
                           image={image?.url != null ? image?.url : nouser}
                           alt="No Image"
                           sx={{
                             borderRadius: "50%"
+                            // height: 15,
                           }}
                         />
                       </Grid>
@@ -149,6 +151,7 @@ export const Profile = () => {
                             accept="image/*"
                             id="icon-button-file"
                             type="file"
+                            hidden
                             // value={image}
                             onChange={(e: any) => {
                               // uploadImage(e)

@@ -44,5 +44,3 @@ export const AlertMessage: FC<any> = (props: AlertMessageProps) => {
     </>
   )
 }
-
-export default AlertMessage
