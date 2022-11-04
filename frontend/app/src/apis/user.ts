@@ -26,3 +26,47 @@ export const updateUser = (userId: string | undefined, name: string, gender: str
     .catch((e) => console.error(e))
     .catch((e) => console.error(e))
 }
+
+export const updateUserImage = (userId: string | undefined, image: string, setTrigger: React.Dispatch<React.SetStateAction<boolean>>) => {
+
+  const createFormData = () => {
+    const formData = new FormData()
+    if (!image) return
+    formData.append('image', image)
+
+    return formData
+  }
+
+  const data = createFormData()
+
+  return axios.put(userUpdate(userId), data)
+    .then(() => {
+      setTrigger((prev: any) => { return !prev });
+    })
+    .catch((e) => console.error(e))
+    .catch((e) => console.error(e))
+
+}
+
+export const updateDeleteUserImage = (userId: string | undefined, setTrigger: React.Dispatch<React.SetStateAction<boolean>>) => {
+
+  // const createFormData = () => {
+  //   const formData = new FormData()
+  //   if (!image) return
+  //   formData.append('image', image)
+
+  //   return formData
+  // }
+
+  // const data = createFormData()
+
+  return axios.put(userUpdate(userId), {
+    image: ""
+  })
+    .then(() => {
+      setTrigger((prev: any) => { return !prev });
+    })
+    .catch((e) => console.error(e))
+    .catch((e) => console.error(e))
+
+}
