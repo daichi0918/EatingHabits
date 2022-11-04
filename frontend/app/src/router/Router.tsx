@@ -71,7 +71,7 @@ export const Router: FC = memo(() => {
           </FoodContextProvider>
         </Private>
       } />
-      <Route path="home/food/edit" element={
+      <Route path="home/food/:id/edit" element={
         <Private>
           <FoodContextProvider>
             <FoodEdit />

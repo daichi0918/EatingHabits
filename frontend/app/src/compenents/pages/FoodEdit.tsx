@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import { useContext, useState, useEffect, useCallback } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import dayjs, { Dayjs } from 'dayjs';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -36,7 +36,7 @@ import { useEditFood } from "../../hooks/useEditFood";
 export const FoodEdit = () => {
 
   const { userId } = useContext(AuthContext);
-  const { foodId, foodEdit, setFoodEdit, trigger, setTrigger } = useContext(FoodContext);
+  const { foodId, setFoodId, foodEdit, setFoodEdit, trigger, setTrigger } = useContext(FoodContext);
 
   const { editFood, loading } = useEditFood();
 
@@ -48,6 +48,12 @@ export const FoodEdit = () => {
   const [image, setImage] = useState("");
   const [memo, setMemo] = useState("");
   const [preview, setPreview] = useState<string>("")
+
+  const location = useLocation();
+  const str = location.pathname
+  const locationFoodId = str.replace('/home/food/', '').replace('/edit', '')
+
+  console.log(locationFoodId)
 
 
 
@@ -64,11 +70,15 @@ export const FoodEdit = () => {
     setPreview(window.URL.createObjectURL(file))
   }, [])
 
-  useEffect(() => { editFood(userId, foodId, setFoodEdit, setName, setClassification, setQuantity, setLimitDate, setAlertDate, setImage, setMemo) }, [])
+  useEffect(() => {
+    editFood(userId, foodId, locationFoodId, setFoodEdit, setName, setClassification, setQuantity, setLimitDate, setAlertDate, setImage, setMemo)
+  }, [])
 
-  console.log("name:" + foodEdit?.name)
 
-  console.log("abc:" + name)
+
+  // console.log("name:" + foodEdit?.name)
+
+  // console.log("abc:" + name)
 
   const navigate = useNavigate();
 
@@ -197,7 +207,6 @@ export const FoodEdit = () => {
                       label="memo"
                       multiline
                       rows="3"
-                      defaultValue=""
                       margin="normal"
                       variant="outlined"
                       value={memo}
