@@ -18,6 +18,15 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
+import * as React from 'react';
+import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import MenuIcon from '@mui/icons-material/Menu';
 
 import { MenuIconButton } from "../../atoms/button/MenuIconButton";
 import { MenuDrawer } from "../../molecules/MenuDrawer";
@@ -65,7 +74,7 @@ export const HomeHeader: FC = memo(() => {
 
   return (
     <>
-      <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
+      {/* <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       <CssBaseline />
       <AppBar
         position="static"
@@ -89,14 +98,6 @@ export const HomeHeader: FC = memo(() => {
             EH manager
           </Typography>
           <nav>
-            {/* <Link
-              variant="button"
-              color="text.primary"
-              sx={{ my: 1, mx: 1.5 }}
-              onClick={() => handleSignOut}
-            >
-              ログアウト
-            </Link> */}
             <Button
               variant="outlined"
               sx={{ my: 1, mx: 1.5 }}
@@ -114,7 +115,49 @@ export const HomeHeader: FC = memo(() => {
             </Link>
           </nav>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
+
+      <Box sx={{ display: 'flex' }}>
+        <AppBar
+          component="nav"
+          color="default"
+          elevation={3}
+        >
+          <Toolbar sx={{ flexWrap: 'wrap' }}>
+            <Typography
+              variant="h6"
+              color="inherit"
+              noWrap
+              sx={{
+                flexGrow: 1,
+                '&:hover': {
+                  cursor: "pointer",
+                },
+              }}
+              onClick={onClickHome}
+            >
+              EH manager
+          </Typography>
+            <nav>
+              <Button
+                variant="outlined"
+                sx={{ my: 1, mx: 1.5 }}
+                onClick={handleSignOut}
+              >
+                ログアウト
+            </Button>
+              <Link
+                variant="button"
+                color="text.primary"
+                href="/home/settings/profile"
+                sx={{ my: 1, mx: 1.5 }}
+              >
+                マイページ
+            </Link>
+            </nav>
+          </Toolbar>
+        </AppBar>
+      </Box>
     </>
   )
 })
