@@ -24,7 +24,6 @@
     "axios-case-converter": "^0.9.0",
     "dayjs": "^1.11.5",
     "js-cookie": "^3.0.1",
-    "material-ui-image": "^3.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-image-file-resizer": "^0.4.8",

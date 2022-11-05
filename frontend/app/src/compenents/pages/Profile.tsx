@@ -121,6 +121,12 @@ export const Profile = () => {
                             // height: 15,
                           }}
                         />
+                        <input
+                          alt="No Image"
+                          src={image?.url != null ? image?.url : nouser}
+                          width="15"
+                          height="15"
+                        />
                       </Grid>
                       <Grid item xs={12}>
                         {/* <TextField
