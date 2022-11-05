@@ -1,4 +1,5 @@
 import { FC, memo, ReactNode } from "react";
+import Box from '@mui/material/Box';
 
 import { HomeHeader } from "../organisms/layout/HomeHeader";
 
@@ -11,7 +12,9 @@ export const HomeHeaderLayout: FC<Props> = memo((props) => {
   return (
     <>
       <HomeHeader />
-      {children}
+      <Box component="main" sx={{ p: 13 }}>
+        {children}
+      </Box>
     </>
   )
 })

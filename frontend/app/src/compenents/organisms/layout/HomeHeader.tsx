@@ -117,11 +117,14 @@ export const HomeHeader: FC = memo(() => {
         </Toolbar>
       </AppBar> */}
 
+      <GlobalStyles styles={{ ul: { margin: 5, padding: 0, listStyle: 'none' } }} />
+      <CssBaseline />
       <Box sx={{ display: 'flex' }}>
         <AppBar
           component="nav"
           color="default"
           elevation={3}
+          sx={{ borderBottom: (theme) => `5px solid ${theme.palette.divider}` }}
         >
           <Toolbar sx={{ flexWrap: 'wrap' }}>
             <Typography
