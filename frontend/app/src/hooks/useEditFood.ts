@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
+import Cookies from "js-cookie"
 
 import { FoodType } from "../types/api/food";
 import { foodEdit } from "../urls/index"
@@ -17,7 +18,14 @@ export const useEditFood = () => {
     if (id == undefined) {
       id = locationFoodId
     }
-    axios.get<any>(foodEdit(userId, id)).then((res) => {
+    axios.get<any>(foodEdit(userId, id), {
+      headers: {
+        "access-token": Cookies.get("_access_token") as any,
+        "client": Cookies.get("_client") as any,
+        "uid": Cookies.get("_uid") as any,
+        "content-type": "application/json"
+      }
+    }).then((res) => {
       setName(res.data.food.name)
       setClassification(res.data.food.classification_id)
       setQuantity(res.data.food.quantity)
