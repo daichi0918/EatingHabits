@@ -41,8 +41,15 @@ export const HomeHeader: FC = memo(() => {
   const onClickHome = useCallback(() => navigate("/home"), [navigate]);
   const onClickUserManagement = useCallback(() => navigate("/home/user_management"), [navigate]);
 
+  const headers = {
+    "access-token": Cookies.get("_access_token") as any,
+    "client": Cookies.get("_client") as any,
+    "uid": Cookies.get("_uid") as any,
+    "content-type": "application/json"
+  }
+
   useEffect(() => {
-    axios.get<any>("http://localhost:3002/api/v1/users").then((res) => {
+    axios.get<any>("http://localhost:3002/api/v1/users", { headers: headers }).then((res) => {
     })
   }, [])
 

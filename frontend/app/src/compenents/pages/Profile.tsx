@@ -45,6 +45,10 @@ import { FoodContext } from "../../providers/FoodProvider";
 import { useEditUser } from "../../hooks/useEditUser";
 import nouser from "../../images/nouser.png";
 
+const styledImg = styled('img')({
+  borderRadius: '50%'
+});
+
 export const Profile = () => {
 
   const { userId } = useContext(AuthContext);
@@ -109,23 +113,12 @@ export const Profile = () => {
                         プロフィール変更
                       </Grid>
                       <Grid item xs={12}>
-                        <CardMedia
-                          component="img"
-                          // width="15"
-                          height="500"
-                          // image={image?.url}
-                          image={image?.url != null ? image?.url : nouser}
-                          alt="No Image"
-                          sx={{
-                            borderRadius: "50%"
-                            // height: 15,
-                          }}
-                        />
-                        <input
+                        <img
                           alt="No Image"
                           src={image?.url != null ? image?.url : nouser}
-                          width="15"
-                          height="15"
+                          width="250"
+                          height="250"
+                          style={{ borderRadius: "50%" }}
                         />
                       </Grid>
                       <Grid item xs={12}>
