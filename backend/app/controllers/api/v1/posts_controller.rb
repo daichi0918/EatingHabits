@@ -6,34 +6,34 @@ module Api
       # before_action :current_api_v1_user, :api_v1_user_signed_in?
 
       def index
-        posts = Post.joins(:user).select('posts.*, users.name as userName,users.image as userImage').order(created_at: 'DESC')
+        # posts = Post.joins(:user).select('posts.*, users.name as userName,users.image as userImage').order(created_at: 'DESC')
 
         # p current_api_v1_user
 
 
-        # @posts = Post.all.order(created_at: 'DESC')
+        @posts = Post.all.order(created_at: 'DESC')
 
         # posts.current_user = current_api_v1_user
 
         # posts = Post.all.includes(:user).order(created_at: 'DESC')
         # posts = Post.all.joins(:user).select('posts.*, users.name as userName,users.image as userImage').order(created_at: 'DESC')
-        a = posts.map{
-          |post| 
-          post.current_user = current_api_v1_user
-          custom_post = post.attributes()
-          custom_post.store("favorited", post.favorited_by?)
-          # custom_post["favorited?"] = post.favorited_by?
-          # post["favorited?"] = post.favorited_by?
-          # return custom_post
-          custom_post
-        }
+        # a = posts.map{
+        #   |post| 
+        #   post.current_user = current_api_v1_user
+        #   custom_post = post.attributes()
+        #   custom_post.store("favorited", post.favorited_by?)
+        #   # custom_post["favorited?"] = post.favorited_by?
+        #   # post["favorited?"] = post.favorited_by?
+        #   # return custom_post
+        #   custom_post
+        # }
 
         # p a
 
 
-        render json: {
-            posts: a
-        }
+        # render json: {
+        #     posts: a
+        # }
 
         # render 'index', formats: 'json', handlers: 'jbuilder'
 

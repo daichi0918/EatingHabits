@@ -22,6 +22,7 @@ export const useAllPosts = () => {
       }
     }).then((res) => {
       setPosts(res.data.posts)
+      // setPosts(res.data.posts)
     }).catch(() => {
       setError(true);
     }).finally(() => {

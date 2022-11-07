@@ -31,6 +31,7 @@ import { PostDetail } from "./PostDetail"
 import { FavoriteButton } from '../../atoms/button/FavoriteButton';
 import { BookmarkButton } from '../../atoms/button/BookmarkButton';
 import { useAllFavorites } from "../../../hooks/useAllFavorites";
+import nouser from "../../../images/nouser.png";
 
 type Props = {
   id: string;
@@ -42,7 +43,9 @@ type Props = {
   created_at: string;
   title: string;
   username: string;
-  userimage: string;
+  userimage?: {
+    url: string
+  };
   isfavorited: boolean;
 }
 
@@ -116,9 +119,11 @@ export const PostCard: FC<Props> = memo((props) => {
       >
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              R
-          </Avatar>
+            <Avatar
+              sx={{ bgcolor: red[500] }}
+              aria-label="recipe"
+              src={userimage?.url != null ? userimage?.url : nouser}
+            />
           }
           action={
             <BookmarkButton id={id} />
