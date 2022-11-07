@@ -11,7 +11,7 @@ module Api
         # p current_api_v1_user
 
 
-        # posts = Post.all
+        # @posts = Post.all.order(created_at: 'DESC')
 
         # posts.current_user = current_api_v1_user
 
@@ -34,6 +34,8 @@ module Api
         render json: {
             posts: a
         }
+
+        # render 'index', formats: 'json', handlers: 'jbuilder'
 
         # render json: a
         

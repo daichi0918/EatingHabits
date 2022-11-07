@@ -1,4 +1,4 @@
-import { FC, memo, ReactNode, useContext } from "react";
+import { FC, memo, ReactNode, useContext, useState, useEffect } from "react";
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -22,9 +22,10 @@ export const FavoriteButton: FC<Props> = memo((props: Props) => {
   const { post_id, user_id, favorites, setFavoriteTrigger, isfavorited } = props
   const { userId } = useContext(AuthContext);
   const { setPostId, setTrigger } = useContext(PostContext);
+  const [favorite, setFavorite] = useState<boolean>(isfavorited);
   // const { onClick } = props;
 
-  let favorite = isfavorited
+  // let favorite = isfavorited
 
   // const isFavorite = () => {
   //   let favoriteBool = false
@@ -40,7 +41,7 @@ export const FavoriteButton: FC<Props> = memo((props: Props) => {
 
   const reversefavorite = () => {
     console.log("abc:favorite")
-    favorite = false
+    setFavorite(!favorite)
   }
 
   const getFavoriteId = () => {
@@ -54,18 +55,27 @@ export const FavoriteButton: FC<Props> = memo((props: Props) => {
     return favoriteId;
   }
 
+  const fff = () => {
+    console.log("Fsssssssger")
+  }
+
+  // useEffect(() => {
+
+  //   return 
+  // }, [])
+
   return (
     <>
-      {isfavorited ? (
+      {favorite ? (
         <Tooltip title="Unlike">
           <IconButton
             aria-label="delete to favorites"
             style={{ color: "red" }}
-            onClick={() => {
-              destroyFavorite(getFavoriteId(), post_id, setFavoriteTrigger)
-            }
-            }
-            // onClick={reversefavorite}
+            // onClick={() => {
+            //   destroyFavorite(getFavoriteId(), post_id, setFavoriteTrigger)
+            // }
+            // }
+            onClick={reversefavorite}
             sx={{
               paddingTop: 0,
               marginLeft: 25
@@ -78,11 +88,11 @@ export const FavoriteButton: FC<Props> = memo((props: Props) => {
           < Tooltip title="Like">
             <IconButton
               aria-label="add to favorites"
-              onClick={() => {
-                createFavorite(userId, post_id, setFavoriteTrigger)
-              }
-              }
-              // onClick={reversefavorite}
+              // onClick={() => {
+              //   createFavorite(userId, post_id, setFavoriteTrigger)
+              // }
+              // }
+              onClick={reversefavorite}
               sx={{
                 paddingTop: 0,
                 marginLeft: 25
