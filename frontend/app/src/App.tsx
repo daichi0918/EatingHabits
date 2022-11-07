@@ -21,6 +21,10 @@ export const AuthContext = createContext({} as {
   setCurrentUser: React.Dispatch<React.SetStateAction<UserType | undefined>>
   userId: string | undefined
   setUserId: React.Dispatch<React.SetStateAction<string | undefined>>
+  userName: string
+  setUserName: React.Dispatch<React.SetStateAction<string>>
+  userImage: any
+  setUserImage: React.Dispatch<React.SetStateAction<any>>
 })
 
 const App: FC = () => {
@@ -28,6 +32,8 @@ const App: FC = () => {
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false)
   const [currentUser, setCurrentUser] = useState<UserType | undefined>()
   const [userId, setUserId] = useState<string | undefined>()
+  const [userName, setUserName] = useState<string>("")
+  const [userImage, setUserImage] = useState<any>("")
 
   const handleGetCurrentUser = async () => {
     try {
@@ -37,6 +43,8 @@ const App: FC = () => {
         setIsSignedIn(true)
         setCurrentUser(res?.data.data)
         setUserId(res.data.data.id)
+        setUserName(res.data.data.name)
+        setUserImage(res.data.data.image)
       } else {
         console.log("No current user")
       }
@@ -53,7 +61,7 @@ const App: FC = () => {
   }, [setCurrentUser])
 
   return (
-    <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser, userId, setUserId }}>
+    <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser, userId, setUserId, userName, setUserName, userImage, setUserImage }}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Router />

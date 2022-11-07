@@ -20,7 +20,7 @@ import { TopHeaderLayout } from "../templates/TopHeaderLayout";
 import { AlertMessage } from "../organisms/auth/AlertMessage"
 
 export const SignIn = () => {
-  const { setIsSignedIn, setCurrentUser, setUserId } = useContext(AuthContext);
+  const { setIsSignedIn, setCurrentUser, setUserId, setUserName, setUserImage } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alertMessageOpen, setAlertMessageOpen] = useState<boolean>(false);
@@ -52,6 +52,8 @@ export const SignIn = () => {
         setIsSignedIn(true);
         setCurrentUser(res.data.data)
         setUserId(res.data.data.id)
+        setUserName(res.data.data.name)
+        setUserImage(res.data.data.image)
 
         navigate("/home")
       } else {

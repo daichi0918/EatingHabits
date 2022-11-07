@@ -1,6 +1,6 @@
 // import { Box, Flex, Heading, Link, useDisclosure } from "@chakra-ui/react";
 import Cookies from "js-cookie";
-import { FC, memo, useCallback, useEffect, useContext } from "react";
+import { FC, memo, useCallback, useEffect, useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"
 import AppBar from '@mui/material/AppBar';
@@ -27,18 +27,27 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
+import Tooltip from '@mui/material/Tooltip';
+import Avatar from '@mui/material/Avatar';
+import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
+import Menu from '@mui/material/Menu';
 
 import { MenuIconButton } from "../../atoms/button/MenuIconButton";
 import { MenuDrawer } from "../../molecules/MenuDrawer";
 import { signOut } from "../../../apis/auth"
 import { AuthContext } from "../../../App";
+import nouser from "../../../images/nouser.png";
 
 export const HomeHeader: FC = memo(() => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
-  const { setIsSignedIn } = useContext(AuthContext)
+  const { setIsSignedIn, userName, userImage } = useContext(AuthContext)
   const navigate = useNavigate();
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const onClickHome = useCallback(() => navigate("/home"), [navigate]);
+  const onClickProfile = useCallback(() => navigate("//home/settings/profile"), []);
   const onClickUserManagement = useCallback(() => navigate("/home/user_management"), [navigate]);
 
   const headers = {
@@ -48,12 +57,7 @@ export const HomeHeader: FC = memo(() => {
     "content-type": "application/json"
   }
 
-  useEffect(() => {
-    axios.get<any>("http://localhost:3002/api/v1/users", { headers: headers }).then((res) => {
-    })
-  }, [])
-
-  const handleSignOut = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSignOut = async () => {
     try {
       const res = await signOut()
 
@@ -76,18 +80,34 @@ export const HomeHeader: FC = memo(() => {
     }
   }
 
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
 
 
 
   return (
     <>
-      {/* <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
-      <CssBaseline />
+
+      {/* <GlobalStyles styles={{ ul: { margin: 5, padding: 0, listStyle: 'none' } }} />
+      <CssBaseline /> */}
+      {/* <Box sx={{
+        display: 'flex',
+        color: 'white'
+      }}> */}
       <AppBar
-        position="static"
-        color="default"
-        elevation={0}
-        sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+        component="nav"
+        color="inherit"
+        elevation={3}
+        sx={{
+          borderBottom: '5px solid',
+          color: 'white'
+        }}
       >
         <Toolbar sx={{ flexWrap: 'wrap' }}>
           <Typography
@@ -95,6 +115,7 @@ export const HomeHeader: FC = memo(() => {
             color="inherit"
             noWrap
             sx={{
+              color: 'black',
               flexGrow: 1,
               '&:hover': {
                 cursor: "pointer",
@@ -102,53 +123,9 @@ export const HomeHeader: FC = memo(() => {
             }}
             onClick={onClickHome}
           >
-            EH manager
+            食べマネ
           </Typography>
-          <nav>
-            <Button
-              variant="outlined"
-              sx={{ my: 1, mx: 1.5 }}
-              onClick={handleSignOut}
-            >
-              ログアウト
-            </Button>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="/home/settings/profile"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              マイページ
-            </Link>
-          </nav>
-        </Toolbar>
-      </AppBar> */}
-
-      <GlobalStyles styles={{ ul: { margin: 5, padding: 0, listStyle: 'none' } }} />
-      <CssBaseline />
-      <Box sx={{ display: 'flex' }}>
-        <AppBar
-          component="nav"
-          color="default"
-          elevation={3}
-          sx={{ borderBottom: (theme) => `5px solid ${theme.palette.divider}` }}
-        >
-          <Toolbar sx={{ flexWrap: 'wrap' }}>
-            <Typography
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{
-                flexGrow: 1,
-                '&:hover': {
-                  cursor: "pointer",
-                },
-              }}
-              onClick={onClickHome}
-            >
-              EH manager
-          </Typography>
-            <nav>
+          {/* <nav>
               <Button
                 variant="outlined"
                 sx={{ my: 1, mx: 1.5 }}
@@ -164,10 +141,43 @@ export const HomeHeader: FC = memo(() => {
               >
                 マイページ
             </Link>
-            </nav>
-          </Toolbar>
-        </AppBar>
-      </Box>
+            </nav> */}
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src={userImage?.url != null ? userImage?.url : nouser} />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {/* <MenuItem>
+                <Typography textAlign="center">マイページ</Typography>
+              </MenuItem> */}
+              <MenuItem onClick={onClickProfile}>
+                <Typography textAlign="center">プロフィール</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleSignOut}>
+                <Typography textAlign="center">ログアウト</Typography>
+              </MenuItem>
+            </Menu>
+          </Box>
+        </Toolbar>
+      </AppBar>
+      {/* </Box> */}
     </>
   )
 })
