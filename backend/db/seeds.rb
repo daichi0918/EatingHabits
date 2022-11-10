@@ -1,22 +1,16 @@
-# 8.times do |n|
-#   user = User.new(
-#     name: "User_#{n}",
-#     email: "example#{n}@example.co.jp",
-#     password: "password#{n}"
-#   )
+3.times do |n|
+  user = User.new(
+    name: "User_#{n}",
+    email: "example#{n}@example.co.jp",
+    password: "password#{n}"
+  )
 
-#   5.times do |m|
-#     user.lists.build(
-#       name: "samplelist#{m}"
-#     )
-#   end
+  user.save!
+end
 
-#   user.save!
-# end
-
-Classification.create(name: '料理')
-Classification.create(name: '食材')
-Classification.create(name: 'その他')
+# Classification.create(name: '料理')
+# Classification.create(name: '食材')
+# Classification.create(name: 'その他')
 
 # User.all.each do |user|
 #   date = Date.new(2022, 9, 21)
@@ -39,10 +33,10 @@ Classification.create(name: 'その他')
 
 # end
 
-Mealtime.create(name: '朝',color: '#E3C576')
-Mealtime.create(name: '昼',color: '#67a8dd')
-Mealtime.create(name: '夕',color: '#F08300')
-Mealtime.create(name: 'その他',color: '#734e30')
+# Mealtime.create(name: '朝',color: '#E3C576')
+# Mealtime.create(name: '昼',color: '#67a8dd')
+# Mealtime.create(name: '夕',color: '#F08300')
+# Mealtime.create(name: 'その他',color: '#734e30')
 
 # 3.times do |n|
 #   diary = Diary.new(
