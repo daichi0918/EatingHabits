@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  namespace :api, format: 'json' do
+  namespace :api do
     namespace :v1 do
       resources :users, only: %i[index create edit update destroy] do
         resources :lists, only: %i[index create destroy]
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
         resources :diaries, only: %i[index create edit update destroy]
       end
 
-      resources :posts, only: %i[index create edit update destroy] do
+      resources :posts, only: %i[index create edit update destroy], format: 'json' do
         resources :comments, only: %i[create destroy]
         resources  :bookmarks, only: %i[index create destroy]
         resources  :favorites, only: %i[index create destroy]
