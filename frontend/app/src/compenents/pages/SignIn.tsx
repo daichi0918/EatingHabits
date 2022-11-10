@@ -18,6 +18,7 @@ import { signIn } from "../../apis/auth";
 import { AuthContext } from "../../App";
 import { TopHeaderLayout } from "../templates/TopHeaderLayout";
 import { AlertMessage } from "../organisms/auth/AlertMessage"
+import { TopFooter } from "../organisms/layout/TopFooter"
 
 export const SignIn = () => {
   const { setIsSignedIn, setCurrentUser, setUserId, setUserName, setUserImage } = useContext(AuthContext);
