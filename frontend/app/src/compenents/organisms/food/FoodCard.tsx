@@ -33,7 +33,7 @@ export const FoodCard: FC<any> = memo((props) => {
 
   const onClickFoodEdit = () => {
     setFoodId(id)
-    navigate("/home/food/edit")
+    navigate(`/home/food/${id}/edit`)
   }
 
   return (

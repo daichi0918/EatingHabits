@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { NavigateFunction } from "react-router-dom";
 import dayjs, { Dayjs } from 'dayjs';
+import Cookies from "js-cookie";
 
 import { AuthContext } from "../App";
 import { FoodContext } from "../providers/FoodProvider";
@@ -14,6 +15,14 @@ import { PostType } from "../types/api/post"
 
 export const createPost = (setTrigger: React.Dispatch<React.SetStateAction<boolean>>, userId: any, title: string | Blob, image: File | undefined, text: string | Blob, navigate: NavigateFunction) => {
   // export const createPost = (setTrigger: any, title: any, image: any, text: any, navigate: any) => {
+
+  const headers = {
+    "access-token": Cookies.get("_access_token") as any,
+    "client": Cookies.get("_client") as any,
+    "uid": Cookies.get("_uid") as any,
+    "content-type": "application/json"
+  }
+
   const createFormData = () => {
     const formData = new FormData()
     if (!image) return
@@ -27,7 +36,7 @@ export const createPost = (setTrigger: React.Dispatch<React.SetStateAction<boole
 
   const data = createFormData()
 
-  return axios.post(postCreate, data)
+  return axios.post(postCreate, data, { headers: headers })
     .then(() => {
       setTrigger((prev: any) => { return !prev });
       navigate("/home/post")

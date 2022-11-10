@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import dayjs, { Dayjs } from 'dayjs';
+import Cookies from "js-cookie"
 
 import { AuthContext } from "../App";
 import { FoodContext } from "../providers/FoodProvider";
@@ -12,6 +13,13 @@ import { DiaryIndexType } from "../types/api/diary"
 
 export const createDiary = (userId: string | undefined, setTrigger: any, navigate: any, mealtime: string | Blob, eatOn: string | Blob, mainmenu: string | Blob, sidemenu: string | Blob, image: string | Blob) => {
 
+  const headers = {
+    "access-token": Cookies.get("_access_token") as any,
+    "client": Cookies.get("_client") as any,
+    "uid": Cookies.get("_uid") as any,
+    "content-type": "application/json"
+  }
+
   const createFormData = () => {
     const formData = new FormData()
     if (!image) return
@@ -26,7 +34,7 @@ export const createDiary = (userId: string | undefined, setTrigger: any, navigat
 
   const data = createFormData()
 
-  return axios.post(diaryCreate(userId), data)
+  return axios.post(diaryCreate(userId), data, { headers: headers })
     .then(() => {
       setTrigger((prev: any) => { return !prev });
       navigate("/home/daily")
@@ -36,6 +44,13 @@ export const createDiary = (userId: string | undefined, setTrigger: any, navigat
 
 export const updateDiary = (userId: string | undefined, diaryId: string | undefined, setTrigger: any, navigate: any, mealtime: string | Blob, eatOn: string | Blob, mainmenu: string | Blob, sidemenu: string | Blob, image: string | Blob) => {
 
+  const headers = {
+    "access-token": Cookies.get("_access_token") as any,
+    "client": Cookies.get("_client") as any,
+    "uid": Cookies.get("_uid") as any,
+    "content-type": "application/json"
+  }
+
   const createFormData = () => {
     const formData = new FormData()
     if (!image) return
@@ -50,7 +65,7 @@ export const updateDiary = (userId: string | undefined, diaryId: string | undefi
 
   const data = createFormData()
 
-  return axios.put(diaryUpdate(userId, diaryId), data)
+  return axios.put(diaryUpdate(userId, diaryId), data, { headers: headers })
     .then(() => {
       setTrigger((prev: any) => { return !prev });
       navigate("/home/daily")

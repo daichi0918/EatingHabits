@@ -3,6 +3,7 @@ import { useCallback, useState } from "react";
 
 import { User } from "../types/api/user";
 import { usersIndex } from "../urls/index"
+import Cookies from "js-cookie"
 
 export const useAllUsers = () => {
   // const [userProfiles, setUserProfiles] = useState<Array<UserProfile>>([]);
@@ -13,7 +14,14 @@ export const useAllUsers = () => {
   const getUsers = useCallback(() => {
     setLoading(true);
     setError(false);
-    axios.get<any>(usersIndex).then((res) => {
+    axios.get<any>(usersIndex, {
+      headers: {
+        "access-token": Cookies.get("_access_token") as any,
+        "client": Cookies.get("_client") as any,
+        "uid": Cookies.get("_uid") as any,
+        "content-type": "application/json"
+      }
+    }).then((res) => {
       setUsers(res.data.users);
     }).catch(() => {
       setError(true);

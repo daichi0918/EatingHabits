@@ -40,10 +40,14 @@ import { signUp } from "../../apis/auth";
 import { AuthContext } from "../../App";
 import { SignUpParams } from "../../types/api/auth";
 import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
-import { updateUser } from "../../apis/user";
+import { updateUser, updateUserImage, updateDeleteUserImage } from "../../apis/user";
 import { FoodContext } from "../../providers/FoodProvider";
 import { useEditUser } from "../../hooks/useEditUser";
 import nouser from "../../images/nouser.png";
+
+const styledImg = styled('img')({
+  borderRadius: '50%'
+});
 
 export const Profile = () => {
 
@@ -55,18 +59,21 @@ export const Profile = () => {
   const [gender, setGender] = useState<number>(0);
   const [date, setDate] = useState<string>("");
   const [image, setImage] = useState<any>("");
+  const [uploadImage, setUploadImage] = useState<any>("");
+  // const [noUploadImage, setNoUploadImage] = useState<string>("")
   const [memo, setMemo] = useState<string>("");
   const [preview, setPreview] = useState("");
   const [trigger, setTrigger] = useState(false);
 
 
 
-  const uploadImage = useCallback((e: any) => {
-    const file = e.target.files[0]
-    setImage(e.target.files[0]);
-    console.log("file:" + file)
-    console.log("image:" + image)
-  }, [])
+
+  // const uploadImage = useCallback((e: any) => {
+  //   const file = e.target.files[0]
+  //   setImage(e.target.files[0]);
+  //   console.log("file:" + file)
+  //   console.log("image:" + image)
+  // }, [])
 
   // プレビュー機能
   const previewImage = useCallback((e: any) => {
@@ -104,17 +111,14 @@ export const Profile = () => {
                     <Grid container spacing={2}>
                       <Grid item xs={12}>
                         プロフィール変更
-                  </Grid>
+                      </Grid>
                       <Grid item xs={12}>
-                        <CardMedia
-                          component="img"
-                          height="500"
-                          // image={image?.url}
-                          image={image?.url != null ? image?.url : nouser}
+                        <img
                           alt="No Image"
-                          sx={{
-                            borderRadius: "50%"
-                          }}
+                          src={image?.url != null ? image?.url : nouser}
+                          width="250"
+                          height="250"
+                          style={{ borderRadius: "50%" }}
                         />
                       </Grid>
                       <Grid item xs={12}>
@@ -149,11 +153,12 @@ export const Profile = () => {
                             accept="image/*"
                             id="icon-button-file"
                             type="file"
+                            // hidden
                             // value={image}
                             onChange={(e: any) => {
                               // uploadImage(e)
                               // previewImage(e)
-                              setImage(e.target.files[0])
+                              setUploadImage(e.target.files[0])
                               setPreview(window.URL.createObjectURL(e.target.files[0]))
                             }}
                           />
@@ -177,16 +182,35 @@ export const Profile = () => {
                       /> */}
                         </label>
                       </Grid>
-                      {/* <Grid item xs={6}>
-                    <Button variant="contained">
-                      アップロード
-                    </Button>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Button>
-                      画像削除
-                    </Button>
-                  </Grid> */}
+                      <Grid item xs={6}>
+                        <Button
+                          variant="contained"
+                          sx={{
+                            mr: 1,
+                            backgroundColor: '#FF8F00',
+                            '&:hover': {
+                              backgroundColor: '#FF8F00',
+                              opacity: 0.8
+                            },
+                          }}
+                          onClick={() => updateUserImage(userId, uploadImage, setTrigger)}
+                        >
+                          アップロード
+                        </Button>
+                        <Button
+                          variant="contained"
+                          sx={{
+                            backgroundColor: '#424242',
+                            '&:hover': {
+                              backgroundColor: '#424242',
+                              opacity: 0.8
+                            },
+                          }}
+                          onClick={() => updateDeleteUserImage(userId, setTrigger)}
+                        >
+                          画像削除
+                        </Button>
+                      </Grid>
                       <Grid item xs={12}>
                         <Divider />
                       </Grid>

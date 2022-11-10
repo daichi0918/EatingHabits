@@ -1,6 +1,7 @@
 module Api
   module V1
     class FoodsController < ApplicationController
+      before_action :authenticate_api_v1_user!
       before_action :set_food, only: %i[edit update destroy]
 
       def index

@@ -39,7 +39,7 @@ import { signOut } from "../../../apis/auth"
 import { AuthContext } from "../../../App";
 import nouser from "../../../images/nouser.png";
 
-export const HomeHeader: FC = memo(() => {
+export const TopFooter: FC = memo(() => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const { setIsSignedIn, userName, userImage } = useContext(AuthContext)
   const navigate = useNavigate();
@@ -88,95 +88,46 @@ export const HomeHeader: FC = memo(() => {
     setAnchorElUser(null);
   };
 
+  const footers = [
+    {
+      title: 'Company',
+      description: ['Team', 'History', 'Contact us', 'Locations'],
+    },
+    {
+      title: 'Features',
+      description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
+    },
+    {
+      title: 'Resources',
+      description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
+    },
+    {
+      title: 'Legal',
+      description: ['Privacy policy', 'Terms of use'],
+    },
+  ];
+
 
 
 
   return (
     <>
-
-      {/* <GlobalStyles styles={{ ul: { margin: 5, padding: 0, listStyle: 'none' } }} />
-      <CssBaseline /> */}
-      {/* <Box sx={{
-        display: 'flex',
-        color: 'white'
-      }}> */}
-      <AppBar
-        component="nav"
-        color="inherit"
-        elevation={3}
-        sx={{
-          borderBottom: '5px solid',
-          color: 'white'
-        }}
-      >
-        <Toolbar sx={{ flexWrap: 'wrap' }}>
-          <Typography
-            variant="h6"
-            color="inherit"
-            noWrap
-            sx={{
-              color: 'black',
-              flexGrow: 1,
-              '&:hover': {
-                cursor: "pointer",
-              },
-            }}
-            onClick={onClickHome}
-          >
-            食べマネ
-          </Typography>
-          {/* <nav>
-              <Button
-                variant="outlined"
-                sx={{ my: 1, mx: 1.5 }}
-                onClick={handleSignOut}
-              >
-                ログアウト
-            </Button>
-              <Link
-                variant="button"
-                color="text.primary"
-                href="/home/settings/profile"
-                sx={{ my: 1, mx: 1.5 }}
-              >
-                マイページ
-            </Link>
-            </nav> */}
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src={userImage?.url != null ? userImage?.url : nouser} />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {/* <MenuItem>
-                <Typography textAlign="center">マイページ</Typography>
-              </MenuItem> */}
-              <MenuItem onClick={onClickProfile}>
-                <Typography textAlign="center">プロフィール</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleSignOut}>
-                <Typography textAlign="center">ログアウト</Typography>
-              </MenuItem>
-            </Menu>
-          </Box>
-        </Toolbar>
-      </AppBar>
+      <footer>
+        <Grid container spacing={20}>
+          {footers.map(footer => (
+            <Grid item xs key={footer.title}>
+              <Typography variant="h6" color="textPrimary" gutterBottom>
+                {footer.title}
+              </Typography>
+              {footer.description.map(item => (
+                <Typography key={item} variant="subtitle1" color="textSecondary">
+                  {item}
+                </Typography>
+              ))}
+            </Grid>
+          ))}
+        </Grid>
+      </footer>
       {/* </Box> */}
     </>
   )

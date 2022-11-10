@@ -17,11 +17,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { signIn } from "../../apis/auth";
 import { AuthContext } from "../../App";
 import { TopHeaderLayout } from "../templates/TopHeaderLayout";
+import { AlertMessage } from "../organisms/auth/AlertMessage"
+import { TopFooter } from "../organisms/layout/TopFooter"
 
 export const SignIn = () => {
-  const { setIsSignedIn, setCurrentUser, setUserId } = useContext(AuthContext);
+  const { setIsSignedIn, setCurrentUser, setUserId, setUserName, setUserImage } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [alertMessageOpen, setAlertMessageOpen] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -50,11 +53,16 @@ export const SignIn = () => {
         setIsSignedIn(true);
         setCurrentUser(res.data.data)
         setUserId(res.data.data.id)
+        setUserName(res.data.data.name)
+        setUserImage(res.data.data.image)
 
         navigate("/home")
+      } else {
+        setAlertMessageOpen(true)
       }
     } catch (e) {
       console.log(e);
+      setAlertMessageOpen(true)
     }
   };
   const theme = createTheme();
@@ -227,6 +235,12 @@ export const SignIn = () => {
             </Box>
           </Container>
         </ThemeProvider>
+        <AlertMessage
+          open={alertMessageOpen}
+          setOpen={setAlertMessageOpen}
+          severity="error"
+          message="メールアドレスかパスワードが間違っています"
+        />
       </TopHeaderLayout>
 
     </>

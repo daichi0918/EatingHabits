@@ -20,13 +20,12 @@ import { SignUpParams } from "../../types/api/auth";
 import { TopHeaderLayout } from "../templates/TopHeaderLayout";
 
 export const SignUp = () => {
-  const { setIsSignedIn, setCurrentUser, setUserId } = useContext(AuthContext);
+  const { setIsSignedIn, setCurrentUser, setUserId, setUserName, setUserImage } = useContext(AuthContext);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const confirmSuccessUrl = "https://yahoo.co.jp";
 
   const navigate = useNavigate();
 
@@ -51,6 +50,8 @@ export const SignUp = () => {
         setIsSignedIn(true)
         setCurrentUser(res.data.data)
         setUserId(res.data.data.id)
+        setUserName(res.data.data.name)
+        setUserImage(res.data.data.image)
 
         navigate("/home")
 

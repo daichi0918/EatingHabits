@@ -31,6 +31,7 @@ import { PostDetail } from "./PostDetail"
 import { FavoriteButton } from '../../atoms/button/FavoriteButton';
 import { BookmarkButton } from '../../atoms/button/BookmarkButton';
 import { useAllFavorites } from "../../../hooks/useAllFavorites";
+import nouser from "../../../images/nouser.png";
 
 type Props = {
   id: string;
@@ -42,7 +43,10 @@ type Props = {
   created_at: string;
   title: string;
   username: string;
-  userimage: string
+  userimage?: {
+    url: string
+  };
+  isfavorited: boolean;
 }
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -72,7 +76,7 @@ const textTypography = styled(Typography)({
 
 
 export const PostCard: FC<Props> = memo((props) => {
-  const { id, user_id, text, image, title, created_at, username, userimage } = props;
+  const { id, user_id, text, image, title, created_at, username, userimage, isfavorited } = props;
 
   const { userId } = useContext(AuthContext);
   const { setPostId, setTrigger } = useContext(PostContext);
@@ -115,9 +119,11 @@ export const PostCard: FC<Props> = memo((props) => {
       >
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              R
-          </Avatar>
+            <Avatar
+              sx={{ bgcolor: red[500] }}
+              aria-label="recipe"
+              src={userimage?.url != null ? userimage?.url : nouser}
+            />
           }
           action={
             <BookmarkButton id={id} />
@@ -154,7 +160,7 @@ export const PostCard: FC<Props> = memo((props) => {
               <ChatBubbleOutlineIcon />
             </IconButton>
           </Tooltip> */}
-          <FavoriteButton post_id={id} user_id={user_id} favorites={favorites} setFavoriteTrigger={setFavoriteTrigger} />
+          <FavoriteButton post_id={id} user_id={user_id} favorites={favorites} setFavoriteTrigger={setFavoriteTrigger} isfavorited={isfavorited} />
           {favorites.length}
           {/* <ExpandMore
             expand={expanded}

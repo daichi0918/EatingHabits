@@ -1,4 +1,4 @@
-import { FC, memo, ReactNode, useContext } from "react";
+import { FC, memo, ReactNode, useContext, useState, useEffect } from "react";
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -14,25 +14,34 @@ type Props = {
   post_id: string;
   user_id: string;
   favorites: Array<any>;
-  setFavoriteTrigger: React.Dispatch<React.SetStateAction<boolean>>
+  setFavoriteTrigger: React.Dispatch<React.SetStateAction<boolean>>;
+  isfavorited: boolean;
 }
 
-export const FavoriteButton: FC<Props> = memo((props) => {
-  const { post_id, user_id, favorites, setFavoriteTrigger } = props
+export const FavoriteButton: FC<Props> = memo((props: Props) => {
+  const { post_id, user_id, favorites, setFavoriteTrigger, isfavorited } = props
   const { userId } = useContext(AuthContext);
   const { setPostId, setTrigger } = useContext(PostContext);
+  const [favorite, setFavorite] = useState<boolean>(isfavorited);
   // const { onClick } = props;
 
-  const isFavorite = () => {
-    let favoriteBool = false
-    if (favorites.length == 0) { return favoriteBool }
-    favorites.forEach(favorite => {
-      if (favorite.user_id == user_id) {
-        favoriteBool = true
-        return favoriteBool
-      }
-    })
-    return favoriteBool
+  // let favorite = isfavorited
+
+  // const isFavorite = () => {
+  //   let favoriteBool = false
+  //   if (favorites.length == 0) { return favoriteBool }
+  //   favorites.forEach(favorite => {
+  //     if (favorite.user_id == user_id) {
+  //       favoriteBool = true
+  //       return favoriteBool
+  //     }
+  //   })
+  //   return favoriteBool
+  // }
+
+  const reversefavorite = () => {
+    console.log("abc:favorite")
+    setFavorite(!favorite)
   }
 
   const getFavoriteId = () => {
@@ -46,14 +55,27 @@ export const FavoriteButton: FC<Props> = memo((props) => {
     return favoriteId;
   }
 
+  const fff = () => {
+    console.log("Fsssssssger")
+  }
+
+  // useEffect(() => {
+
+  //   return 
+  // }, [])
+
   return (
     <>
-      {isFavorite() ? (
+      {favorite ? (
         <Tooltip title="Unlike">
           <IconButton
             aria-label="delete to favorites"
             style={{ color: "red" }}
-            onClick={() => destroyFavorite(getFavoriteId(), post_id, setFavoriteTrigger)}
+            // onClick={() => {
+            //   destroyFavorite(getFavoriteId(), post_id, setFavoriteTrigger)
+            // }
+            // }
+            onClick={reversefavorite}
             sx={{
               paddingTop: 0,
               marginLeft: 25
@@ -66,7 +88,11 @@ export const FavoriteButton: FC<Props> = memo((props) => {
           < Tooltip title="Like">
             <IconButton
               aria-label="add to favorites"
-              onClick={() => createFavorite(userId, post_id, setFavoriteTrigger)}
+              // onClick={() => {
+              //   createFavorite(userId, post_id, setFavoriteTrigger)
+              // }
+              // }
+              onClick={reversefavorite}
               sx={{
                 paddingTop: 0,
                 marginLeft: 25
@@ -75,7 +101,8 @@ export const FavoriteButton: FC<Props> = memo((props) => {
               <FavoriteBorderIcon />
             </IconButton>
           </Tooltip >
-        )}
+        )
+      }
     </>
   )
 })
