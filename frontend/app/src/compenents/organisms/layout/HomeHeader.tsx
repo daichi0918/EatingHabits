@@ -47,7 +47,7 @@ export const HomeHeader: FC = memo(() => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const onClickHome = useCallback(() => navigate("/home"), [navigate]);
-  const onClickProfile = useCallback(() => navigate("//home/settings/profile"), []);
+  const onClickProfile = useCallback(() => navigate("/home/settings/profile"), []);
   const onClickUserManagement = useCallback(() => navigate("/home/user_management"), [navigate]);
 
   const headers = {
