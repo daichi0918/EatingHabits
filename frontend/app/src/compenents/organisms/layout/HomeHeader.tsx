@@ -93,13 +93,6 @@ export const HomeHeader: FC = memo(() => {
 
   return (
     <>
-
-      {/* <GlobalStyles styles={{ ul: { margin: 5, padding: 0, listStyle: 'none' } }} />
-      <CssBaseline /> */}
-      {/* <Box sx={{
-        display: 'flex',
-        color: 'white'
-      }}> */}
       <AppBar
         component="nav"
         color="inherit"
@@ -125,23 +118,6 @@ export const HomeHeader: FC = memo(() => {
           >
             食べマネ
           </Typography>
-          {/* <nav>
-              <Button
-                variant="outlined"
-                sx={{ my: 1, mx: 1.5 }}
-                onClick={handleSignOut}
-              >
-                ログアウト
-            </Button>
-              <Link
-                variant="button"
-                color="text.primary"
-                href="/home/settings/profile"
-                sx={{ my: 1, mx: 1.5 }}
-              >
-                マイページ
-            </Link>
-            </nav> */}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

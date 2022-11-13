@@ -17,6 +17,10 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
+import LoginIcon from '@mui/icons-material/Login';
+import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import HelpIcon from '@mui/icons-material/Help';
 
 import { MenuIconButton } from "../../atoms/button/MenuIconButton";
 import { MenuDrawer } from "../../molecules/MenuDrawer";
@@ -26,6 +30,8 @@ export const TopHeader: FC = memo(() => {
   const navigate = useNavigate();
 
   const onClickTop = useCallback(() => navigate("/"), [navigate]);
+  const onClickSignin = useCallback(() => navigate("/signin"), [navigate]);
+  const onClickSignup = useCallback(() => navigate("/signup"), [navigate]);
 
   // useEffect(() => {
   //   axios.get<any>("http://localhost:3002/api/v1/users").then((res) => {
@@ -38,112 +44,118 @@ export const TopHeader: FC = memo(() => {
 
   return (
     <>
-      {/* <Flex
-        as="nav"
-        bg="teal.500"
-        color="gray.50"
-        align="center"
-        justify="space-between"
-        padding={{ base: 3, md: 5 }}
-      >
-        <Flex align="center" as="a" mr={8} _hover={{ cursor: "pointer" }} onClick={onClickHome}>
-          <Heading as="h1" fontSize={{ base: "md", md: "lg" }}>
-            EHmanger
-        </Heading>
-        </Flex>
-
-        <Flex align="center" fontSize="sm" flexGrow={2} display={{ base: "none", md: "flex" }}>
-          <Box pr={4}>
-            <Link onClick={onClickUserManagement}>ユーザー一覧</Link>
-          </Box>
-          {/* <Link>ユーザー一覧</Link> */}
-      {/* </Flex>
-        <MenuIconButton onOpen={onOpen} />
-      </Flex >
-  <MenuDrawer onClose={onClose} isOpen={isOpen} onClickHome={onClickHome} onClickUserManagement={onClickUserManagement}
-  />
-  * /} */}
-      {/* <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              onClick={onClickHome}
-              sx={{
-                mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
-              EH manager
-          </Typography>
-            <div style={{ flexGrow: 1 }}></div>
-            <Button color="inherit" onClick={onClickUserManagement}>users</Button>
-            <Button color="inherit">Logout</Button>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-      </Box> */}
-      <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
-      <CssBaseline />
       <AppBar
-        position="static"
-        color="default"
-        elevation={0}
-        sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+        component="nav"
+        color="inherit"
+        elevation={3}
+        sx={{
+          borderBottom: '5px solid',
+          color: 'white'
+        }}
       >
         <Toolbar sx={{ flexWrap: 'wrap' }}>
           <Typography
+            onClick={onClickTop}
             variant="h6"
             color="inherit"
-            noWrap sx={{ flexGrow: 1 }}
-            onClick={onClickTop}
+            noWrap
+            sx={{
+              color: 'black',
+              flexGrow: 1,
+              '&:hover': {
+                cursor: "pointer",
+              },
+            }}
           >
-            EH manager
+            食べマネ
           </Typography>
-          <nav>
-            {/* <Link
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Features
-            </Link> */}
-            <Link
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              FAQ
-            </Link>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="/signin"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              ログイン
-            </Link>
-          </nav>
-          <Button href="/signup" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
-            新規登録
-          </Button>
+          <Box sx={{ flexGrow: 0 }}>
+            <Button
+              sx={{
+                backgroundColor: 'white',
+                color: 'black',
+                // '&:hover': {
+                //   backgroundColor: 'white',
+                //   opacity: 0.1,
+                // },
+              }}>
+              <IconButton
+                color="inherit"
+                sx={{
+                  color: '#FF8F00'
+                }}>
+                <HelpIcon
+                  fontSize="medium"
+                />
+              </IconButton>
+              <Typography
+                color="inherit"
+                noWrap
+                sx={{
+                  color: 'black',
+                  flexGrow: 1,
+                }}
+              >
+                よくある質問
+              </Typography>
+            </Button>
+            <Button
+              onClick={onClickSignin}
+              sx={{
+                backgroundColor: 'white',
+                color: 'black',
+                // '&:hover': {
+                //   backgroundColor: 'white',
+                //   opacity: 0.1,
+                // },
+              }}>
+              <IconButton
+                color="inherit"
+                sx={{
+                  color: 'black'
+                }}>
+                <LoginIcon />
+              </IconButton>
+              <Typography
+                color="inherit"
+                noWrap
+                sx={{
+                  color: 'black',
+                  flexGrow: 1,
+                }}
+              >
+                ログイン
+              </Typography>
+            </Button>
+            <Button
+              onClick={onClickSignup}
+              sx={{
+                backgroundColor: 'white',
+                color: 'black',
+                // '&:hover': {
+                //   backgroundColor: 'white',
+                //   opacity: 0.1,
+                // },
+              }}>
+              <IconButton
+                color="inherit"
+                sx={{
+                  color: 'black'
+                }}>
+                <PersonAddIcon />
+              </IconButton>
+              <Typography
+                color="inherit"
+                noWrap
+                sx={{
+                  color: 'black',
+                  flexGrow: 1,
+                }}
+              >
+                アカウント登録
+              </Typography>
+            </Button>
+          </Box>
         </Toolbar>
       </AppBar>
     </>

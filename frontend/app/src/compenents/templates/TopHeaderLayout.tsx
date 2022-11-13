@@ -1,4 +1,5 @@
 import { FC, memo, ReactNode } from "react";
+import Box from '@mui/material/Box';
 
 import { TopHeader } from "../organisms/layout/TopHeader";
 
@@ -12,6 +13,10 @@ export const TopHeaderLayout: FC<Props> = memo((props) => {
     <>
       <TopHeader />
       {children}
+      {/* <Box component="main" sx={{ p: 9 }}> */}
+
+      {/* </Box> */}
+
     </>
   )
 })
