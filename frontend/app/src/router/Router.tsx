@@ -2,7 +2,7 @@ import { FC, memo, useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { Home } from "../compenents/pages/Home";
-import { Login } from "../compenents/pages/Login";
+import { Top } from "../compenents/pages/Top";
 import { Page404 } from "../compenents/pages/Page404";
 import { UserManagement } from "../compenents/pages/UserManagement";
 import { Lists } from "../compenents/pages/Lists"
@@ -39,7 +39,7 @@ export const Router: FC = memo(() => {
   }
   return (
     <Routes>
-      <Route path="" element={<Login />} />
+      <Route path="" element={<Top />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="signin" element={<SignIn />} />
       <Route path="home" element={
