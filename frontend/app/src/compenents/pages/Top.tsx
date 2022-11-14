@@ -130,9 +130,6 @@ export const Top: FC = memo(() => {
               </Box>
             </div>
           </div>
-          <div>
-            aaaaaa
-          </div>
 
         </Box>
         {/* </ThemeProvider> */}
