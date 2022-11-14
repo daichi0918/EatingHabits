@@ -130,6 +130,23 @@ export const Top: FC = memo(() => {
               </Box>
             </div>
           </div>
+          <Box
+            sx={{
+              marginTop: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <div style={{
+              fontSize: '40px',
+              color: 'black'
+            }}>
+              <u>
+                食べマネでできること
+              </u>
+            </div>
+          </Box>
 
         </Box>
         {/* </ThemeProvider> */}

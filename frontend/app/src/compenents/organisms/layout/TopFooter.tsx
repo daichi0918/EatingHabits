@@ -38,6 +38,7 @@ import { MenuDrawer } from "../../molecules/MenuDrawer";
 import { signOut } from "../../../apis/auth"
 import { AuthContext } from "../../../App";
 import nouser from "../../../images/nouser.png";
+import "../../../assets/styles/footer.css";
 
 export const TopFooter: FC = memo(() => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
@@ -112,21 +113,33 @@ export const TopFooter: FC = memo(() => {
 
   return (
     <>
-      <footer>
-        <Grid container spacing={20}>
-          {footers.map(footer => (
-            <Grid item xs key={footer.title}>
-              <Typography variant="h6" color="textPrimary" gutterBottom>
-                {footer.title}
-              </Typography>
-              {footer.description.map(item => (
-                <Typography key={item} variant="subtitle1" color="textSecondary">
-                  {item}
-                </Typography>
-              ))}
-            </Grid>
-          ))}
-        </Grid>
+      <footer className="footer-detail-container">
+        <div className="footer-detail-container--inner center-box">
+          <div className="footer-detail-top--inner flex-row">
+            <h5>食べマネ</h5>
+            {/* <img className="footer-detail-logo" src={logo} alt="ロゴ画像" /> */}
+            <div className="copy-detail arial">© 2021 Rayward Inc.</div>
+          </div>
+          <div className="footer-detail-middle--inner flex-row">
+            <div className="footer-detail-menu-text">
+              <a className="hover1" href="/policy" target="_blank" rel="noreferrer noopener">
+                特定商取引法に基づく表記
+            </a>
+              <a className="hover1" href="/policy" target="_blank" rel="noreferrer noopener">
+                プライバシーポリシー
+            </a>
+              <a className="hover1" href="/policy" target="_blank" rel="noreferrer noopener">
+                利用規約
+            </a>
+              <a className="hover1" href="/policy" target="_blank" rel="noreferrer noopener">
+                ロイヤルティ利用規約
+            </a>
+              <a className="hover1" href="/policy" target="_blank" rel="noreferrer noopener">
+                会社概要
+            </a>
+            </div>
+          </div>
+        </div>
       </footer>
       {/* </Box> */}
     </>
