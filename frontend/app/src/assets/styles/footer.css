@@ -1,0 +1,37 @@
+/*********** footerDetail ***********/
+.footer-detail-container {
+  position: relative;
+  background-color: #e3e3e3;
+  height: auto;
+}
+.footer-detail-container--inner {
+  width: 100%;
+}
+.footer-detail-top--inner {
+  padding: 30px 0px 5px 10px;
+}
+.footer-detail-middle--inner {
+  padding: 0px 0px 30px 15px;
+}
+.footer-detail-logo {
+  width: 150px;
+}
+.copy-detail {
+  color: #404040;
+  font-size: 11px;
+  padding-top: 11px;
+  padding-left: 5px;
+}
+.footer-detail-menu-text {
+  font-size: 11px;
+  letter-spacing: 0.125rem;
+  line-height: 1.7;
+  text-decoration: none;
+  color: grey;
+}
+.footer-detail-menu-text > a {
+  display: inline-block;
+  text-decoration: none;
+  color: grey;
+  padding: 0px 5px 5px 5px;
+}
