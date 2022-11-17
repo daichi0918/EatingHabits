@@ -1,8 +1,9 @@
 /*********** footerDetail ***********/
 .footer-detail-container {
   position: relative;
-  background-color: #e3e3e3;
+  background-color: #fff;
   height: auto;
+  margin-bottom: 10px;
 }
 .footer-detail-container--inner {
   width: 100%;

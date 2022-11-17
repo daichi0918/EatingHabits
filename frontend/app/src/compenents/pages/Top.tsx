@@ -82,7 +82,7 @@ export const Top: FC = memo(() => {
                   color: 'white',
                   margin: '0px'
                 }}>
-                  日々の暮らしを快適にするサービスです。
+                  日々の暮らしを快適にするサービス。
                 </h3>
                 <h3 style={{
                   color: 'white',

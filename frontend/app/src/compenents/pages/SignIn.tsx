@@ -13,6 +13,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import LoginIcon from '@mui/icons-material/Login';
+import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 
 import { signIn } from "../../apis/auth";
 import { AuthContext } from "../../App";
@@ -69,180 +72,147 @@ export const SignIn = () => {
 
   return (
     <>
-      {/* <p>サインインページです</p>
-      <form>
-        <div>
-          <label htmlFor="email">メールアドレス</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">パスワード</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit" onClick={(e) => handleSignInSubmit(e)}>
-          Submit
-        </button>
-      </form> */}
-      {/* <Grid>
-        <Paper
-          elevation={3}
+      <TopHeaderLayout>
+        <Box
           sx={{
-            p: 4,
-            height: "50vh",
-            width: "280px",
-            m: "20px auto"
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            backgroundColor: '#f9f5eb'
+            // backgroundColor: '#DFEEE5'
           }}
         >
-          <Grid
-            container
-            direction="column"
-            justifyContent="flex-start" //多分、デフォルトflex-startなので省略できる。
-            alignItems="center"
-          >
-            <Avatar sx={{ bgcolor: teal[400] }}>
-              <LockIcon />
-            </Avatar>
-            <Typography variant={"h5"} sx={{ m: "30px" }}>
-              Login
-          </Typography>
-          </Grid>
-          <TextField
-            label="Email"
-            variant="standard"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            fullWidth
-            required
-          />
-          <TextField
-            type="password"
-            label="Password"
-            variant="standard"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            fullWidth
-            required
-          />
-          <FormControlLabel
-            labelPlacement="end"
-            label="パスワードを忘れました"
-            control={<Checkbox name="checkboxA" size="small" color="primary" />}
-          />
-          <Box mt={3}>
-            <Button
-              type="submit"
-              sx={[{ bgcolor: grey[700] },
-              {
-                '&:hover': {
-                  bgcolor: grey[600]
-                }
-              }
-              ]}
-              variant="contained"
-              onClick={(e) => handleSignInSubmit(e)}
-              fullWidth
-            >
-              ログイン
-          </Button>
-            <Typography variant="caption" display="block">
-              アカウントを持っていますか？
-            <Link to="/signup">アカウントを作成</Link>
-            </Typography>
-          </Box>
-        </Paper>
-      </Grid> */}
-      <TopHeaderLayout>
-        <ThemeProvider theme={theme}>
-          <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <Box
+          <Paper sx={{
+            marginRight: 15,
+            marginLeft: 15,
+            marginTop: 5,
+            marginBottom: 5,
+            paddingTop: 5,
+            paddingBottom: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            elevation: 5
+          }}>
+            <Avatar
               sx={{
-                marginTop: 8,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+                m: 1,
+                // bgcolor: 'secondary.main',
+                // backgroundColor: '#FF8F00',
+
+                backgroundColor: '#117768',
+
+                // backgroundColor: '#DFEEE5',
+                // backgroundColor: '#f9f5eb',
+                color: '#f9f5eb'
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                <LockOutlinedIcon />
-              </Avatar>
-              <Typography component="h1" variant="h5">
-                Sign in
+              <LockOutlinedIcon />
+              {/* <LoginOutlinedIcon /> */}
+            </Avatar>
+            <Typography component="h1" variant="h5" sx={{
+              mb: 3
+            }}>
+              ログイン
           </Typography>
-              <Box component="form" noValidate sx={{ mt: 1 }}>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
-                />
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  onClick={(e) => handleSignInSubmit(e)}
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Sign In
-            </Button>
-                <Grid container>
-                  {/* <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                </Link>
-                </Grid> */}
-                  <Grid item>
-                    <Link to="/signup">
-                      {"Don't have an account? Sign Up"}
-                    </Link>
-                  </Grid>
-                </Grid>
-              </Box>
-            </Box>
-          </Container>
-        </ThemeProvider>
-        <AlertMessage
-          open={alertMessageOpen}
-          setOpen={setAlertMessageOpen}
-          severity="error"
-          message="メールアドレスかパスワードが間違っています"
-        />
-      </TopHeaderLayout>
+            <Box component="form" noValidate sx={{ mt: 1, mx: 10, alignItems: 'center', width: 500 }}>
 
+              {/* <FormControlLabel
+                control={<Checkbox value="remember" color="success" />}
+                label="保存する"
+              /> */}
+            </Box>
+            <Grid item xs={12}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                size="small"
+                id="email"
+                label="メールアドレス"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                color="success"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                sx={{
+                  width: 400
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                margin="normal"
+                required
+                // fullWidth
+                size="small"
+                name="password"
+                label="パスワード"
+                type="password"
+                id="password"
+                color="success"
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                sx={{
+                  width: 400
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                type="submit"
+                // fullWidth
+                variant="contained"
+                onClick={(e) => handleSignInSubmit(e)}
+                sx={{
+                  width: 100,
+                  mt: 5,
+                  mb: 3,
+                  alignItems: 'center',
+                  // backgroundColor: '#117768',
+                  backgroundColor: '#FF8F00',
+                  '&:hover': {
+                    // backgroundColor: '#117768',
+                    backgroundColor: '#FF8F00',
+                    opacity: 0.8
+                  },
+                }}
+              >
+                ログイン
+                </Button>
+            </Grid>
+
+            <Grid container sx={{
+              mb: 5
+            }}>
+              <Grid item xs={12} sx={{
+                ml: 3,
+                mb: 1
+              }}>
+                <Link to="#">
+                  {"パスワードをリセット"}
+                </Link>
+              </Grid>
+              <Grid item xs={12} sx={{
+                ml: 3
+              }}>
+                <Link to="/signup">
+                  {"アカウント登録はこちら"}
+                </Link>
+              </Grid>
+            </Grid>
+            <AlertMessage
+              open={alertMessageOpen}
+              setOpen={setAlertMessageOpen}
+              severity="error"
+              message="メールアドレスかパスワードが間違っています"
+            />
+          </Paper>
+        </Box>
+      </TopHeaderLayout>
     </>
   );
 };
