@@ -21,6 +21,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import HelpIcon from '@mui/icons-material/Help';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import { MenuIconButton } from "../../atoms/button/MenuIconButton";
 import { MenuDrawer } from "../../molecules/MenuDrawer";
@@ -114,7 +115,8 @@ export const TopHeader: FC = memo(() => {
                 sx={{
                   color: 'black'
                 }}>
-                <LoginIcon />
+                {/* <LoginIcon /> */}
+                <LockOutlinedIcon />
               </IconButton>
               <Typography
                 color="inherit"

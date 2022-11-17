@@ -105,7 +105,7 @@ export const Top: FC = memo(() => {
                         opacity: 0.8
                       },
                     }}>
-                    新規登録
+                    アカウント登録
                   </Button>
                 </Grid>
                 <Grid item xs={8}>

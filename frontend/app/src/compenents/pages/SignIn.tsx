@@ -197,7 +197,8 @@ export const SignIn = () => {
                 </Link>
               </Grid>
               <Grid item xs={12} sx={{
-                ml: 3
+                ml: 3,
+                color: '#117768'
               }}>
                 <Link to="/signup">
                   {"アカウント登録はこちら"}
