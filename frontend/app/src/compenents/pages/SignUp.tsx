@@ -12,7 +12,9 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 import { signUp } from "../../apis/auth";
 import { AuthContext } from "../../App";
@@ -68,159 +70,307 @@ export const SignUp = () => {
   const theme = createTheme();
   return (
     <>
-      {/* <h1>サインアップページです</h1>
-      <form>
-        <div>
-          <label htmlFor="name">名前</label>
-          <input
-            type="name"
-            id="name"
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="email">メールアドレス</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">パスワード</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password_confirmation">パスワード確認</label>
-          <input
-            type="password"
-            id="password_confirmation"
-            name="password_confirmation"
-            value={passwordConfirmation}
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="hidden"
-            id="confirm_success_url"
-            name="confirm_success_url"
-            value={confirmSuccessUrl}
-          />
-        </div>
-        <button type="submit" onClick={(e) => handleSignUpSubmit(e)}>
-          Submit
-        </button>
-      </form>
-      <Link to="/signin">サインインへ</Link> */}
+      {/* <TopHeaderLayout>
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            backgroundColor: '#f9f5eb'
+          }}
+        >
+          <Paper sx={{
+            marginRight: 15,
+            marginLeft: 15,
+            marginTop: 5,
+            marginBottom: 5,
+            paddingTop: 5,
+            paddingBottom: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            elevation: 5
+          }}>
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              アカウント登録
+          </Typography>
+            <Box component="form" noValidate sx={{ mt: 3 }}>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  size="small"
+                  id="Name"
+                  label="氏名"
+                  name="name"
+                  color="success"
+                  autoComplete="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  sx={{
+                    width: 400
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  color="success"
+                  size="small"
+                  id="email"
+                  label="メールアドレス"
+                  name="email"
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  sx={{
+                    width: 400
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="パスワード"
+                  color="success"
+                  size="small"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  sx={{
+                    width: 400
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  color="success"
+                  size="small"
+                  name="password_confirmation"
+                  label="パスワード(確認用)"
+                  type="password"
+                  id="password_confirmation"
+                  autoComplete="new-password_confirmation"
+                  value={passwordConfirmation}
+                  onChange={(e) => setPasswordConfirmation(e.target.value)}
+                  sx={{
+                    width: 400
+                  }}
+                />
+              </Grid>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                onClick={(e) => handleSignUpSubmit(e)}
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  width: 100,
+                  alignItems: 'center',
+                  backgroundColor: '#FF8F00',
+                  '&:hover': {
+                    backgroundColor: '#FF8F00',
+                    opacity: 0.8
+                  },
+                }}
+              >
+                アカウント登録
+            </Button>
+              <Grid container justifyContent="flex-end">
+                <Grid item>
+                  <Link to="/signin">
+                    Already have an account? Sign in
+                </Link>
+                </Grid>
+              </Grid>
+            </Box>
+          </Paper>
+        </Box>
+      </TopHeaderLayout> */}
       <TopHeaderLayout>
-        <ThemeProvider theme={theme}>
-          <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <Box
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            backgroundColor: '#f9f5eb'
+            // backgroundColor: '#DFEEE5'
+          }}
+        >
+          <Paper sx={{
+            marginRight: 15,
+            marginLeft: 15,
+            marginTop: 5,
+            marginBottom: 5,
+            paddingTop: 5,
+            paddingBottom: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            elevation: 5
+          }}>
+            <Avatar
               sx={{
-                marginTop: 8,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+                m: 1,
+                // bgcolor: 'secondary.main',
+                // backgroundColor: '#FF8F00',
+
+                backgroundColor: '#117768',
+
+                // backgroundColor: '#DFEEE5',
+                // backgroundColor: '#f9f5eb',
+                color: '#f9f5eb'
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                <LockOutlinedIcon />
-              </Avatar>
-              <Typography component="h1" variant="h5">
-                Sign up
+              <PersonAddIcon />
+              {/* <LoginOutlinedIcon /> */}
+            </Avatar>
+            <Typography component="h1" variant="h5" sx={{
+              mb: 3
+            }}>
+              アカウント登録
           </Typography>
-              <Box component="form" noValidate sx={{ mt: 3 }}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="Name"
-                      label="Name"
-                      name="name"
-                      autoComplete="name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="email"
-                      label="Email Address"
-                      name="email"
-                      autoComplete="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      name="password"
-                      label="Password"
-                      type="password"
-                      id="password"
-                      autoComplete="new-password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      name="password_confirmation"
-                      label="Password Confirmation"
-                      type="password"
-                      id="password_confirmation"
-                      autoComplete="new-password_confirmation"
-                      value={passwordConfirmation}
-                      onChange={(e) => setPasswordConfirmation(e.target.value)}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormControlLabel
-                      control={<Checkbox value="allowExtraEmails" color="primary" />}
-                      label="I want to receive inspiration, marketing promotions and updates via email."
-                    />
-                  </Grid>
-                </Grid>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  onClick={(e) => handleSignUpSubmit(e)}
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Sign Up
-            </Button>
-                <Grid container justifyContent="flex-end">
-                  <Grid item>
-                    <Link to="/signin">
-                      Already have an account? Sign in
-                </Link>
-                  </Grid>
-                </Grid>
-              </Box>
-            </Box>
+            <Box component="form" noValidate sx={{ mt: 1, mx: 10, alignItems: 'center', width: 500 }}>
 
-          </Container>
-        </ThemeProvider>
+              {/* <FormControlLabel
+                control={<Checkbox value="remember" color="success" />}
+                label="保存する"
+              /> */}
+            </Box>
+            <Grid item xs={12}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                size="small"
+                id="Name"
+                label="氏名"
+                name="name"
+                color="success"
+                autoComplete="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                sx={{
+                  width: 400
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                size="small"
+                id="email"
+                label="メールアドレス"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                color="success"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                sx={{
+                  width: 400
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="パスワード"
+                color="success"
+                size="small"
+                type="password"
+                id="password"
+                autoFocus
+                autoComplete="new-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                sx={{
+                  width: 400
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                color="success"
+                size="small"
+                name="password_confirmation"
+                label="パスワード(確認用)"
+                type="password"
+                id="password_confirmation"
+                autoFocus
+                autoComplete="new-password_confirmation"
+                value={passwordConfirmation}
+                onChange={(e) => setPasswordConfirmation(e.target.value)}
+                sx={{
+                  width: 400
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                type="submit"
+                // fullWidth
+                variant="contained"
+                onClick={(e) => handleSignUpSubmit(e)}
+                sx={{
+                  width: 150,
+                  mt: 5,
+                  mb: 3,
+                  alignItems: 'center',
+                  // backgroundColor: '#117768',
+                  backgroundColor: '#FF8F00',
+                  '&:hover': {
+                    // backgroundColor: '#117768',
+                    backgroundColor: '#FF8F00',
+                    opacity: 0.8
+                  },
+                }}
+              >
+                アカウント登録
+                </Button>
+            </Grid>
+
+            <Grid container sx={{
+              mb: 5
+            }}>
+              <Grid item xs={12} sx={{
+                ml: 3,
+                color: '#117768'
+              }}>
+                <Link to="/signin">
+                  {"ログインはこちら"}
+                </Link>
+              </Grid>
+            </Grid>
+            {/* <AlertMessage
+              open={alertMessageOpen}
+              setOpen={setAlertMessageOpen}
+              severity="error"
+              message="メールアドレスかパスワードが間違っています"
+            /> */}
+          </Paper>
+        </Box>
       </TopHeaderLayout>
     </>
   );
