@@ -4,9 +4,12 @@ import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import Slider from "react-slick";
 
 import { TopHeaderLayout } from "../templates/TopHeaderLayout";
 import vegetable from "../../images/vegetable.png";
+import nouser from "../../images/nouser.png"
+import user from "../../images/user.png"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 export const Top: FC = memo(() => {
@@ -32,6 +35,14 @@ export const Top: FC = memo(() => {
       text: { primary: '#ff9800' },
     },
   });
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+  };
+
+  const images = [vegetable, nouser, user]
 
   return (
     <>
@@ -145,6 +156,15 @@ export const Top: FC = memo(() => {
               <u>
                 食べマネでできること
               </u>
+            </div>
+            <div>
+              <Slider {...settings}>
+                {images.map((img: any) => (
+                  <div>
+                    <img src={img} alt="pictuer" />
+                  </div>
+                ))}
+              </Slider>
             </div>
           </Box>
 
