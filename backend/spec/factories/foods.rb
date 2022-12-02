@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :food do
-    user_id { 1 }
+    user_id { 22 }
     classification_id { 1 }
     quantity { 5 }
     name { 'rspecfood' }
