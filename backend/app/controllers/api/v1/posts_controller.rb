@@ -1,7 +1,7 @@
 module Api
   module V1
     class PostsController < ApplicationController
-      # before_action :authenticate_api_v1_user!
+      before_action :authenticate_api_v1_user!
       before_action :set_post, only: %i[edit update destroy]
       # before_action :current_api_v1_user, :api_v1_user_signed_in?
 

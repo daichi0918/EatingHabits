@@ -1,7 +1,7 @@
 module Api
   module V1
     class DiariesController < ApplicationController
-      # before_action :authenticate_api_v1_user!
+      before_action :authenticate_api_v1_user!
       before_action :set_diary, only: %i[edit update destroy]
       def index
         # diaries = Diary.joins(:mealtime).select('diaries.*, mealtimes.name as mealtimeName, mealtimes.color as mealtimecolor').where(user_id: params[:user_id])
