@@ -32,7 +32,6 @@ export const updateUser = (userId: string | undefined, name: string, gender: str
       setTrigger((prev: any) => { return !prev });
     })
     .catch((e) => console.error(e))
-    .catch((e) => console.error(e))
 }
 
 export const updateUserImage = (userId: string | undefined, image: string, setTrigger: React.Dispatch<React.SetStateAction<boolean>>) => {

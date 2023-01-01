@@ -158,6 +158,64 @@ paths:
       tags: *ref_2
       security:
         - bearer: []
+  /api/v1/users:
+    get:
+      operationId: UserController_GetAllUsers
+      summary: ユーザー一覧取得
+      parameters: []
+      responses:
+        "200":
+          description: ユーザー一覧取得完了
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetAllUsersDto"
+        "401":
+          description: 認証エラー
+      tags: *ref_0
+      security: *ref_1
+  /api/v1/users/{userId}:
+    put:
+      operationId: UserController_UpdateUser
+      summary: ユーザー更新
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUser"
+      responses:
+        "200":
+          description: ユーザー更新
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetEditUserDto"
+        "401":
+          description: 認証エラー
+      tags: *ref_0
+      security: *ref_1
+  /api/v1/users/{userId}/edit:
+    get:
+      operationId: UserController_GetEditUser
+      summary: 編集ユーザー取得
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 編集ユーザー取得完了
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetEditUserDto"
+        "401":
+          description: 認証エラー
+
 info:
   title: API description
   description: ""
@@ -187,6 +245,26 @@ components:
       required:
         - title
         - content
+    UpdateUser:
+      type: object
+      properties:
+        name:
+          type: string
+          example: User_1
+        gender:
+          type: number
+          example: 0
+        birthday:
+          format: date-time
+          type: string
+          example: "2022-10-28"
+        image:
+          type: object
+          example:
+            { url: "http://localhost:3002/uploads/user/image/22/vegetable.png" }
+        memo:
+          type: string
+          example: aaa
     TodoEntity:
       type: object
       properties:
@@ -288,35 +366,89 @@ components:
       required:
         - email
         - password
+    # UserEntity:
+    #   type: object
+    #   properties:
+    #     id:
+    #       type: number
+    #       example: 1
+    #     name:
+    #       type: string
+    #       example: ユーザー1
+    #       minLength: 2
+    #       maxLength: 25
+    #     email:
+    #       type: string
+    #       example: user1@test.com
+    #       maxLength: 255
+    #     createdAt:
+    #       format: date-time
+    #       type: string
+    #       example: "2022-10-28T08:38:14.237Z"
+    #     updatedAt:
+    #       format: date-time
+    #       type: string
+    #       example: "2022-10-28T08:38:14.237Z"
+    #   required:
+    #     - id
+    #     - name
+    #     - email
+    #     - createdAt
+    #     - updatedAt
     UserEntity:
       type: object
       properties:
         id:
           type: number
-          example: 1
+          example: 22
+        provider:
+          type: string
+          example: email
+        uid:
+          type: string
+          example: example@example.co.jp
+        allow_password_change:
+          type: boolean
+          example: false
         name:
           type: string
-          example: ユーザー1
-          minLength: 2
-          maxLength: 25
+          example: User_5
+        image:
+          type: object
+          example:
+            {
+              "url": "http://localhost:3002/uploads/user/image/22/vegetable.png",
+            }
         email:
           type: string
-          example: user1@test.com
-          maxLength: 255
-        createdAt:
+          example: example@example.co.jp
+        created_at:
           format: date-time
           type: string
-          example: "2022-10-28T08:38:14.237Z"
-        updatedAt:
+          example: 2022-10-13T15:20:37.985+09:00
+        updated_at:
           format: date-time
           type: string
-          example: "2022-10-28T08:38:14.237Z"
+          example: 2022-12-21T14:22:59.814+09:00
+        gender:
+          type: number
+          example: 2
+        memo:
+          type: string
+          example: aaaabd
+        birthday:
+          format: date-time
+          type: string
+          example: 2022-10-21
       required:
         - id
-        - name
-        - email
-        - createdAt
-        - updatedAt
+        - provider
+        - uid
+        - encrypted_password
+        - allow_password_change
+        - created_at
+        - updated_at
+        - gender
     AuthResponseDto:
       type: object
       properties:
@@ -351,3 +483,63 @@ components:
         - name
         - email
         - password
+    GetAllUsersDto:
+      type: object
+      properties:
+        users:
+          example:
+            - id: 21
+              provider: email
+              uid: example1@example.co.jp
+              allow_password_change: false
+              name: Daichi
+              image: { "url": null }
+              email: example1@example.co.jp
+              created_at: 2022-10-13T15:05:03.876+09:00
+              updated_at: 2022-10-13T15:05:04.069+09:00
+              gender: 0
+              memo: null
+              birthday: null
+            - id: 22
+              provider: email
+              uid: example@example.co.jp
+              allow_password_change: false
+              name: User_5
+              image:
+                {
+                  "url": "http://localhost:3002/uploads/user/image/22/vegetable.png",
+                }
+              email: example@example.co.jp
+              created_at: 2022-10-13T15:20:37.985+09:00
+              updated_at: 2022-12-21T14:22:59.814+09:00
+              gender: 2
+              memo: aaaabd
+              birthday: 2022-10-21
+          allOf:
+            - $ref: "#/components/schemas/UserEntity"
+      required:
+        - todo
+    GetEditUserDto:
+      type: object
+      properties:
+        user:
+          example:
+            id: 22
+            provider: email
+            uid: example@example.co.jp
+            allow_password_change: false
+            name: User_5
+            image:
+              {
+                "url": "http://localhost:3002/uploads/user/image/22/vegetable.png",
+              }
+            email: example@example.co.jp
+            created_at: 2022-10-13T15:20:37.985+09:00
+            updated_at: 2022-12-21T14:22:59.814+09:00
+            gender: 2
+            memo: aaaabd
+            birthday: 2022-10-21
+          allOf:
+            - $ref: "#/components/schemas/UserEntity"
+      required:
+        - todo
