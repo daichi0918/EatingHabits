@@ -212,7 +212,6 @@ paths:
           in: path
           schema:
             type: string
-
       responses:
         "200":
           description: 編集ユーザー取得完了
@@ -291,7 +290,7 @@ paths:
           description: list ID
       responses:
         "200":
-          description: リスト登録完了
+          description: リスト削除完了
           # content:
           #   application/json:
           #     schema:
@@ -299,6 +298,162 @@ paths:
         "401":
           description: 認証エラー
       tags: *ref_4
+      security: *ref_1
+  /api/v1/users/{userId}/foods:
+    get:
+      operationId: FoodController_GetAllFoods
+      summary: 消費期限管理食材一覧取得
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          schema:
+            type: string
+          description: user ID
+      responses:
+        "200":
+          description: 消費期限管理食材取得完了
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetAllFoodsDto"
+        "401":
+          description: 認証エラー
+      tags: &ref_5
+        - food
+      security: *ref_1
+    post:
+      operationId: FoodController_PostFood
+      summary: 消費期限管理食材登録
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          schema:
+            type: string
+          description: user ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateOrPostFood"
+      responses:
+        "200":
+          description: 消費期限管理食材登録完了
+          # content:
+          #   application/json:
+          #     schema:
+          #       $ref: "#/components/schemas/AuthResponseDto"
+        "401":
+          description: 認証エラー
+      tags: *ref_5
+      security: *ref_1
+  /api/v1/users/{userId}/foods/{id}/edit:
+    get:
+      operationId: FoodController_GetEditFoods
+      summary: 編集消費期限管理食材取得
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          schema:
+            type: string
+          description: user ID
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+          description: food ID
+      responses:
+        "200":
+          description: 編集消費期限管理食材取得完了
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateOrPostFood"
+        "401":
+          description: 認証エラー
+      tags: *ref_5
+      security: *ref_1
+  /api/v1/users/{userId}/foods/{id}:
+    put:
+      operationId: FoodController_GetEditFoos
+      summary: 消費期限管理食材更新
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          schema:
+            type: string
+          description: user ID
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+          description: food ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateOrPostFood"
+      responses:
+        "200":
+          description: 消費期限管理食材更新完了
+          # content:
+          #   application/json:
+          #     schema:
+          #       $ref: "#/components/schemas/GetEditFoodDto"
+        "401":
+          description: 認証エラー
+      tags: *ref_5
+      security: *ref_1
+    delete:
+      operationId: FoodController_DeleteFoods
+      summary: 消費期限管理食材削除
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          schema:
+            type: string
+          description: user ID
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+          description: list ID
+      responses:
+        "200":
+          description: 消費期限管理食材削除完了
+          # content:
+          #   application/json:
+          #     schema:
+          #       $ref: "#/components/schemas/AuthResponseDto"
+        "401":
+          description: 認証エラー
+      tags: *ref_5
+      security: *ref_1
+  /api/v1/posts:
+    get:
+      operationId: PostController_GetAllPosts
+      summary: 投稿全件取得
+      parameters: []
+      responses:
+        "200":
+          description: 編集消費期限管理食材取得完了
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateOrPostFood"
+        "401":
+          description: 認証エラー
+      tags: &ref_6
+        - post
       security: *ref_1
 
 info:
@@ -350,12 +505,66 @@ components:
         memo:
           type: string
           example: aaa
+    UpdateOrPostFood:
+      type: object
+      properties:
+        name:
+          type: string
+          example: User_1
+        classification_id:
+          type: number
+          example: 0
+        quantity:
+          type: number
+          example: 0
+        expired_at:
+          format: date-time
+          type: string
+          example: "2023-01-02"
+        notified_at:
+          format: date-time
+          type: string
+          example: "2022-10-28T08:38:14.237Z"
+        image:
+          type: object
+          example:
+            { url: "http://localhost:3002/uploads/user/image/22/vegetable.png" }
+        memo:
+          type: string
+          example: aaa
     PostList:
       type: object
       properties:
         name:
           type: string
           example: sample_1
+    # FoodEntity:
+    #   type: object
+    #   properties:
+    #     name:
+    #       type: string
+    #       example: 果物
+    #     classification_id:
+    #       type: number
+    #       example: 2
+    #     quantity:
+    #       type: number
+    #       example: 3
+    #     expired_at:
+    #       format: date-time
+    #       type: string
+    #       example: "2023-01-02"
+    #     notified_at:
+    #       format: date-time
+    #       type: string
+    #       example: "2022-10-28T08:38:14.237Z"
+    #     image:
+    #       type: object
+    #       example:
+    #         { url: "http://localhost:3002/uploads/user/image/22/vegetable.png" }
+    #     memo:
+    #       type: string
+    #       example: スーパーで購入
     TodoEntity:
       type: object
       properties:
@@ -566,6 +775,53 @@ components:
         - name
         - created_at
         - updated_at
+    FoodEntity:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 97
+        user_id:
+          type: number
+          example: 22
+        classification_id:
+          type: number
+          example: 1
+        name:
+          type: string
+          example: みかん
+        expired_at:
+          format: date-time
+          type: string
+          example: 2022-12-02
+        notified_at:
+          format: date-time
+          type: string
+          example: 2022-10-30T11:22:06.000+09:00
+        image:
+          type: object
+          example:
+            { "url": "http://localhost:3002/uploads/food/image/97/mikan.jpg" }
+        memo:
+          type: string
+          example: あ
+        created_at:
+          format: date-time
+          type: string
+          example: 2022-10-13T15:20:37.985+09:00
+        updated_at:
+          format: date-time
+          type: string
+          example: 2022-12-21T14:22:59.814+09:00
+      required:
+        - id
+        - user_id
+        - classification_id
+        - name
+        - quantity
+        - expired_at
+        - created_at
+        - updated_at
     AuthResponseDto:
       type: object
       properties:
@@ -675,3 +931,57 @@ components:
               updated_at: 2022-10-16T14:47:10.747+09:00
           allOf:
             - $ref: "#/components/schemas/ListEntity"
+    GetAllFoodsDto:
+      type: object
+      properties:
+        foods:
+          example:
+            - id: 97
+              user_id: 22
+              classification_id: 2
+              name: みかん
+              quantity: 1
+              expired_at: 2022-10-30
+              notified_at: 2022-10-30T11:22:06.000+09:00
+              image:
+                {
+                  "url": "http://localhost:3002/uploads/food/image/97/mikan.jpg",
+                }
+              memo: a
+              created_at: 2022-10-16T08:28:06.115+09:00
+              updated_at: 2022-10-16T08:28:06.115+09:00
+            - id: 102
+              user_id: 22
+              classification_id: 2
+              name: 野菜
+              quantity: 1
+              expired_at: 2022-12-02
+              notified_at: 2022-12-03T08:19:25.000+09:00
+              image:
+                {
+                  "url": "http://localhost:3002/uploads/food/image/102/vegetable.png",
+                }
+              memo: あ
+              created_at: 2022-12-03T08:19:45.689+09:00
+              updated_at: 2022-12-03T08:19:45.689+09:00
+          allOf:
+            - $ref: "#/components/schemas/FoodEntity"
+    GetEditFoodDto:
+      type: object
+      properties:
+        food:
+          example:
+            id: 97
+            user_id: 22
+            classification_id: 2
+            name: みかん
+            quantity: 1
+            expired_at: 2022-10-30
+            notified_at: 2022-10-30T11:22:06.000+09:00
+            image:
+              { "url": "http://localhost:3002/uploads/food/image/97/mikan.jpg" }
+            memo: a
+            created_at: 2022-10-16T08:28:06.115+09:00
+            updated_at: 2022-10-16T08:28:06.115+09:00
+          allOf:
+            - $ref: "#/components/schemas/FoodEntity"
