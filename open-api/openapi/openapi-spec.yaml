@@ -174,7 +174,7 @@ paths:
           description: 認証エラー
       tags: &ref_3
         - user
-      security: *ref_1
+      # security: *ref_1
   /api/v1/users/{userId}:
     put:
       operationId: UserController_UpdateUser
