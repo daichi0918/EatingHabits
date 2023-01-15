@@ -1,9 +1,15 @@
 require 'rails_helper'
 
+
 RSpec.describe 'Foods', type: :request do
+  let(:user) { create(:user) }
+  let(:headers) do
+    login user
+    get_auth_params_from_login_response_headers(response)
+  end
   describe 'GET /foods' do
     it 'works! (now write some real specs)' do
-      get 'http://localhost:3002/api/v1/users/22/foods'
+      get api_v1_user_foods_path(user_id: user.id), headers: headers
       expect(response).to have_http_status(200)
     end
   end

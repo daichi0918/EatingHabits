@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import Slider from "react-slick";
+// import Slider from "react-slick";
 
 import { TopHeaderLayout } from "../templates/TopHeaderLayout";
 import vegetable from "../../images/vegetable.png";
@@ -158,13 +158,13 @@ export const Top: FC = memo(() => {
               </u>
             </div>
             <div>
-              <Slider {...settings}>
+              {/* <Slider {...settings}>
                 {images.map((img: any) => (
                   <div>
                     <img src={img} alt="pictuer" />
                   </div>
                 ))}
-              </Slider>
+              </Slider> */}
             </div>
           </Box>
 

@@ -24,7 +24,8 @@ class User < ActiveRecord::Base
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :following
 
-  validates :name, :email, :encrypted_password, :gender, presence: true
+  # validates :name, :email, :encrypted_password, :gender, presence: true
+  validates :name, :email, :gender, presence: true
   validates :name, length: { maximum: 30 }
   validates :email, presence: true, length: { maximum: 100 }, uniqueness: true
   # , format: { with: VALID_EMAIL_REGEX }
