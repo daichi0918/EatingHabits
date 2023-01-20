@@ -3,6 +3,7 @@ require 'rails_helper'
 
 RSpec.describe 'Foods', type: :request do
   let(:user) { create(:user) }
+  # let(:food) { create(:food) }
   let(:headers) do
     login user
     get_auth_params_from_login_response_headers(response)
@@ -17,10 +18,11 @@ RSpec.describe 'Foods', type: :request do
   describe 'Post /food' do
     it 'works! (now write some real specs)' do
       food = create(:food)
+      p food.name
       expect do
-        post 'http://localhost:3002/api/v1/users/22/foods',
+        post api_v1_user_foods_path(user_id: user.id),
              params: { user_id: food.user_id, classification_id: food.classification_id, quantity: food.quantity,
-                       name: food.name, expired_at: food.expired_at }
+                       name: food.name, expired_at: food.expired_at }, headers: headers 
       end.to change(Food, :count).by(+1)
       expect(response.status).to eq(200)
     end
