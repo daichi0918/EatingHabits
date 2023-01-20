@@ -14,7 +14,6 @@ import { PostType } from "../types/api/post"
 
 
 export const createPost = (setTrigger: React.Dispatch<React.SetStateAction<boolean>>, userId: any, title: string | Blob, image: File | undefined, text: string | Blob, navigate: NavigateFunction) => {
-  // export const createPost = (setTrigger: any, title: any, image: any, text: any, navigate: any) => {
 
   const headers = {
     "access-token": Cookies.get("_access_token") as any,
