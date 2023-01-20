@@ -1,6 +1,5 @@
 import { Drawer } from "@mui/material";
 import { FC, memo } from "react";
-// import { Button, Drawer, DrawerBody, DrawerContent, DrawerOverlay } from "@chakra-ui/react";
 
 type Props = {
   onClose: () => void;
