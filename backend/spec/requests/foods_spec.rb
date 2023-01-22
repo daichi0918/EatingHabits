@@ -18,11 +18,12 @@ RSpec.describe 'Foods', type: :request do
   describe 'Post /food' do
     it 'works! (now write some real specs)' do
       food = create(:food)
-      p food.name
       expect do
-        post api_v1_user_foods_path(user_id: user.id),
-             params: { user_id: food.user_id, classification_id: food.classification_id, quantity: food.quantity,
-                       name: food.name, expired_at: food.expired_at }, headers: headers 
+        post api_v1_user_foods_path,
+             params: { user_id: user.id, classification_id: food.classification_id, quantity: food.quantity,name: food.name, expired_at: food.expired_at }, 
+
+            # params: { classification_id: food.classification_id, quantity: food.quantity,name: food.name, expired_at: food.expired_at }, 
+             headers: headers
       end.to change(Food, :count).by(+1)
       expect(response.status).to eq(200)
     end
