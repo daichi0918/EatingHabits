@@ -24,4 +24,4 @@ jobs:
           # passphrase: ${{ secrets.SSH_PASS }}
           script: |
             cd ${{ secrets.SERVER_DEPLOY_DIR }}
-            git pull origin main
+            sudo git pull origin main
