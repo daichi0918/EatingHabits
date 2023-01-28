@@ -1,5 +1,5 @@
-// export const DEFAULT_API_LOCALHOST = 'http://localhost:3002/api/v1'
-export const DEFAULT_API_LOCALHOST = 'http://160.251.98.255:3002/api/v1'
+export const DEFAULT_API_LOCALHOST = 'http://localhost:3002/api/v1'
+// export const DEFAULT_API_LOCALHOST = 'http://160.251.98.255:3002/api/v1'
 
 export const usersIndex = `${DEFAULT_API_LOCALHOST}/users`
 export const userEdit = (userId: string | undefined) =>

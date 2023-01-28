@@ -33,147 +33,156 @@ export const Home: FC = memo(() => {
   const onClickDaily = () => navigate("daily")
 
   return (
-    <HomeHeaderLayout>
-      <Box
-        sx={{
-          width: 1200,
-          height: 600,
-          backgroundColor: 'white',
-          border: '1',
-          borderColor: grey[500],
-          mx: 'auto',
-          mt: 4,
-          // '&:hover': {
-          //   backgroundColor: 'primary.main',
-          //   opacity: [0.9, 0.8, 0.7],
-          // },
-        }}
-      >
-        <Card
+    <>
+      <HomeHeaderLayout>
+        <Box
           sx={{
-            width: 280,
-            height: 150,
-            m: 2,
-            backgroundColor: grey[100],
-            '&:hover': {
-              opacity: [0.9, 0.8, 0.7],
-              cursor: 'pointer'
-            },
+            // width: 1200,
+            // height: 600,
+            // backgroundColor: 'white',
+            // border: '1',
+            // borderColor: grey[500],
+            // mx: 'auto',
+            // mt: 10,
+            paddingTop: 12,
+            marginTop: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            // alignItems: 'center',
+            backgroundColor: '#f9f5eb'
+            // '&:hover': {
+            //   backgroundColor: 'primary.main',
+            //   opacity: [0.9, 0.8, 0.7],
+            // },
           }}
-          onClick={onClickList}
         >
-          <CardContent>
-            <Grid container>
-              <Grid item xs={6} md={3}>
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                  <FormatListBulletedIcon />
-                </Avatar>
-              </Grid>
-              <Grid item xs={6} md={9}>
-                <Typography variant="h6" component="div" sx={{ m: 1.5 }}>
-                  買い物リスト
+          <Card
+            sx={{
+              width: 280,
+              height: 150,
+              m: 2,
+              // backgroundColor: grey[100],
+              backgroundColor: 'white',
+              '&:hover': {
+                opacity: [0.9, 0.8, 0.7],
+                cursor: 'pointer'
+              },
+            }}
+            onClick={onClickList}
+          >
+            <CardContent>
+              <Grid container>
+                <Grid item xs={6} md={3}>
+                  <Avatar sx={{ m: 1, backgroundColor: '#117768', color: '#f9f5eb' }}>
+                    <FormatListBulletedIcon />
+                  </Avatar>
+                </Grid>
+                <Grid item xs={6} md={9}>
+                  <Typography variant="h6" component="div" sx={{ m: 1.5 }}>
+                    買い物リスト
                 </Typography>
+                </Grid>
               </Grid>
-            </Grid>
-            <Typography variant="body2" align="center" sx={{ m: 1.5 }}>
-              買いたいものをリストアップする
+              <Typography variant="body2" align="center" sx={{ m: 1.5 }}>
+                買いたいものをリストアップする
             </Typography>
-          </CardContent>
-        </Card>
-        <Card
-          sx={{
-            width: 280,
-            height: 150,
-            m: 2,
-            backgroundColor: grey[100],
-            '&:hover': {
-              opacity: [0.9, 0.8, 0.7],
-              cursor: 'pointer'
-            },
-          }}
-          onClick={onClickFood}
-        >
-          <CardContent>
-            <Grid container>
-              <Grid item xs={6} md={3}>
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                  <TimerIcon />
-                </Avatar>
-              </Grid>
-              <Grid item xs={6} md={9}>
-                <Typography variant="h6" component="div" sx={{ m: 1.5 }}>
-                  消費期限管理
+            </CardContent>
+          </Card>
+          <Card
+            sx={{
+              width: 280,
+              height: 150,
+              m: 2,
+              backgroundColor: grey[100],
+              '&:hover': {
+                opacity: [0.9, 0.8, 0.7],
+                cursor: 'pointer'
+              },
+            }}
+            onClick={onClickFood}
+          >
+            <CardContent>
+              <Grid container>
+                <Grid item xs={6} md={3}>
+                  <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <TimerIcon />
+                  </Avatar>
+                </Grid>
+                <Grid item xs={6} md={9}>
+                  <Typography variant="h6" component="div" sx={{ m: 1.5 }}>
+                    消費期限管理
                 </Typography>
+                </Grid>
               </Grid>
-            </Grid>
-            <Typography variant="body2" align="center" sx={{ m: 1.5 }}>
-              食材および料理の消費期限の管理
+              <Typography variant="body2" align="center" sx={{ m: 1.5 }}>
+                食材および料理の消費期限の管理
             </Typography>
-          </CardContent>
-        </Card>
-        <Card
-          sx={{
-            width: 280,
-            height: 150,
-            m: 2,
-            backgroundColor: grey[100],
-            '&:hover': {
-              opacity: [0.9, 0.8, 0.7],
-              cursor: 'pointer'
-            },
-          }}
-          onClick={onClickPost}
-        >
-          <CardContent>
-            <Grid container>
-              <Grid item xs={6} md={3}>
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                  <CreateIcon />
-                </Avatar>
-              </Grid>
-              <Grid item xs={6} md={9}>
-                <Typography variant="h6" component="div" sx={{ m: 1.5 }}>
-                  投稿一覧
+            </CardContent>
+          </Card>
+          <Card
+            sx={{
+              width: 280,
+              height: 150,
+              m: 2,
+              backgroundColor: grey[100],
+              '&:hover': {
+                opacity: [0.9, 0.8, 0.7],
+                cursor: 'pointer'
+              },
+            }}
+            onClick={onClickPost}
+          >
+            <CardContent>
+              <Grid container>
+                <Grid item xs={6} md={3}>
+                  <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <CreateIcon />
+                  </Avatar>
+                </Grid>
+                <Grid item xs={6} md={9}>
+                  <Typography variant="h6" component="div" sx={{ m: 1.5 }}>
+                    投稿一覧
                 </Typography>
+                </Grid>
               </Grid>
-            </Grid>
-            <Typography variant="body2" align="center" sx={{ m: 1.5 }}>
-              食生活で役立つ情報を投稿&閲覧する
+              <Typography variant="body2" align="center" sx={{ m: 1.5 }}>
+                食生活で役立つ情報を投稿&閲覧する
             </Typography>
-          </CardContent>
-        </Card>
-        <Card
-          sx={{
-            width: 280,
-            height: 150,
-            m: 2,
-            backgroundColor: grey[100],
-            '&:hover': {
-              opacity: [0.9, 0.8, 0.7],
-              cursor: 'pointer'
-            },
-          }}
-          onClick={onClickDaily}
-        >
-          <CardContent>
-            <Grid container>
-              <Grid item xs={6} md={3}>
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                  <CreateIcon />
-                </Avatar>
-              </Grid>
-              <Grid item xs={6} md={9}>
-                <Typography variant="h6" component="div" sx={{ m: 1.5 }}>
-                  食事日記
+            </CardContent>
+          </Card>
+          <Card
+            sx={{
+              width: 280,
+              height: 150,
+              m: 2,
+              backgroundColor: grey[100],
+              '&:hover': {
+                opacity: [0.9, 0.8, 0.7],
+                cursor: 'pointer'
+              },
+            }}
+            onClick={onClickDaily}
+          >
+            <CardContent>
+              <Grid container>
+                <Grid item xs={6} md={3}>
+                  <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <CreateIcon />
+                  </Avatar>
+                </Grid>
+                <Grid item xs={6} md={9}>
+                  <Typography variant="h6" component="div" sx={{ m: 1.5 }}>
+                    食事日記
                 </Typography>
+                </Grid>
               </Grid>
-            </Grid>
-            <Typography variant="body2" align="center" sx={{ m: 1.5 }}>
-              食べたものをカレンダーに記録する
+              <Typography variant="body2" align="center" sx={{ m: 1.5 }}>
+                食べたものをカレンダーに記録する
             </Typography>
-          </CardContent>
-        </Card>
-      </Box>
-    </HomeHeaderLayout>
+            </CardContent>
+          </Card>
+        </Box>
+      </HomeHeaderLayout>
+    </>
   )
 })
