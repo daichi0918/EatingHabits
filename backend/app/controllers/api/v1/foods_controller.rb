@@ -14,11 +14,14 @@ module Api
       end
 
       def create
-        food = Food.new(food_params)
+        # food = Food.new(food_params)
+        food = current_api_v1_user.foods.build(food_params)
         if food.save
-          render json: { status: 'SUCCESS', data: food }
+          # render json: { status: 'SUCCESS', data: food }
+          render json: {data: food}, status: :created
         else
-          render json: { status: 'ERROR', data: food.errors }
+          # render json: { status: 'ERROR', data: food.errors }
+          render json: {data: food}, status: :unprocessable_entity
         end
       end
 
