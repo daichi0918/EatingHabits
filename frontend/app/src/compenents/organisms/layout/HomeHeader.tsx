@@ -88,9 +88,6 @@ export const HomeHeader: FC = memo(() => {
     setAnchorElUser(null);
   };
 
-
-
-
   return (
     <>
       <AppBar

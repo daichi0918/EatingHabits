@@ -112,7 +112,9 @@ export const Post: FC = memo(() => {
 
   return (
     <HomeHeaderLayout>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{
+        mt: 15
+      }}>
         <CssBaseline />
         <Fragment>
           <Search>
