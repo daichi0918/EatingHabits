@@ -93,7 +93,7 @@ export const Home: FC = memo(() => {
               width: 280,
               height: 150,
               m: 2,
-              backgroundColor: grey[100],
+              backgroundColor: 'white',
               '&:hover': {
                 opacity: [0.9, 0.8, 0.7],
                 cursor: 'pointer'
@@ -104,7 +104,7 @@ export const Home: FC = memo(() => {
             <CardContent>
               <Grid container>
                 <Grid item xs={6} md={3}>
-                  <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                  <Avatar sx={{ m: 1, backgroundColor: '#117768', color: '#f9f5eb' }}>
                     <TimerIcon />
                   </Avatar>
                 </Grid>
@@ -124,7 +124,7 @@ export const Home: FC = memo(() => {
               width: 280,
               height: 150,
               m: 2,
-              backgroundColor: grey[100],
+              backgroundColor: 'white',
               '&:hover': {
                 opacity: [0.9, 0.8, 0.7],
                 cursor: 'pointer'
@@ -135,7 +135,7 @@ export const Home: FC = memo(() => {
             <CardContent>
               <Grid container>
                 <Grid item xs={6} md={3}>
-                  <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                  <Avatar sx={{ m: 1, backgroundColor: '#117768', color: '#f9f5eb' }}>
                     <CreateIcon />
                   </Avatar>
                 </Grid>
@@ -155,7 +155,7 @@ export const Home: FC = memo(() => {
               width: 280,
               height: 150,
               m: 2,
-              backgroundColor: grey[100],
+              backgroundColor: 'white',
               '&:hover': {
                 opacity: [0.9, 0.8, 0.7],
                 cursor: 'pointer'
@@ -166,7 +166,7 @@ export const Home: FC = memo(() => {
             <CardContent>
               <Grid container>
                 <Grid item xs={6} md={3}>
-                  <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                  <Avatar sx={{ m: 1, backgroundColor: '#117768', color: '#f9f5eb' }}>
                     <CreateIcon />
                   </Avatar>
                 </Grid>
