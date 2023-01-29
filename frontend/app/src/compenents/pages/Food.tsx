@@ -53,9 +53,13 @@ export const Food: FC = memo(() => {
 
       ) : (
           <>
-            {foods.map((food: any) => (
-              <FoodCard id={food.id} name={food.name} quantity={food.quantity} expired_at={food.expired_at} notified_at={food.notified_at} image={food.image} memo={food.memo} />
-            ))}
+            <div style={{
+              marginTop: '40px'
+            }}>
+              {foods.map((food: any) => (
+                <FoodCard id={food.id} name={food.name} quantity={food.quantity} expired_at={food.expired_at} notified_at={food.notified_at} image={food.image} memo={food.memo} />
+              ))}
+            </div>
           </>
 
         )}
