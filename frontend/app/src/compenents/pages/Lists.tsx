@@ -23,6 +23,7 @@ import ListItemText from '@mui/material/ListItemText';
 import CommentIcon from '@mui/icons-material/Comment';
 import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
+import CssBaseline from '@mui/material/CssBaseline';
 
 
 export const Lists: FC = memo(() => {
@@ -39,6 +40,7 @@ export const Lists: FC = memo(() => {
 
   return (
     <HomeHeaderLayout>
+      <CssBaseline />
       {loading ? (
         <Stack alignItems="center" justifyContent="center" style={{ marginTop: '300px' }}>
           <Box sx={{ alignItems: 'center' }}>
@@ -48,7 +50,17 @@ export const Lists: FC = memo(() => {
 
       ) : (
           <>
-            <Grid container style={{ marginTop: '100px' }}>
+            {/* <Box
+              sx={{
+                paddingTop: 12,
+                marginTop: 2,
+                marginBottom: 0,
+                paddingBottom: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                backgroundColor: '#f9f5eb'
+              }}> */}
+            <Grid container style={{ marginTop: '200px' }}>
               <Grid item xs>
               </Grid>
               <Grid item xs={7.5}>
@@ -68,6 +80,8 @@ export const Lists: FC = memo(() => {
               </Grid>
             </Grid>
             <ListAdd userId={userId} lists={lists} setLists={setLists} setTrigger={setTrigger} />
+            {/* </Box> */}
+
           </>
         )
       }
