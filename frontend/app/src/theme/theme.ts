@@ -19,7 +19,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 const theme = createTheme({
   palette: {
     background: {
-      default: '#EDF2F7'
+      default: '#f9f5eb'
     }
   },
 });

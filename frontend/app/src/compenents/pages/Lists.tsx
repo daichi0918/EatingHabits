@@ -23,6 +23,8 @@ import ListItemText from '@mui/material/ListItemText';
 import CommentIcon from '@mui/icons-material/Comment';
 import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
+import CssBaseline from '@mui/material/CssBaseline';
+import Typography from '@mui/material/Typography';
 
 
 export const Lists: FC = memo(() => {
@@ -39,6 +41,7 @@ export const Lists: FC = memo(() => {
 
   return (
     <HomeHeaderLayout>
+      <CssBaseline />
       {loading ? (
         <Stack alignItems="center" justifyContent="center" style={{ marginTop: '300px' }}>
           <Box sx={{ alignItems: 'center' }}>
@@ -48,11 +51,27 @@ export const Lists: FC = memo(() => {
 
       ) : (
           <>
+            <Typography
+              variant="h6"
+              sx={{
+                marginTop: 15,
+                marginLeft: 15
+              }}>
+              買い物リスト
+            </Typography>
             <Grid container style={{ marginTop: '100px' }}>
               <Grid item xs>
               </Grid>
               <Grid item xs={7.5}>
-                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                <List sx={{
+                  width: '100%',
+                  maxWidth: 360,
+                  bgcolor: 'background.paper',
+                  position: 'relative',
+                  overflow: 'auto',
+                  maxHeight: 300,
+                  padding: 2
+                }}>
                   {lists.map((list) => (
                     <ListItem
                       key={list.id}

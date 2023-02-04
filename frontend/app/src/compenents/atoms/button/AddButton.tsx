@@ -8,8 +8,8 @@ const StyledFab = styled(Fab)({
   zIndex: 1,
   // top: 650,
   // left: 1180,
-  bottom: 10,
-  right: 10,
+  bottom: 20,
+  right: 20,
   margin: '0 auto',
 });
 
@@ -21,7 +21,18 @@ type Props = {
 export const AddButton = (props: Props) => {
   const { onClick } = props;
   return (
-    <StyledFab color="primary" aria-label="add">
+    <StyledFab
+      aria-label="add"
+      sx={{
+        bgcolor: "#117768",
+        color: "white",
+        '&:hover': {
+          bgcolor: "#117768",
+          color: "white",
+          opacity: "0.8"
+        },
+
+      }}>
       <AddIcon onClick={onClick} />
     </StyledFab>
   )

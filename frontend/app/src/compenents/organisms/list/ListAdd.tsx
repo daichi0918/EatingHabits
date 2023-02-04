@@ -1,19 +1,3 @@
-// import { AddIcon } from "@chakra-ui/icons";
-// import {
-//   IconButton,
-//   useDisclosure,
-//   Modal,
-//   ModalOverlay,
-//   ModalContent,
-//   ModalHeader,
-//   ModalFooter,
-//   ModalBody,
-//   ModalCloseButton,Ci
-//   FormControl,
-//   FormLabel,
-//   Button,
-//   Input,
-// } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { styled } from '@mui/material/styles';
 import { createList } from "../../../apis/lists";
@@ -44,7 +28,6 @@ export const ListAdd = (props: Props) => {
 
   const { userId, lists, setLists, setTrigger } = props;
 
-  // const { isOpen, onOpen, onClose } = useDisclosure();
   const [text, setText] = useState("");
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
@@ -55,23 +38,9 @@ export const ListAdd = (props: Props) => {
     setOpen(false);
   };
 
-  // const StyledFab = styled(Fab)({
-  //   position: 'fixed',
-  //   zIndex: 1,
-  //   top: 550,
-  //   left: 600,
-  //   right: 0,
-  //   margin: '0 auto',
-  // });
-
   return (
     <>
       <AddButton onClick={handleClickOpen} />
-      {/* <StyledFab color="primary" aria-label="add">
-        <AddIcon onClick={handleClickOpen} />
-      </StyledFab> */}
-
-
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Subscribe</DialogTitle>
         <DialogContent>
