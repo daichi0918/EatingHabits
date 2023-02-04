@@ -74,7 +74,15 @@ export const Lists: FC = memo(() => {
               <Grid item xs>
               </Grid>
               <Grid item xs={7.5}>
-                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                <List sx={{
+                  width: '100%',
+                  maxWidth: 360,
+                  bgcolor: 'background.paper',
+                  position: 'relative',
+                  overflow: 'auto',
+                  maxHeight: 300,
+                  padding: 2
+                }}>
                   {lists.map((list) => (
                     <ListItem
                       key={list.id}
@@ -91,7 +99,6 @@ export const Lists: FC = memo(() => {
             </Grid>
             <ListAdd userId={userId} lists={lists} setLists={setLists} setTrigger={setTrigger} />
             {/* </Box> */}
-
           </>
         )
       }
