@@ -51,17 +51,6 @@ export const Lists: FC = memo(() => {
 
       ) : (
           <>
-            {/* <Box
-              sx={{
-                paddingTop: 12,
-                marginTop: 2,
-                marginBottom: 0,
-                paddingBottom: 0,
-                display: 'flex',
-                flexDirection: 'column',
-                backgroundColor: '#f9f5eb'
-              }}> */}
-            {/* <h3>買い物リスト</h3> */}
             <Typography
               variant="h6"
               sx={{
@@ -98,7 +87,6 @@ export const Lists: FC = memo(() => {
               </Grid>
             </Grid>
             <ListAdd userId={userId} lists={lists} setLists={setLists} setTrigger={setTrigger} />
-            {/* </Box> */}
           </>
         )
       }
