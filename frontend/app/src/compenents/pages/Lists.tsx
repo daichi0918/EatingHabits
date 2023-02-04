@@ -24,6 +24,7 @@ import CommentIcon from '@mui/icons-material/Comment';
 import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
 import CssBaseline from '@mui/material/CssBaseline';
+import Typography from '@mui/material/Typography';
 
 
 export const Lists: FC = memo(() => {
@@ -60,7 +61,16 @@ export const Lists: FC = memo(() => {
                 flexDirection: 'column',
                 backgroundColor: '#f9f5eb'
               }}> */}
-            <Grid container style={{ marginTop: '200px' }}>
+            {/* <h3>買い物リスト</h3> */}
+            <Typography
+              variant="h6"
+              sx={{
+                marginTop: 15,
+                marginLeft: 15
+              }}>
+              買い物リスト
+            </Typography>
+            <Grid container style={{ marginTop: '100px' }}>
               <Grid item xs>
               </Grid>
               <Grid item xs={7.5}>
