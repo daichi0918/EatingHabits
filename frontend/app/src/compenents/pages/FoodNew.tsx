@@ -38,28 +38,6 @@ const Input = styled("input")({
   display: "none"
 })
 
-// const useStyles = styled("input")((theme: Theme) => ({
-//   form: {
-//     display: "flex",
-//     flexWrap: "wrap",
-//     width: 320
-//   },
-//   inputFileBtn: {
-//     marginTop: "10px"
-//   },
-//   submitBtn: {
-//     marginTop: "10px",
-//     marginLeft: "auto"
-//   },
-//   box: {
-//     margin: "2rem 0 4rem",
-//     width: 320
-//   },
-//   preview: {
-//     width: "100%"
-//   }
-// }))
-
 const formStyles = styled("form")((theme: any) => ({
   display: "flex",
   flexWrap: "wrap",

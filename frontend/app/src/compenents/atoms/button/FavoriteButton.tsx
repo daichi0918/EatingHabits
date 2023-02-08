@@ -23,21 +23,6 @@ export const FavoriteButton: FC<Props> = memo((props: Props) => {
   const { userId } = useContext(AuthContext);
   const { setPostId, setTrigger } = useContext(PostContext);
   const [favorite, setFavorite] = useState<boolean>(isfavorited);
-  // const { onClick } = props;
-
-  // let favorite = isfavorited
-
-  // const isFavorite = () => {
-  //   let favoriteBool = false
-  //   if (favorites.length == 0) { return favoriteBool }
-  //   favorites.forEach(favorite => {
-  //     if (favorite.user_id == user_id) {
-  //       favoriteBool = true
-  //       return favoriteBool
-  //     }
-  //   })
-  //   return favoriteBool
-  // }
 
   const reversefavorite = () => {
     console.log("abc:favorite")

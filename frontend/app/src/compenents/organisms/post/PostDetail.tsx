@@ -43,10 +43,7 @@ export const PostDetail = (props: any) => {
   const DarkerDisabledTextField = styled(TextField)(() => ({
     marginTop: 1,
     "& .Mui-disabled": {
-      color: "black",// (default alpha is 0.38)
-      // text: {
-      //   color: 'black'
-      // }
+      color: "black"
     }
   }))
 
@@ -93,16 +90,6 @@ export const PostDetail = (props: any) => {
             value={text}
             disabled={disabled}
           />
-          {/* <Typography
-            sx={{
-              width: 500,
-              mx: 5,
-              my: 5
-            }}
-
-          >
-            {text}
-          </Typography> */}
         </DialogContent>
         <Stack
           alignItems="center"

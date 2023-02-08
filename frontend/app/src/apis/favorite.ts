@@ -18,7 +18,6 @@ export const createFavorite = (userId: string | undefined, postId: string | unde
     post_id: postId
   }, { headers: headers }).then(() => {
     setFavoriteTrigger((prev: any) => { return !prev });
-    // console.log("favorite add")
   })
     .catch((e) => console.error(e))
 }

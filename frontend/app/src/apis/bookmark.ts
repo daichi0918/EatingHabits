@@ -17,7 +17,6 @@ export const createBookmark = (userId: string | undefined, postId: string | unde
     post_id: postId
   }, { headers: headers }).then(() => {
     // setTrigger((prev: any) => { return !prev });
-    console.log("bookmark add")
   })
     .catch((e) => console.error(e))
 }

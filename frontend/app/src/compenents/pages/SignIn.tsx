@@ -80,7 +80,6 @@ export const SignIn = () => {
             flexDirection: 'column',
             alignItems: 'center',
             backgroundColor: '#f9f5eb'
-            // backgroundColor: '#DFEEE5'
           }}
         >
           <Paper sx={{
@@ -98,18 +97,11 @@ export const SignIn = () => {
             <Avatar
               sx={{
                 m: 1,
-                // bgcolor: 'secondary.main',
-                // backgroundColor: '#FF8F00',
-
                 backgroundColor: '#117768',
-
-                // backgroundColor: '#DFEEE5',
-                // backgroundColor: '#f9f5eb',
                 color: '#f9f5eb'
               }}
             >
               <LockOutlinedIcon />
-              {/* <LoginOutlinedIcon /> */}
             </Avatar>
             <Typography component="h1" variant="h5" sx={{
               mb: 3
@@ -117,11 +109,6 @@ export const SignIn = () => {
               ログイン
           </Typography>
             <Box component="form" noValidate sx={{ mt: 1, mx: 10, alignItems: 'center', width: 500 }}>
-
-              {/* <FormControlLabel
-                control={<Checkbox value="remember" color="success" />}
-                label="保存する"
-              /> */}
             </Box>
             <Grid item xs={12}>
               <TextField
@@ -172,10 +159,8 @@ export const SignIn = () => {
                   mt: 5,
                   mb: 3,
                   alignItems: 'center',
-                  // backgroundColor: '#117768',
                   backgroundColor: '#FF8F00',
                   '&:hover': {
-                    // backgroundColor: '#117768',
                     backgroundColor: '#FF8F00',
                     opacity: 0.8
                   },

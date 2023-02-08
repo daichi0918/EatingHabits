@@ -75,65 +75,12 @@ export const PostNew = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                {/* <TextField
-                      required
-                      fullWidth
-                      id="Title"
-                      label="画像を追加"
-                      title="title"
-                      autoComplete="title"
-                      // value={image}
-                      type="file"
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        uploadImage(e)
-                        previewImage(e)
-                        console.log("image:" + image)
-                        console.log("preview:" + preview)
-                      }}
-                    /> */}
-                {/* <label htmlFor="icon-button-file">
-                      <input
-                        accept="image/*"
-                        id="icon-button-file"
-                        type="file"
-                        onChange={(e: any) => {
-                          // uploadImage(e)
-                          // previewImage(e)
-                          setImage(e.target.files[0])
-                          setPreview(window.URL.createObjectURL(e.target.files[0]))
-                        }}
-                      />
-                    </label>
-                    < IconButton color="inherit" component="span" >
-                      <CameraAltIcon />
-                    </IconButton> */}
-                {/* <IconButton color="primary" aria-label="upload picture" component="label">
-                  <input
-                    // hidden
-                    // required
-                    accept="image/*"
-                    id="icon-button-file"
-                    type="file"
-                    onChange={(
-                      // e: React.ChangeEvent<HTMLInputElement>
-                      e: any
-                    ) => {
-                      // if (e.target.files[0] !== null) {
-                      setImage(e.target.files[0])
-                      setPreview(window.URL.createObjectURL(e.target.files[0]))
-                      // }
-                    }}
-                  />
-                  <PhotoCamera />
-                </IconButton> */}
                 <label htmlFor="icon-button-file">
                   <input
                     accept="image/*"
                     id="icon-button-file"
                     type="file"
                     onChange={(e: any) => {
-                      // uploadImage(e)
-                      // previewImage(e)
                       setImage(e.target.files[0])
                       setPreview(window.URL.createObjectURL(e.target.files[0]))
                     }}
@@ -161,8 +108,6 @@ export const PostNew = () => {
             <Button
               fullWidth
               variant="contained"
-              // onClick={() => createFood(userId, setTrigger, navigate, title, classification, quantity, limitDate, alertDate, image, text)}
-              // onClick={sendFormData}
               onClick={() => createPost(setTrigger, userId, title, image, text, navigate)}
               sx={{ mt: 3, mb: 2 }}
             >

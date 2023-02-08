@@ -13,10 +13,7 @@ export const HomeHeaderLayout: FC<Props> = memo((props) => {
   return (
     <>
       <HomeHeader />
-      {/* <Box component="main" sx={{ p: 13 }}> */}
       {children}
-      {/* <TopFooter /> */}
-      {/* </Box> */}
     </>
   )
 })

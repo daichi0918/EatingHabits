@@ -1,4 +1,3 @@
-// import { Box, Flex, Heading, Link, useDisclosure } from "@chakra-ui/react";
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"
@@ -27,21 +26,11 @@ import { MenuIconButton } from "../../atoms/button/MenuIconButton";
 import { MenuDrawer } from "../../molecules/MenuDrawer";
 
 export const TopHeader: FC = memo(() => {
-  // const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
   const onClickTop = useCallback(() => navigate("/"), [navigate]);
   const onClickSignin = useCallback(() => navigate("/signin"), [navigate]);
   const onClickSignup = useCallback(() => navigate("/signup"), [navigate]);
-
-  // useEffect(() => {
-  //   axios.get<any>("http://localhost:3002/api/v1/users").then((res) => {
-  //     console.log(res)
-  //   })
-  // }, [])
-
-
-
 
   return (
     <>
@@ -74,11 +63,7 @@ export const TopHeader: FC = memo(() => {
             <Button
               sx={{
                 backgroundColor: 'white',
-                color: 'black',
-                // '&:hover': {
-                //   backgroundColor: 'white',
-                //   opacity: 0.1,
-                // },
+                color: 'black'
               }}>
               <IconButton
                 color="inherit"
@@ -104,18 +89,13 @@ export const TopHeader: FC = memo(() => {
               onClick={onClickSignin}
               sx={{
                 backgroundColor: 'white',
-                color: 'black',
-                // '&:hover': {
-                //   backgroundColor: 'white',
-                //   opacity: 0.1,
-                // },
+                color: 'black'
               }}>
               <IconButton
                 color="inherit"
                 sx={{
                   color: 'black'
                 }}>
-                {/* <LoginIcon /> */}
                 <LockOutlinedIcon />
               </IconButton>
               <Typography
@@ -134,10 +114,6 @@ export const TopHeader: FC = memo(() => {
               sx={{
                 backgroundColor: 'white',
                 color: 'black',
-                // '&:hover': {
-                //   backgroundColor: 'white',
-                //   opacity: 0.1,
-                // },
               }}>
               <IconButton
                 color="inherit"

@@ -19,12 +19,6 @@ import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
 
 export const Home: FC = memo(() => {
   const { userId } = useContext(AuthContext);
-  // axios.get<any>("http://localhost:3002/api/v1/users").then((res) => {
-  //   console.log(res);
-  //   const data = res.data.users.map((user: any) => ({
-  //     name: user.name,
-  //     email: user.email
-  //   }));
   const navigate = useNavigate();
 
   const onClickList = () => navigate("list")
@@ -37,23 +31,11 @@ export const Home: FC = memo(() => {
       <HomeHeaderLayout>
         <Box
           sx={{
-            // width: 1200,
-            // height: 600,
-            // backgroundColor: 'white',
-            // border: '1',
-            // borderColor: grey[500],
-            // mx: 'auto',
-            // mt: 10,
             paddingTop: 12,
             marginTop: 2,
             display: 'flex',
             flexDirection: 'column',
-            // alignItems: 'center',
             backgroundColor: '#f9f5eb'
-            // '&:hover': {
-            //   backgroundColor: 'primary.main',
-            //   opacity: [0.9, 0.8, 0.7],
-            // },
           }}
         >
           <Card
@@ -61,7 +43,6 @@ export const Home: FC = memo(() => {
               width: 280,
               height: 150,
               m: 2,
-              // backgroundColor: grey[100],
               backgroundColor: 'white',
               '&:hover': {
                 opacity: [0.9, 0.8, 0.7],

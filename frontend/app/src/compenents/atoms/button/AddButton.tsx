@@ -6,8 +6,6 @@ import Fab from '@mui/material/Fab';
 const StyledFab = styled(Fab)({
   position: 'fixed',
   zIndex: 1,
-  // top: 650,
-  // left: 1180,
   bottom: 20,
   right: 20,
   margin: '0 auto',

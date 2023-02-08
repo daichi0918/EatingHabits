@@ -9,7 +9,6 @@ const options = {
 
 const client = applyCaseMiddleware(
   axios.create({
-    // baseURL: 'http://localhost:3002/api/v1',
     baseURL: DEFAULT_API_LOCALHOST,
     headers: {
       "Content-Type": "multipart/form-data" // 画像ファイルを取り扱うのでform-dataで送信
