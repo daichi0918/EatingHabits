@@ -11,8 +11,6 @@ module Api
       def create
         favorite = Favorite.new(favorite_params)
         if favorite.save
-          # favorites_count = Favorite.where(post_id: params[:post_id]).count
-          # render json: { status: 'SUCCESS', data: favorite_count }
           render json: { status: 'SUCCESS', data: favorite }
         else
           render json: { status: 'ERROR', data: favorite.errors }
@@ -27,11 +25,7 @@ module Api
       private
 
       def set_favorite
-        # @user = User.find_by(id: current_api_v1_user.id)
-        # @user = User.find(id: params[:user_id])
         @favorite = Favorite.find(params[:id])
-        # @favorite = Favorite.find(params[:id])
-        # @like = Like.find_by(user_id: params[:user_id], post_id: params[:post_id])
       end
 
       def favorite_params
