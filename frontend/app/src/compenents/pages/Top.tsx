@@ -1,4 +1,3 @@
-// import { Box, Divider, Flex, Heading, Input, Stack } from "@chakra-ui/react";
 import { ChangeEvent, FC, memo, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
@@ -61,13 +60,6 @@ export const Top: FC = memo(() => {
               backgroundSize: "cover",
               height: '500px'
             }}>
-              {/* <div style={{
-                position: 'absolute',
-                top: '50%',
-                // left: '50%',
-                // transform: 'translate(-50 %, -50 %)',
-                color: 'white'
-              }}> */}
               <Box
                 sx={{
                   marginTop: 8,

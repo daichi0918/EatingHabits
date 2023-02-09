@@ -74,12 +74,6 @@ export const FoodEdit = () => {
     editFood(userId, foodId, locationFoodId, setFoodEdit, setName, setClassification, setQuantity, setLimitDate, setAlertDate, setImage, setMemo)
   }, [])
 
-
-
-  // console.log("name:" + foodEdit?.name)
-
-  // console.log("abc:" + name)
-
   const navigate = useNavigate();
 
   const theme = createTheme();
@@ -173,15 +167,6 @@ export const FoodEdit = () => {
                     </LocalizationProvider>
                   </Grid>
                   <Grid item xs={12}>
-                    {/* <TextField
-                      required
-                      fullWidth
-                      id="Name"
-                      label="画像を追加"
-                      name="name"
-                      autoComplete="name"
-                      value={image}
-                    /> */}
                     <label htmlFor="icon-button-file">
                       <input
                         accept="image/*"
@@ -189,8 +174,6 @@ export const FoodEdit = () => {
                         type="file"
                         // value={image}
                         onChange={(e: any) => {
-                          // uploadImage(e)
-                          // previewImage(e)
                           setImage(e.target.files[0])
                           setPreview(window.URL.createObjectURL(e.target.files[0]))
                         }}

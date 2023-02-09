@@ -16,7 +16,6 @@ type Props = {
 export const BookmarkButton: FC<Props> = memo((props) => {
   const { id } = props
   const { userId } = useContext(AuthContext);
-  // const { onClick } = props;
   return (
     <Tooltip title="Bookmark">
       <IconButton

@@ -40,28 +40,6 @@ const Input = styled("input")({
   display: "none"
 })
 
-// const useStyles = styled("input")((theme: Theme) => ({
-//   form: {
-//     display: "flex",
-//     flexWrap: "wrap",
-//     width: 320
-//   },
-//   inputFileBtn: {
-//     marginTop: "10px"
-//   },
-//   submitBtn: {
-//     marginTop: "10px",
-//     marginLeft: "auto"
-//   },
-//   box: {
-//     margin: "2rem 0 4rem",
-//     width: 320
-//   },
-//   preview: {
-//     width: "100%"
-//   }
-// }))
-
 const formStyles = styled("form")((theme: any) => ({
   display: "flex",
   flexWrap: "wrap",
@@ -179,31 +157,12 @@ export const DailyEdit = () => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    {/* <TextField
-                      required
-                      fullWidth
-                      id="Name"
-                      label="画像を追加"
-                      name="name"
-                      autoComplete="name"
-                      // value={image}
-                      type="file"
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        uploadImage(e)
-                        previewImage(e)
-                        console.log("image:" + image)
-                        console.log("preview:" + preview)
-                      }}
-                    /> */}
                     <label htmlFor="icon-button-file">
                       <input
                         accept="image/*"
                         id="icon-button-file"
                         type="file"
-                        // value={image}
                         onChange={(e: any) => {
-                          // uploadImage(e)
-                          // previewImage(e)
                           setImage(e.target.files[0])
                           setPreview(window.URL.createObjectURL(e.target.files[0]))
                         }}
@@ -213,26 +172,11 @@ export const DailyEdit = () => {
                       <CameraAltIcon />
                     </IconButton>
                   </Grid>
-                  {/* <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      id="outlined-multiline-static"
-                      label="memo"
-                      multiline
-                      rows="3"
-                      defaultValue=""
-                      margin="normal"
-                      variant="outlined"
-                      // value={memo}
-                      onChange={(e) => setMemo(e.target.value)}
-                    />
-                  </Grid> */}
                   <Grid item xs={6}>
                     <Button
                       fullWidth
                       variant="contained"
                       onClick={() => destroyDiary(userId, diaryId, setTrigger, navigate)}
-                      // onClick={sendFormData}
                       sx={{ mt: 3, mb: 2 }}
                     >
                       削除する
@@ -243,7 +187,6 @@ export const DailyEdit = () => {
                       fullWidth
                       variant="contained"
                       onClick={() => updateDiary(userId, diaryId, setTrigger, navigate, mealtime, eatOn, mainmenu, sidemenu, image)}
-                      // onClick={sendFormData}
                       sx={{ mt: 3, mb: 2 }}
                     >
                       更新する

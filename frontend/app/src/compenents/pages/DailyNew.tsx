@@ -39,28 +39,6 @@ const Input = styled("input")({
   display: "none"
 })
 
-// const useStyles = styled("input")((theme: Theme) => ({
-//   form: {
-//     display: "flex",
-//     flexWrap: "wrap",
-//     width: 320
-//   },
-//   inputFileBtn: {
-//     marginTop: "10px"
-//   },
-//   submitBtn: {
-//     marginTop: "10px",
-//     marginLeft: "auto"
-//   },
-//   box: {
-//     margin: "2rem 0 4rem",
-//     width: 320
-//   },
-//   preview: {
-//     width: "100%"
-//   }
-// }))
-
 const formStyles = styled("form")((theme: any) => ({
   display: "flex",
   flexWrap: "wrap",
@@ -71,14 +49,6 @@ export const DailyNew = () => {
 
   const { userId } = useContext(AuthContext);
   const { setTrigger } = useContext(DiaryContext);
-
-  // const [name, setName] = useState("");
-  // const [classification, setClassification] = useState<any>();
-  // const [quantity, setQuantity] = useState<any>();
-  // const [limitDate, setLimitDate] = useState<any>();
-  // const [alertDate, setAlertDate] = useState<any>();
-  // const [image, setImage] = useState<any>()
-  // const [memo, setMemo] = useState("");
 
   const [mealtime, setMealtime] = useState<any>();
   const [eatOn, setEatOn] = useState<any>("");
@@ -181,30 +151,12 @@ export const DailyNew = () => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    {/* <TextField
-                      required
-                      fullWidth
-                      id="Name"
-                      label="画像を追加"
-                      name="name"
-                      autoComplete="name"
-                      // value={image}
-                      type="file"
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        uploadImage(e)
-                        previewImage(e)
-                        console.log("image:" + image)
-                        console.log("preview:" + preview)
-                      }}
-                    /> */}
                     <label htmlFor="icon-button-file">
                       <input
                         accept="image/*"
                         id="icon-button-file"
                         type="file"
                         onChange={(e: any) => {
-                          // uploadImage(e)
-                          // previewImage(e)
                           setImage(e.target.files[0])
                           setPreview(window.URL.createObjectURL(e.target.files[0]))
                         }}
@@ -214,26 +166,11 @@ export const DailyNew = () => {
                       <CameraAltIcon />
                     </IconButton>
                   </Grid>
-                  {/* <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      id="outlined-multiline-static"
-                      label="memo"
-                      multiline
-                      rows="3"
-                      defaultValue=""
-                      margin="normal"
-                      variant="outlined"
-                      // value={memo}
-                      onChange={(e) => setMemo(e.target.value)}
-                    />
-                  </Grid> */}
                 </Grid>
                 <Button
                   fullWidth
                   variant="contained"
                   onClick={() => createDiary(userId, setTrigger, navigate, mealtime, eatOn, mainmenu, sidemenu, image)}
-                  // onClick={sendFormData}
                   sx={{ mt: 3, mb: 2 }}
                 >
                   追加する

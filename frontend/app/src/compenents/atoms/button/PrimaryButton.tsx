@@ -10,9 +10,6 @@ type Props = {
 export const PrimaryButton: FC<Props> = memo((props) => {
   const { children, onClick } = props;
   return (
-    // <Button onClick={onClick}>
-    //   {children}
-    // </Button>
     <Button onClick={onClick}>
       {children}
     </Button>

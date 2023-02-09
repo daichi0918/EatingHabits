@@ -97,24 +97,12 @@ export const DailyPage: FC = memo(() => {
   const onClickDailyNew = () => navigate("/home/daily/new")
 
   const [currentEvents, setCurrentEvents] = useState<EventApi[]>([]);
+
   const handleEvents = useCallback(
     (events: EventApi[]) => setCurrentEvents(events),
     []
   );
-  // const handleDateSelect = useCallback((selectInfo: DateSelectArg) => {
-  //   let title = prompt("イベントのタイトルを入力してください")?.trim();
-  //   let calendarApi = selectInfo.view.calendar;
-  //   calendarApi.unselect();
-  //   if (title) {
-  //     calendarApi.addEvent({
-  //       id: createEventId(),
-  //       title,
-  //       start: selectInfo.startStr,
-  //       end: selectInfo.endStr,
-  //       allDay: selectInfo.allDay
-  //     });
-  //   }
-  // }, []);
+
   const handleEventClick = useCallback((clickInfo: EventClickArg) => {
     console.log("id:" + clickInfo.event.id)
     setDiaryId(clickInfo.event.id)

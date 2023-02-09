@@ -1,4 +1,3 @@
-// import { Box, Flex, Heading, Link, useDisclosure } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import { FC, memo, useCallback, useEffect, useContext, useState } from "react";
 import axios from "axios";
@@ -41,7 +40,6 @@ import nouser from "../../../images/nouser.png";
 import "../../../assets/styles/footer.css";
 
 export const TopFooter: FC = memo(() => {
-  // const { isOpen, onOpen, onClose } = useDisclosure();
   const { setIsSignedIn, userName, userImage } = useContext(AuthContext)
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -70,7 +68,6 @@ export const TopFooter: FC = memo(() => {
 
         setIsSignedIn(false)
         navigate("/signin")
-        // histroy.push("/signin")
 
         console.log("Succeeded in sign out")
       } else {
@@ -117,7 +114,6 @@ export const TopFooter: FC = memo(() => {
         <div className="footer-detail-container--inner center-box">
           <div className="footer-detail-top--inner flex-row">
             <h5>食べマネ</h5>
-            {/* <img className="footer-detail-logo" src={logo} alt="ロゴ画像" /> */}
             <div className="copy-detail arial">© 2021 Rayward Inc.</div>
           </div>
           <div className="footer-detail-middle--inner flex-row">
@@ -141,7 +137,6 @@ export const TopFooter: FC = memo(() => {
           </div>
         </div>
       </footer>
-      {/* </Box> */}
     </>
   )
 })

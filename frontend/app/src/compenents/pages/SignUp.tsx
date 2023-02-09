@@ -70,135 +70,6 @@ export const SignUp = () => {
   const theme = createTheme();
   return (
     <>
-      {/* <TopHeaderLayout>
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            backgroundColor: '#f9f5eb'
-          }}
-        >
-          <Paper sx={{
-            marginRight: 15,
-            marginLeft: 15,
-            marginTop: 5,
-            marginBottom: 5,
-            paddingTop: 5,
-            paddingBottom: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            elevation: 5
-          }}>
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              アカウント登録
-          </Typography>
-            <Box component="form" noValidate sx={{ mt: 3 }}>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  size="small"
-                  id="Name"
-                  label="氏名"
-                  name="name"
-                  color="success"
-                  autoComplete="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  sx={{
-                    width: 400
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  color="success"
-                  size="small"
-                  id="email"
-                  label="メールアドレス"
-                  name="email"
-                  autoComplete="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  sx={{
-                    width: 400
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="パスワード"
-                  color="success"
-                  size="small"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  sx={{
-                    width: 400
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  color="success"
-                  size="small"
-                  name="password_confirmation"
-                  label="パスワード(確認用)"
-                  type="password"
-                  id="password_confirmation"
-                  autoComplete="new-password_confirmation"
-                  value={passwordConfirmation}
-                  onChange={(e) => setPasswordConfirmation(e.target.value)}
-                  sx={{
-                    width: 400
-                  }}
-                />
-              </Grid>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                onClick={(e) => handleSignUpSubmit(e)}
-                sx={{
-                  mt: 3,
-                  mb: 2,
-                  width: 100,
-                  alignItems: 'center',
-                  backgroundColor: '#FF8F00',
-                  '&:hover': {
-                    backgroundColor: '#FF8F00',
-                    opacity: 0.8
-                  },
-                }}
-              >
-                アカウント登録
-            </Button>
-              <Grid container justifyContent="flex-end">
-                <Grid item>
-                  <Link to="/signin">
-                    Already have an account? Sign in
-                </Link>
-                </Grid>
-              </Grid>
-            </Box>
-          </Paper>
-        </Box>
-      </TopHeaderLayout> */}
       <TopHeaderLayout>
         <Box
           sx={{
@@ -207,7 +78,6 @@ export const SignUp = () => {
             flexDirection: 'column',
             alignItems: 'center',
             backgroundColor: '#f9f5eb'
-            // backgroundColor: '#DFEEE5'
           }}
         >
           <Paper sx={{
@@ -225,18 +95,11 @@ export const SignUp = () => {
             <Avatar
               sx={{
                 m: 1,
-                // bgcolor: 'secondary.main',
-                // backgroundColor: '#FF8F00',
-
                 backgroundColor: '#117768',
-
-                // backgroundColor: '#DFEEE5',
-                // backgroundColor: '#f9f5eb',
                 color: '#f9f5eb'
               }}
             >
               <PersonAddIcon />
-              {/* <LoginOutlinedIcon /> */}
             </Avatar>
             <Typography component="h1" variant="h5" sx={{
               mb: 3
@@ -244,11 +107,6 @@ export const SignUp = () => {
               アカウント登録
           </Typography>
             <Box component="form" noValidate sx={{ mt: 1, mx: 10, alignItems: 'center', width: 500 }}>
-
-              {/* <FormControlLabel
-                control={<Checkbox value="remember" color="success" />}
-                label="保存する"
-              /> */}
             </Box>
             <Grid item xs={12}>
               <TextField
@@ -338,10 +196,8 @@ export const SignUp = () => {
                   mt: 5,
                   mb: 3,
                   alignItems: 'center',
-                  // backgroundColor: '#117768',
                   backgroundColor: '#FF8F00',
                   '&:hover': {
-                    // backgroundColor: '#117768',
                     backgroundColor: '#FF8F00',
                     opacity: 0.8
                   },

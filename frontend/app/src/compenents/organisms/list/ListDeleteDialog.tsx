@@ -12,7 +12,6 @@ import { createList, destroyList } from "../../../apis/lists";
 
 export const ListDeleteDialog = (props: any) => {
   const { userId, id, setTrigger } = props;
-  // const { isOpen, onOpen, onClose } = useDisclosure();
   const [dialog, setDialog] = useState(false);
 
   const OpenDialog = () => setDialog(true);

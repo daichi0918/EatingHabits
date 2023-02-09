@@ -1,4 +1,3 @@
-// import { Box, Spinner, Stack, Text, Wrap, WrapItem, Center } from "@chakra-ui/react";
 import { FC, memo, useEffect } from "react";
 import { UserCard } from "../organisms/user/UserCard";
 import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
@@ -24,17 +23,6 @@ export const UserManagement: FC = memo(() => {
 
 
       ) : (
-          // <Wrap p={{ base: 4, md: 10 }}>
-          //   {users.map((user) => (
-          //     <Link to={`/home/user_management/${user.id}/list`} key={user.id} >
-          //       <WrapItem mx="auto">
-          //         <UserCard userName={user.name} userEmail={user.email} userGender={user.gender} />
-          //       </WrapItem>
-          //     </Link>
-
-          //   ))}
-
-          // </Wrap>
           <>
             {users.map((user) => (
               <Link to={`/home/list`} key={user.id} >

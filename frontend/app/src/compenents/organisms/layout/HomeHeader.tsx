@@ -1,4 +1,3 @@
-// import { Box, Flex, Heading, Link, useDisclosure } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import { FC, memo, useCallback, useEffect, useContext, useState } from "react";
 import axios from "axios";
@@ -40,7 +39,6 @@ import { AuthContext } from "../../../App";
 import nouser from "../../../images/nouser.png";
 
 export const HomeHeader: FC = memo(() => {
-  // const { isOpen, onOpen, onClose } = useDisclosure();
   const { setIsSignedIn, userName, userImage } = useContext(AuthContext)
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -69,7 +67,6 @@ export const HomeHeader: FC = memo(() => {
 
         setIsSignedIn(false)
         navigate("/signin")
-        // histroy.push("/signin")
 
         console.log("Succeeded in sign out")
       } else {
@@ -137,9 +134,6 @@ export const HomeHeader: FC = memo(() => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {/* <MenuItem>
-                <Typography textAlign="center">マイページ</Typography>
-              </MenuItem> */}
               <MenuItem onClick={onClickProfile}>
                 <Typography textAlign="center">プロフィール</Typography>
               </MenuItem>
@@ -150,7 +144,6 @@ export const HomeHeader: FC = memo(() => {
           </Box>
         </Toolbar>
       </AppBar>
-      {/* </Box> */}
     </>
   )
 })

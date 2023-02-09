@@ -7,18 +7,12 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
-
-//
 import { Stack } from "@mui/material";
 import CircularProgress from '@mui/material/CircularProgress';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-//
 
 import { HomeHeaderLayout } from "../templates/HomeHeaderLayout";
-
-
-//
 import { PostCard } from "../organisms/post/PostCard";
 import { AuthContext } from "../../App";
 import { PostType } from "../../types/api/post";
@@ -59,16 +53,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
-    // [theme.breakpoints.up('sm')]: {
-    //   width: '12ch',
-    //   '&:focus': {
-    //     width: '20ch',
-    //   },
-    // },
   },
 }));
 
@@ -81,11 +68,8 @@ export const Post: FC = memo(() => {
   const { postId, setPostId, posts, setPosts, trigger, setTrigger } = useContext(PostContext);
 
   const [favorites, setFavorites] = useState([]);
-  // const [favoriteTrigger, setFavoriteTrigger] = useState(false);
 
   const { getPosts, loading } = useAllPosts();
-
-  // const { getFavorites, favoriteLoading } = useAllFavorites();
 
   const navigate = useNavigate()
 
@@ -94,20 +78,6 @@ export const Post: FC = memo(() => {
   }
 
   useEffect(() => { getPosts(setPosts) }, [trigger])
-
-  // // const { foods, setFoods, trigger, setTrigger } = useContext(FoodContext);
-
-  // // const [foods, setFoods] = useState<Array<FoodType>>([]);
-
-  // // const [trigger, setTrigger] = useState(false);
-
-  // const { getFoods, loading } = useAllFoods();
-
-  // const navigate = useNavigate()
-
-  // const onClickFoodNew = () => navigate("/home/food/new")
-
-  // useEffect(() => getFoods(userId, setFoods), [trigger])
 
 
   return (

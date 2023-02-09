@@ -30,8 +30,6 @@ module Api
       private
 
       def set_list
-        # user = User.find(params[:user_id])
-        # List = user.lists
         @list = List.find(params[:id])
       end
 
