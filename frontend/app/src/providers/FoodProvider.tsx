@@ -7,14 +7,6 @@ type Props = {
 }
 
 export const FoodContext = createContext({} as {
-  // loading: boolean
-  // setLoading: React.Dispatch<React.SetStateAction<boolean>>
-  // isSignedIn: boolean
-  // setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>
-  // currentUser: FoodType | undefined
-  // setCurrentUser: React.Dispatch<React.SetStateAction<FoodType | undefined>>
-  // userId: string | undefined
-  // setUserId: React.Dispatch<React.SetStateAction<string | undefined>>
   foodId: string | undefined
   setFoodId: React.Dispatch<React.SetStateAction<string | undefined>>
   foodEdit: FoodType | undefined

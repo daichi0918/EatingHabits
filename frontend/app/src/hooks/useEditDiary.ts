@@ -27,19 +27,6 @@ export const useEditDiary = () => {
       setMainmenu(res.data.diary.main_menu)
       setSidemenu(res.data.diary.side_menu)
       setImage(res.data.diary.image.url)
-      // console.log(res)
-      // // setEditFood(res.data.food)
-      // setName(res.data.food.name)
-      // setClassification(res.data.food.classification_id)
-      // console.log("classification:" + res.data.food.classification_id)
-      // setQuantity(res.data.food.quantity)
-      // setLimitDate(res.data.food.expired_at)
-      // setAlertDate(res.data.food.notified_at)
-      // setImage(res.data.food.image)
-      // console.log("image:" + res.data.food.image)
-      // setMemo(res.data.food.memo)
-      // console.log("EditFood:" + res.data)
-      // console.log("EditFoodName:" + res.data.food.name)
     }).catch(() => {
       setError(true);
     }).finally(() => {
