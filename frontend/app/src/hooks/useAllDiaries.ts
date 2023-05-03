@@ -22,6 +22,7 @@ export const useAllDiaries = () => {
       }
     }).then((res) => {
       console.log(res)
+      console.log(res.data)
       setDiaries(res.data.diaries)
     }).catch(() => {
       setError(true);
