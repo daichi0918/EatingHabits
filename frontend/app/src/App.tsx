@@ -55,7 +55,6 @@ const App: FC = () => {
   }
 
   useEffect(() => {
-    // setTimeout(handleGetCurrentUser, 3000);
     handleGetCurrentUser()
   }, [setCurrentUser])
 
